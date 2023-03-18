@@ -19,7 +19,7 @@ function App() {
      </section>
 
      <section className='section'>
-          {/* Usefull Links */}
+          {/* Some Usefull Links */}
      </section>
 
      <footer>
