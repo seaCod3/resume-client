@@ -7,7 +7,7 @@ function App() {
     <h1>Here We Are!!</h1>
 
      <header>
-           {/* header */}
+           {/* header  */}
      </header>
 
      <section className='section'>
