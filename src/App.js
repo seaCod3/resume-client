@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="hero-bg-gradient-color">
 
-    <h1 className='main-heading' >Here We Are Again and Again!!</h1>
+    <h1 className='main-heading' >Create a professional resume and cover letter</h1>
 
      <header>
            {/* header  */}

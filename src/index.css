@@ -10,7 +10,7 @@
 
 .main-heading {
   font-family: var(--font-family);
-  font-size: 54px;
+  font-size: 52px;
   line-height: 65px;
   color: var(--font-color-primary-white);
 }
@@ -19,4 +19,11 @@
   background-image: var(--bg-gradient-color);
 }
 
+/* .block-title {
+
+}
+
+.section-title{
+
+} */
 
