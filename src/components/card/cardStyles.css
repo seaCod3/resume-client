@@ -1,0 +1,19 @@
+/* CARD COMPONENT CUSTOM STYLES */
+.custom-card-header {
+    margin-bottom: 15px;
+  }
+  
+  .imageSize {
+    object-fit: fill;
+    width: 72px;
+    height: 72px;
+  }
+  
+  .card-container {
+    max-width: 35rem !important;
+  
+  }
+
+  .card {
+    border: none !important;
+  }

@@ -1,17 +1,17 @@
 import './App.css';
+import Navbar from './components/navbar/Navbar';
+import Features from './container/features/Features';
 
 function App() {
   return (
-    <div className="hero-bg-gradient-color">
-
-    <h1 className='main-heading' >Create a professional resume and cover letter</h1>
+    <div>
 
      <header>
-           {/* header  */}
+           <Navbar/>
      </header>
 
      <section className='section'>
-          {/* Features */}
+          <Features />
      </section>
 
      <section className='section'>
