@@ -26,9 +26,17 @@
     color: var(--font-color-primary-white) !important;
 }
 
+.navigation .navbar-toggler{
+    outline: none!important;
+    border: none !important;    
+}
+
+.navigation .navbar-toggler:focus{
+    box-shadow: none !important;
+}
+
 .navigation .bton{
-    outline: 0;
-    border: 0;
     background: transparent;
-    
+    border: none;
+    outline: none;
 }

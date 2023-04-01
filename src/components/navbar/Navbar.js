@@ -6,40 +6,39 @@ export default function Navbar() {
 
     const [marginTop, setMarginTop] = React.useState(0);
 
-  React.useEffect(() => {
-    // Function to update the margin bottom value based on the window inner height
-    const handleWindowResize = () => {
-      const newMarginTop = window.innerWidth < 992 ? 50 : 0;
-      setMarginTop(newMarginTop);
+    React.useEffect(() => {
+        // Function to update the margin bottom value based on the window inner height
+        const handleWindowResize = () => {
+            const newMarginTop = window.innerWidth < 992 ? 50 : 0;
+            setMarginTop(newMarginTop);
+        };
+
+        // Add event listener to the window resize event
+        window.addEventListener("resize", handleWindowResize);
+
+        // Call the handleWindowResize once initially
+        handleWindowResize();
+
+        // Remove event listener when component is unmounted
+        return () => {
+            window.removeEventListener("resize", handleWindowResize);
+        };
+    }, []);
+
+    const style = {
+        marginTop: `${marginTop}px`,
     };
-
-    // Add event listener to the window resize event
-    window.addEventListener("resize", handleWindowResize);
-
-    // Call the handleWindowResize once initially
-    handleWindowResize();
-
-    // Remove event listener when component is unmounted
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
-
-  const style = {
-    marginTop: `${marginTop}px`,
-  };
-  
 
 
     return (
-        <nav className="navbar navbar-expand-lg navigation">
+        <nav className="navbar fixed-top navbar-expand-lg navigation">
 
             <div className="container">
 
                 <a className="navbar-brand" href="#">RESUME</a>
 
-                <button className="bton" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <RiMenu3Line color="#fff" size={30}/>
+                <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <RiMenu3Line color="#fff" size={30} />
                 </button>
 
 
@@ -48,7 +47,7 @@ export default function Navbar() {
 
                         <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
 
-                        <button className="bton" type="button" data-bs-dismiss="offcanvas" aria-label="Close"><RiCloseLine color="#fff" size={40}/></button>
+                        <button className="bton" type="button" data-bs-dismiss="offcanvas" aria-label="Close"><RiCloseLine color="#fff" size={40} /></button>
                     </div>
 
                     <div className="offcanvas-body">
@@ -78,7 +77,7 @@ export default function Navbar() {
                         <button style={style} className="btn btn-primary">Create a Resume</button>
 
                     </div>
-                    
+
                 </div>
             </div>
         </nav>
