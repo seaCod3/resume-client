@@ -1,0 +1,24 @@
+
+.navigation {
+    background: var(--font-color);
+    padding: 8px 0;
+}
+
+.navigation ul li{
+    padding-right: 20px;
+}
+
+.navigation a{
+    color: var(--font-color-primary-white) !important;
+}
+
+.navigation a:hover{
+    color:  #e4e4e2 !important;
+}
+
+.navigation .offcanvas {
+    width: 230px !important;
+    background-color: var(--font-color) !important;
+    color: var(--font-color-primary-white) !important;
+  }
+  

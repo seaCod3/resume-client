@@ -4,7 +4,7 @@
 :root {
   --font-family: 'Poppins', sans-serif;
   --font-color: #023642;
-  --font-color-primary-white: #FBFBFA;
+  --font-color-primary-white: #fbfbfa;
   --bg-gradient-color: linear-gradient(to bottom, #023642, #0c4653, #175665, #226777, #2d7989);
 }
 
@@ -22,6 +22,16 @@ html {
 .hero-bg-gradient-color {
   background-image: var(--bg-gradient-color);
 }
+
+.btn-primary {
+    outline: none !important;
+    border: none !important;
+    width: 200px;
+    height: 40px;
+    color: var(--font-color) !important;
+    background: var(--font-color-primary-white) !important;
+}
+
 
 
 
