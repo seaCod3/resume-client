@@ -17,8 +17,8 @@ const Card = ({ icon, title, content }) => {
                     </div>
                     <h5 className="custom-card-title">{title}</h5>
                 </div>
-                <div>
-                    <p className={`text-start w-100 paragraph`} >
+                <div >
+                    <p className={`text-start w-100 card-paragraph`} >
                         {content}
                     </p>
 

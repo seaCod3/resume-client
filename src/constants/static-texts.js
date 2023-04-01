@@ -1,8 +1,6 @@
-import { FiEdit2 } from "react-icons/fi";
 import { VscCheckAll } from "react-icons/vsc";
 import { BsDownload } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
-
 
 
 export const features = [

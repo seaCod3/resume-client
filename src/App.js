@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './components/navbar/Navbar';
 import Features from './container/features/Features';
+import FAQ from './container/fqa/FAQ';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
      </section>
 
      <section className='section'>
-          {/* FAQ */}
+          <FAQ />
      </section>
 
      <section className='section'>
