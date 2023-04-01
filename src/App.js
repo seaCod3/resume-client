@@ -1,13 +1,12 @@
 import './App.css';
+import Navbar from './components/navbar/Navbar';
 
 function App() {
   return (
-    <div className="hero-bg-gradient-color">
-
-    <h1 className='main-heading' >Here We Are Again and Again!!</h1>
+    <div>
 
      <header>
-           {/* header  */}
+           <Navbar/>
      </header>
 
      <section className='section'>
