@@ -34,9 +34,11 @@ html {
 
 .paragraph {
   color: var(--font-color);
+  font-family: var(--font-family);
+  text-align: justify;
+  text-justify: inter-word;
 
 }
-
 
 
 
