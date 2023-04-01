@@ -41,11 +41,5 @@ export const features = [
         content:
           "Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
       },
-      {
-        id: "feature-4",
-        icon: <AiOutlineEdit color="#023642" size={30}/>,
-        title: "Edit any misstyping!",
-        content:
-          "Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
-      },
+      
   ];
