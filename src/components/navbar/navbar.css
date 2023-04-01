@@ -21,4 +21,14 @@
     background-color: var(--font-color) !important;
     color: var(--font-color-primary-white) !important;
   }
-  
+
+.navigation btn-close{
+    color: var(--font-color-primary-white) !important;
+}
+
+.navigation .bton{
+    outline: 0;
+    border: 0;
+    background: transparent;
+    
+}
