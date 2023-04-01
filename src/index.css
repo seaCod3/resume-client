@@ -32,6 +32,10 @@ html {
     background: var(--font-color-primary-white) !important;
 }
 
+.paragraph {
+  color: var(--font-color);
+
+}
 
 
 
