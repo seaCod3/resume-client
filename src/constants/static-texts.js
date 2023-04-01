@@ -23,14 +23,14 @@ export const features = [
     {
       id: "feature-3",
       icon: <BsDownload color="#023642" size={30}/>,
-      title: "Download any time.",
+      title: "Download any time!",
       content:
       "Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
     },
     {
         id: "feature-6",
         icon: <BsDownload color="#023642" size={30}/>,
-        title: "Download any time.",
+        title: "Download any time!",
         content:
           "Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
       },

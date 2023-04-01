@@ -5,6 +5,9 @@ import Card from '../../components/card/Card';
 const Features = () => {
   return (
     <div className={`container text-center mt-3`} >
+
+      <h2 className={`sections-title`} >Features</h2>
+
       <div className={`row justify-content-center`} >
         {
           features.map((feature, index) => (
@@ -14,8 +17,6 @@ const Features = () => {
           ))
         }
       </div>
-
-      <p>Features</p>
 
     </div>
   )
