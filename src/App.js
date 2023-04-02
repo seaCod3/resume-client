@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './components/navbar/Navbar';
 import Features from './container/features/Features';
+import Hero from './container/hero/Hero';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
 
      <header>
            <Navbar/>
+           <Hero />
      </header>
 
      <section className='section'>

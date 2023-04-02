@@ -1,0 +1,41 @@
+.hero {
+    margin-top: 50px;
+    padding: 50px 0 100px 0;
+    color: var(--font-color-primary-white);
+    background: var(--bg-gradient-color);
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 92%);
+}
+
+.hero h1 {
+    color: var(--font-color-primary-white);
+    width: 630px;
+    font-size: 50px;
+    padding-top: 30px;
+    font-weight: bold;
+    font-family: var(--font-family);
+
+}
+
+.hero p {
+    color: var(--font-color-primary-white);
+    width: 600px;
+    font-size: 20px;
+    padding: 30px 0;
+    line-height: 40px;
+    font-family: var(--font-family);
+}
+
+.hero .flex {
+    display: flex;
+    gap: 50px;
+}
+
+.hero img {
+    align-items: right;
+    max-width: 550px;
+}
+
+.hero-btn {
+    height: 64px;
+    width: 224px;
+}
