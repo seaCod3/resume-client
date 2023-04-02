@@ -59,15 +59,15 @@ export default function Navbar() {
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
+                                <a className="nav-link" href="#">Features</a>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
+                                <a className="nav-link" href="#">FAQ</a>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
+                                <a className="nav-link" href="#">Links</a>
                             </li>
 
                         </ul>

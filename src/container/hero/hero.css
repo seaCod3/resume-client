@@ -3,7 +3,7 @@
     padding: 50px 0 100px 0;
     color: var(--font-color-primary-white);
     background: var(--bg-gradient-color);
-    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 92%);
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 90%);
 }
 
 .hero h1 {
