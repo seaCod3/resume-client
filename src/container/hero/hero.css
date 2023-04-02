@@ -8,21 +8,22 @@
 
 .hero h1 {
     color: var(--font-color-primary-white);
-    width: 630px;
     font-size: 50px;
-    padding-top: 30px;
+    padding-top: 20px;
     font-weight: bold;
     font-family: var(--font-family);
+    max-width: 650px;
+
 
 }
 
 .hero p {
     color: var(--font-color-primary-white);
-    width: 600px;
     font-size: 20px;
-    padding: 30px 0;
+    padding: 20px 0;
     line-height: 40px;
     font-family: var(--font-family);
+    max-width: 650px;
 }
 
 .hero .flex {
@@ -30,12 +31,27 @@
     gap: 50px;
 }
 
+.hero .flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+.hero .flex-colum{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .hero img {
-    align-items: right;
-    max-width: 550px;
+    margin-top: 50px;
+    max-width: 450px;
+    max-height: 392px;
 }
 
 .hero-btn {
     height: 64px;
     width: 224px;
 }
+
+
