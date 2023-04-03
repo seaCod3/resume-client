@@ -1,15 +1,17 @@
 import './App.css';
 import Navbar from './components/navbar/Navbar';
 import Features from './container/features/Features';
-import FAQ from './container/fqa/FAQ';
+import Footer from './container/footer/Footer';
+import Hero from './container/hero/Hero';
 
 function App() {
      return (
           <div>
 
-               <header>
-                    <Navbar />
-               </header>
+     <header>
+           <Navbar/>
+           <Hero />
+     </header>
 
                <section className='section'>
                     <Features />
@@ -23,9 +25,9 @@ function App() {
                     {/* Some Usefull Links */}
                </section>
 
-               <footer>
-                    {/* Footer */}
-               </footer>
+     <footer>
+          <Footer />
+     </footer>
 
           </div>
      );

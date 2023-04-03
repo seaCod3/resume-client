@@ -20,7 +20,25 @@ html {
 }
 
 .hero-bg-gradient-color {
-  background-image: var(--bg-gradient-color);
+  
+    /* ff 3.6+ */
+    background:-moz-linear-gradient(180deg, rgba(2, 54, 66, 1) 12%, rgba(43, 111, 127, 1) 50%, rgba(2, 54, 66, 1) 100%); 
+
+    /* safari 5.1+,chrome 10+ */
+    background:-webkit-linear-gradient(180deg, rgba(2, 54, 66, 1) 12%, rgba(43, 111, 127, 1) 50%, rgba(2, 54, 66, 1) 100%);
+
+    /* opera 11.10+ */
+    background:-o-linear-gradient(180deg, rgba(2, 54, 66, 1) 12%, rgba(43, 111, 127, 1) 50%, rgba(2, 54, 66, 1) 100%);
+
+    /* ie 6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#023642', endColorstr='#023642', GradientType=1 );
+
+    /* ie 10+ */
+    background:-ms-linear-gradient(180deg, rgba(2, 54, 66, 1) 12%, rgba(43, 111, 127, 1) 50%, rgba(2, 54, 66, 1) 100%);
+
+    /* global 94%+ browsers support */
+    background:linear-gradient(180deg, rgba(2, 54, 66, 1) 12%, rgba(43, 111, 127, 1) 50%, rgba(2, 54, 66, 1) 100%);
+
 }
 
 .btn-primary {
@@ -30,6 +48,18 @@ html {
     height: 40px;
     color: var(--font-color) !important;
     background: var(--font-color-primary-white) !important;
+    font-family: var(--font-family);
+}
+
+
+.btn-secondary {
+  outline: none !important;
+  border: none !important;
+  width: 200px;
+  height: 40px;
+  background: var(--font-color) !important;
+  color: var(--font-color-primary-white) !important;
+  font-family: var(--font-family);
 }
 
 .paragraph {

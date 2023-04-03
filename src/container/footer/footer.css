@@ -1,0 +1,40 @@
+.footer {
+    width: 100%;
+    background: var(--font-color);
+    color: var(--font-color-primary-white);
+    font-family: var(--font-family);
+    padding: 50px 0;
+}
+
+.footer img {
+    width: 300px;
+}
+
+.footer p {
+    padding: 10px 0;
+    font-size: 10px;
+}
+
+.footer span {
+    font-size: 13px;
+}
+
+.footer li {
+    list-style-type: none;
+    margin-top: 25px;
+    display: inline-block;
+    border-right: 1px solid #ccc;
+    padding-right: 40px;
+    margin-right: 40px;
+}
+
+
+li:last-child {
+    border-right: none;
+}
+
+
+
+.footer li a {
+    color: var(--font-color-primary-white);
+}
