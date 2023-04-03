@@ -32,7 +32,7 @@ export default function Hero() {
             <div className='container'>
 
                 <div className='row' >
-                    <div className='col-sm-12 col-lg-7'>
+                    <div className='col-sm-12 col-lg-7 margin-right'>
                         <h1 className='h1'>Create a professional resume and cover letter</h1>
                         <p>Use professional field-tested resume templates that follow the exact ‘resume rules’ employers look for. Easy to use and done within minutes - try now for free!</p>
                         <div className='flex'>
