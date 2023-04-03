@@ -4,9 +4,9 @@ import Accordion from '../../components/accordion/Accordion'
 const FAQ = () => {
   return (
     <div className={`container text-center `} >
-              <h2 className={`sections-title`} >FAQs</h2>
+      <h2 className={`sections-title`} >Duvidas?</h2>
 
-        <Accordion />
+      <Accordion />
     </div>
   )
 }

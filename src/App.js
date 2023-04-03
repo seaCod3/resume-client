@@ -4,31 +4,31 @@ import Features from './container/features/Features';
 import FAQ from './container/fqa/FAQ';
 
 function App() {
-  return (
-    <div>
+     return (
+          <div>
 
-     <header>
-           <Navbar/>
-     </header>
+               <header>
+                    <Navbar />
+               </header>
 
-     <section className='section'>
-          <Features />
-     </section>
+               <section className='section'>
+                    <Features />
+               </section>
 
-     <section className='section'>
-          <FAQ />
-     </section>
+               <section className='section'>
+                    <FAQ />
+               </section>
 
-     <section className='section'>
-          {/* Some Usefull Links */}
-     </section>
+               <section className='section'>
+                    {/* Some Usefull Links */}
+               </section>
 
-     <footer>
-          {/* Footer */}
-     </footer>
+               <footer>
+                    {/* Footer */}
+               </footer>
 
-    </div>
-  );
+          </div>
+     );
 }
 
 export default App;
