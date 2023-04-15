@@ -3,7 +3,6 @@ import './accordion.css';
 import Accordion from 'react-bootstrap/Accordion';
 
 
-
 const Accordionc = ({ title, content, index }) => {
 
     let data_bs_target = "#collapse";
