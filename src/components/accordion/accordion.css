@@ -1,0 +1,68 @@
+.accordion {
+    padding-left: 0 !important;
+
+}
+
+.accordion-item {
+    border: none !important;
+    border-radius: 0!important;
+    border-bottom: 1px solid var(--font-color) !important;
+}
+
+.accordion-button {
+    padding: 18px 0 !important;
+    margin-bottom: 5px !important;
+}
+
+.accordion-button:focus {
+
+    box-shadow: none !important;
+    background-color: transparent !important;
+    
+}
+
+.accordion-header {
+    
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+
+.accordion-header:not(.collapsed):focus {
+    color: var(--font-color) !important;
+
+}
+
+.accordion-body {
+    border-top: none !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url('../../assets/images/dash-lg.svg') !important;
+    /* transform: rotate(360deg) !important; */
+    background-size: auto;
+    background-position: center;
+}
+
+.accordion-button.collapsed::after {
+    background-image: url('../../assets/images/plus-lg.svg') !important;
+    /* transform: rotate(180deg) !important; */
+    background-size: auto;
+    background-position: center;
+    /* box-shadow: none !important; */
+}
+
+.accordion-button.collapsed {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: var(--font-family);
+    transition: font-size 0.5s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    font-family: var(--font-family);
+    background-color: transparent !important;
+    color: var(--font-color) !important;
+    font-weight: 500;
+    font-size: 20px !important;
+    transition: font-size 0.5s ease;
+}

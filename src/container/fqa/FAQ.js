@@ -1,12 +1,20 @@
 import React from 'react'
-import Accordion from '../../components/accordion/Accordion'
+import Accordionc from '../../components/accordion/Accordion';
+import { accordionOtpions } from '../../constants/static-texts';
+
 
 const FAQ = () => {
   return (
-    <div className={`container text-center `} >
-      <h2 className={`sections-title`} >Duvidas?</h2>
+    <div className={`container  `} >
+      <h2 className={`sections-title text-center`} >Duvidas?</h2>
+      {
+        accordionOtpions?.map( (accordion, index) => {
+          return (
+            <Accordionc {...accordion} index={index} />
+          )
+        })
+      }
 
-      <Accordion />
     </div>
   )
 }

@@ -10,7 +10,7 @@ const Features = () => {
 
       <div className={`row justify-content-center`} >
         {
-          features.map((feature, index) => (
+          features?.map((feature, index) => (
             <div className={`col-sm-12 col-md-6 col-lg-4`} key={feature.id}>
               <Card {...feature} />
             </div>

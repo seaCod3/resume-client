@@ -1,6 +1,5 @@
 import React from 'react';
 import './card.css';
-import logo from './logo.png';
 
 
 const Card = ({ icon, title, content }) => {
