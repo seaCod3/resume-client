@@ -1,8 +1,13 @@
 import React from 'react';
+import Features from '../features/Features';
 
 const CreateResumePage = () => {
   return (
-    <div>CreateResumePage</div>
+    <header>
+     <Features />
+     <Features />
+    </header>
+
   )
 }
 

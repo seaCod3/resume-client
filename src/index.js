@@ -1,22 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Home from './Home';
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min"; // Bootstrap Bundle JS
 import CreateResumePage from './container/create-resume/CreateResumePage';
+import Root from './container/root/Root';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Root />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/create-resume",
+        element: <CreateResumePage />,
+      },
+
+    ]
   },
-  {
-    path: "/create-resume",
-    element: <CreateResumePage />,
-  },
+
 ]);
 
 
