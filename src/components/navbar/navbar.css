@@ -1,3 +1,6 @@
+body {
+    overflow-x: hidden;
+}
 
 .navigation {
     background: var(--font-color);
@@ -8,39 +11,84 @@
     padding-right: 70px;
 }
 
-.navigation ul li{
+.navigation ul li {
     padding-right: 30px;
 }
 
-.navigation a{
+.navigation a {
     color: var(--font-color-primary-white) !important;
 }
 
-.navigation a:hover{
-    color:  #e4e4e2 !important;
+.navigation a:hover {
+    color: #e4e4e2 !important;
 }
 
 .navigation .offcanvas {
-    width: 230px !important;
+    width: 630px !important;
     background-color: var(--font-color) !important;
     color: var(--font-color-primary-white) !important;
-  }
+}
 
-.navigation btn-close{
+.navigation btn-close {
     color: var(--font-color-primary-white) !important;
 }
 
-.navigation .navbar-toggler{
-    outline: none!important;
-    border: none !important;    
+.navigation .navbar-toggler {
+    outline: none !important;
+    border: none !important;
 }
 
-.navigation .navbar-toggler:focus{
+.navigation .navbar-toggler:focus {
     box-shadow: none !important;
 }
 
-.navigation .bton{
+.navigation .bton {
     background: transparent;
     border: none;
     outline: none;
+}
+
+.navigation .flex {
+    display: flex;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary {
+    border-radius: 5px !important;
+}
+
+select {
+    border-radius: 5px !important;
+    width: 150px;
+    background-color: var(--font-color-primary-white) !important;
+    color: var(--font-color);
+    outline: none;
+    border: none;
+}
+
+
+@media screen and (max-width: 991px) {
+    .navigation .offcanvas {
+        width: 300px !important;
+    }
+
+    .navigation ul li {
+        margin-bottom: 20px ;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    select {
+        height: 40px;
+        width: 200px;
+    }
+
+    
 }
