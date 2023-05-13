@@ -8,13 +8,12 @@ const FAQ = () => {
     <div className={`container  `} >
       <h2 className={`sections-title text-center`} >Questions?</h2>
       {
-        accordionOtpions?.map( (accordion, index) => {
+        accordionOtpions?.map((accordion, index) => {
           return (
-            <Accordionc {...accordion} index={index} />
+            <Accordionc key={index} {...accordion} index={index} />
           )
         })
       }
-
     </div>
   )
 }

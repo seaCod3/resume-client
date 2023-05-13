@@ -3,12 +3,17 @@
 /* CARD COMPONENT CUSTOM STYLES */
 .custom-card-header {
     margin-bottom: 8px;
+    display: flex;
+    gap: .6rem;
+    justify-content: flex-start !important;
+    width: 100%;
+    /* background-color: red; */
 }
 
 .image-container {
     width: 62px;
     height: 62px;
-    margin-right: 15px;
+    /* margin-right: 1rem; */
     border: 1px solid var(--font-color);
     border-radius: 15px;
 }
@@ -51,5 +56,23 @@
     font-size: 16px;
     text-align: justify;
     text-justify: inter-word;
-  
+    line-height: 1.6;
+}
+
+@media (max-width: 767px) {
+    .custom-card-title {
+        font-size: 20px;
+    }
+
+    .image-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .card-paragraph {
+        line-height: normal;
+    }
+
+
   }
+  

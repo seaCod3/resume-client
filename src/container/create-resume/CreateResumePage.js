@@ -4,8 +4,8 @@ import Features from '../features/Features';
 const CreateResumePage = () => {
   return (
     <header>
-     <Features />
-     <Features />
+      <Features />
+      <Features />
     </header>
 
   )

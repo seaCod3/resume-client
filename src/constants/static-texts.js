@@ -1,12 +1,16 @@
 import { VscCheckAll } from "react-icons/vsc";
 import { BsDownload } from "react-icons/bs";
-import { AiOutlineEdit } from "react-icons/ai";
+import { HiOutlineEye } from "react-icons/hi2";
+import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
+import { HiOutlineArrowPath } from "react-icons/hi2";
+import { HiOutlinePencil } from "react-icons/hi2";
+
 
 
 export const features = [
   {
     id: "feature-1",
-    icon: <AiOutlineEdit color="#023642" size={30} />,
+    icon: <VscCheckAll color="#023642" size={30} />,
     title: "Easy-to-use Interface",
     content:
       `Our CV generator provides a user-friendly interface, making it effortless for users to create professional resumes without any technical expertise. 
@@ -14,7 +18,7 @@ export const features = [
   },
   {
     id: "feature-2",
-    icon: <VscCheckAll color="#023642" size={30} />,
+    icon: <HiOutlineArrowPath color="#023642" size={30} />,
     title: "Dynamic Sections",
     content:
       `We provide a variety of dynamic sections, such as education, work experience, skills, and more. 
@@ -22,14 +26,14 @@ export const features = [
   },
   {
     id: "feature-3",
-    icon: <BsDownload color="#023642" size={30} />,
+    icon: <HiOutlineEye color="#023642" size={30} />,
     title: "Real-time Preview",
     content:
       `Visualize your resume as you build it with our real-time preview feature. 
       Instantly see how your information and chosen template come together, ensuring a polished and well-structured CV before downloading it.`,
   },
   {
-    id: "feature-6",
+    id: "feature-4",
     icon: <BsDownload color="#023642" size={30} />,
     title: "Downloadable PDF",
     content:
@@ -38,7 +42,7 @@ export const features = [
   },
   {
     id: "feature-5",
-    icon: <VscCheckAll color="#023642" size={30} />,
+    icon: <HiOutlinePencil color="#023642" size={30} />,
     title: "Resume Management",
     content:
       `Our application provides a built-in resume management system, allowing users to save, edit, and update their resumes anytime. 
@@ -46,7 +50,7 @@ export const features = [
   },
   {
     id: "feature-6",
-    icon: <VscCheckAll color="#023642" size={30} />,
+    icon: <HiOutlineDevicePhoneMobile color="#023642" size={30} />,
     title: "Responsive Design",
     content:
       `Create and edit your resume with ease using our CV generator. 
@@ -55,8 +59,8 @@ export const features = [
 
 ];
 
-
 export const accordionOtpions = [
+
   {
     title: "Where can I subscribe to your newsletter?",
     content: "We often send out our newsletter with news and great offers. We will never disclose your data to third parties and you can unsubscribe from the newsletter at any time. Subscribe here to our newsletter."

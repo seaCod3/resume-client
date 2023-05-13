@@ -121,3 +121,23 @@ html {
 
 } */
 
+@media (max-width: 767px) {
+  
+  .section {
+    padding: 18px;
+    margin: 2.5rem 0;
+  }
+
+  .sections-title {
+    font-size: 2rem;
+    
+  }
+
+  .paragraph {
+   
+    text-align: justify;
+    text-justify: inter-word;
+  
+  }
+
+}
