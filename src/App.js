@@ -14,11 +14,11 @@ function App() {
                     <Hero />
                </header>
 
-               <section className='section'>
+               <section id='features' className='section'>
                     <Features />
                </section>
 
-               <section className='section'>
+               <section id='faq' className='section'>
                     <FAQ />
                </section>
 

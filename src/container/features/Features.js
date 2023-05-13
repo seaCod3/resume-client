@@ -4,7 +4,7 @@ import Card from '../../components/card/Card';
 
 const Features = () => {
   return (
-    <div className={`container text-center mt-3`} >
+    <div className={`container text-center`} >
 
       <h2 className={`sections-title`} >Features</h2>
 

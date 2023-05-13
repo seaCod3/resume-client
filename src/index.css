@@ -12,6 +12,10 @@ html {
   font-size: 16px;
 }
 
+/* .smooth-scroll {
+  scroll-behavior: smooth;
+} */
+
 .main-heading {
   font-family: var(--font-family);
   font-size: 52px;
@@ -74,6 +78,7 @@ html {
 
 .section {
   padding: 30px;
+  margin: 5rem 0;
 }
 
 .sections-title {
@@ -81,7 +86,7 @@ html {
   font-weight: 500;
   font-family: var(--font-family);
   color: var(--font-color);
-  margin-bottom: 20px;
+  margin-bottom: 2.5rem;
 
 }
 
