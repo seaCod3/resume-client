@@ -141,3 +141,22 @@ html {
   }
 
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  .section {
+    padding: 18px;
+    margin: 2.5rem 0;
+  }
+
+  .sections-title {
+    font-size: 2rem;
+    
+  }
+
+  .paragraph {
+   
+    line-height: 2;
+  
+  }
+}
