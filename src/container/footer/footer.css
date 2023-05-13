@@ -38,3 +38,26 @@ li:last-child {
 .footer li a {
     color: var(--font-color-primary-white);
 }
+
+@media screen and (max-width: 760px) {
+    .footer img {
+        width: 200px;
+    }
+
+    .footer ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer span {
+        font-size: 11px ;
+    }
+
+    .footer li {
+        border: none;
+        padding: 0;
+
+    }
+}

@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="footer mt-5">
             <div className='container text-center'>
 
-                <img src={logo} alt='logo' className='logo' />
+                <img src={logo} alt='logo' />
 
                 <p>Copyright © 2023 SeaCode, Inc.</p>
 
