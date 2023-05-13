@@ -85,6 +85,28 @@ html {
 
 }
 
+/* scroll bar customization */
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--font-color); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(35, 90, 102); 
+}
+
 
 /* .block-title {
 

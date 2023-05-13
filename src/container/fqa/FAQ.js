@@ -6,7 +6,7 @@ import { accordionOtpions } from '../../constants/static-texts';
 const FAQ = () => {
   return (
     <div className={`container  `} >
-      <h2 className={`sections-title text-center`} >Duvidas?</h2>
+      <h2 className={`sections-title text-center`} >Questions?</h2>
       {
         accordionOtpions?.map( (accordion, index) => {
           return (
