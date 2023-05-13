@@ -72,6 +72,10 @@ select {
 
 
 @media screen and (max-width: 991px) {
+    .navbar {
+        width: 100vw !important;
+    } 
+
     .navigation .offcanvas {
         width: 300px !important;
     }

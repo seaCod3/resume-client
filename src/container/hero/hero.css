@@ -1,3 +1,4 @@
+
 .hero {
     margin-top: 50px;
     padding: 100px 0 300px 0;
@@ -59,4 +60,28 @@
     padding-bottom: 20px;
 }
 
+
+@media screen and (max-width: 760px) {
+    .hero {
+        padding: 30px 0 150px 0;
+
+    }
+    .hero h1{
+        font-size: 30px;
+        text-align: center;
+    }
+    .hero p{
+        font-size: 15px;
+        line-height: 30px;
+    }
+
+    .hero .flex{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero img{
+        max-width: 300px;
+    }
+}
 
