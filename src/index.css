@@ -72,6 +72,10 @@ html {
 
 }
 
+.section {
+  padding: 30px;
+}
+
 .sections-title {
   font-size: 45px;
   font-weight: 500;
@@ -79,6 +83,28 @@ html {
   color: var(--font-color);
   margin-bottom: 20px;
 
+}
+
+/* scroll bar customization */
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--font-color); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(35, 90, 102); 
 }
 
 

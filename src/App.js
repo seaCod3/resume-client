@@ -9,10 +9,10 @@ function App() {
      return (
           <div>
 
-     <header>
-           <Navbar/>
-           <Hero />
-     </header>
+               <header>
+                    <Navbar />
+                    <Hero />
+               </header>
 
                <section className='section'>
                     <Features />
@@ -26,9 +26,9 @@ function App() {
                     {/* Some Usefull Links */}
                </section>
 
-     <footer>
-          <Footer />
-     </footer>
+               <footer >
+                    <Footer />
+               </footer>
 
           </div>
      );
