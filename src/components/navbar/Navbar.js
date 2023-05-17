@@ -3,6 +3,7 @@ import cv from "./cv.png"
 import en from "./en.png"
 import React from "react";
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
 
@@ -92,7 +93,8 @@ export default function Navbar() {
 
                             <div className="btn-group">
 
-                                <button className="btn btn-primary">Create a Resume</button>
+                                <Link to={`/create-resume`}><button className='btn btn-primary'>Create a Resume</button></Link>
+                                {/* <button className="btn btn-primary">Create a Resume</button> */}
 
                                 <select name="language">
                                     <option value="pt">🇨🇻 Portugues</option>
