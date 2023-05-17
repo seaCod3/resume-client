@@ -1,14 +1,13 @@
 import React from 'react';
-import Features from '../features/Features';
 
 const CreateResumePage = () => {
+
   return (
-    <header>
-      <Features />
-      <Features />
-    </header>
+
+    <div>CreateResumePage</div>
 
   )
+
 }
 
 export default CreateResumePage;
