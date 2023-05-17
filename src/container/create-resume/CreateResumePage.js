@@ -1,13 +1,8 @@
-import React from 'react';
-import Features from '../features/Features';
+import React from 'react'
 
 const CreateResumePage = () => {
   return (
-    <header>
-      <Features />
-      <Features />
-    </header>
-
+    <div>CreateResumePage</div>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { accordionOtpions } from '../../constants/static-texts';
 import './accordion.css';
 
@@ -9,6 +9,7 @@ const FAQ = () => {
     <div className={`container  `} >
       <h2 className={`sections-title text-center`} >Questions?</h2>
       <div className="accordion" id="accordionExample">
+
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -21,6 +22,7 @@ const FAQ = () => {
             </div>
           </div>
         </div>
+
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingTwo">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -33,6 +35,7 @@ const FAQ = () => {
             </div>
           </div>
         </div>
+
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingThree">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -45,6 +48,7 @@ const FAQ = () => {
             </div>
           </div>
         </div>
+
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingFour">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -57,6 +61,7 @@ const FAQ = () => {
             </div>
           </div>
         </div>
+
         <div className="accordion-item">
           <h2 className="accordion-header" id="heading5">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
@@ -69,6 +74,7 @@ const FAQ = () => {
             </div>
           </div>
         </div>
+
         <div className="accordion-item">
           <h2 className="accordion-header" id="heading6">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
@@ -81,6 +87,7 @@ const FAQ = () => {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   )

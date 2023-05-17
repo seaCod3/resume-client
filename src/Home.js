@@ -4,6 +4,7 @@ import Textfield from './components/form/text-field';
 import Features from './container/features/Features';
 import FAQ from './container/fqa/FAQ';
 import Hero from './container/hero/Hero';
+import DatePickers from './components/form/date-picker';
 
 function Home() {
      return (
@@ -25,6 +26,7 @@ function Home() {
                     <Formik>
                          <Form>
                               <Textfield name={'firstName'} label={'First Name'} />
+                              <DatePickers name={'dateOfBirth'} label={'Date of Birth'} />
                          </Form>
                     </Formik>
                </section>
