@@ -27,26 +27,26 @@ export default function Hero() {
   }
 
   // nfvjlnsn
-    window.onload = function () {
-        const mediaQuery = window.matchMedia('(max-width: 991px)')
-      
-        function handleTabletChange(e) {
-          const div = document.querySelector('div.col-sm-12.col-lg-7')
-          if (div === null) {
-            console.log('Element not found!')
-            return
-          }
-          if (e.matches) {
-            div.classList.add('flex-colum')
-          } else {
-            div.classList.remove('flex-colum')
-          }
-        }
-      
-        mediaQuery.addEventListener('change', handleTabletChange)
-        handleTabletChange(mediaQuery)
+  window.onload = function () {
+    const mediaQuery = window.matchMedia('(max-width: 991px)')
+
+    function handleTabletChange(e) {
+      const div = document.querySelector('div.col-sm-12.col-lg-7')
+      if (div === null) {
+        console.log('Element not found!')
+        return
       }
-      
+      if (e.matches) {
+        div.classList.add('flex-colum')
+      } else {
+        div.classList.remove('flex-colum')
+      }
+    }
+
+    mediaQuery.addEventListener('change', handleTabletChange)
+    handleTabletChange(mediaQuery)
+  }
+
 
   return (
     <div className='hero'>
