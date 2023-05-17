@@ -62,28 +62,32 @@ export const features = [
 export const accordionOtpions = [
 
   {
-    title: "Where can I subscribe to your newsletter?",
-    content: "We often send out our newsletter with news and great offers. We will never disclose your data to third parties and you can unsubscribe from the newsletter at any time. Subscribe here to our newsletter."
+    question: "How does the resume maker web app work?",
+    answer: "Our resume maker web app guides you through a step-by-step process to create a professional resume. Simply input your information, choose from a variety of templates, customize the content, and download your resume in various formats."
   },
   {
-    title: "How can I get in touch with you?",
-    content: "If you have any questions or concerns, please contact us."
+    question: "Can I edit my resume after I've created it?",
+    answer: "Yes, absolutely! Our resume maker web app allows you to make edits and updates to your resume at any time. You can revisit your saved resume, make changes, and save the updated version."
   },
   {
-    title: "How can I get in touch with you?",
-    content: "If you have any questions or concerns, please contact us."
+    question: "Are there any resume templates available?",
+    answer: "Yes, we offer a wide range of professionally designed resume templates to choose from. You can select a template that matches your industry, experience level, or personal preference, and customize it to create a unique and visually appealing resume."
   },
   {
-    title: "How can I get in touch with you?",
-    content: "If you have any questions or concerns, please contact us."
+    question: "Is my personal information secure?",
+    answer: "Yes, we take the security and privacy of your personal information very seriously. We use industry-standard encryption protocols to protect your data and ensure that it remains confidential. We do not share your information with any third parties."
   },
   {
-    title: "How can I get in touch with you?",
-    content: "If you have any questions or concerns, please contact us."
+    question: "Can I download my resume in different formats?",
+    answer: "Absolutely! Our resume maker web app allows you to download your resume in various formats such as PDF, Word document, or plain text. This ensures compatibility with different systems and makes it easy to submit your resume online or print it out."
   },
   {
-    title: "How can I get in touch with you?",
-    content: "If you have any questions or concerns, please contact us."
+    question: "Can I access my resume from multiple devices?",
+    answer: "Yes, you can access your resume from any device with an internet connection. Our resume maker web app is cloud-based, meaning that your resume is securely stored in the cloud, and you can access it from your computer, smartphone, or tablet."
   },
+  {
+    question: "Is there a cost associated with using the resume maker web app?",
+    answer: "We offer both free and premium plans. The free plan allows you to create and download a basic resume. Our premium plans provide additional features such as access to advanced templates, cover letter creation, and unlimited resume downloads. You can choose the plan that best suits your needs."
+  }
 
 ]

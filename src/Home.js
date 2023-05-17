@@ -1,4 +1,6 @@
+import { Form, Formik } from 'formik';
 import './App.css';
+import Textfield from './components/form/text-field';
 import Features from './container/features/Features';
 import FAQ from './container/fqa/FAQ';
 import Hero from './container/hero/Hero';
@@ -17,6 +19,14 @@ function Home() {
 
                <section id='faq' className='section'>
                     <FAQ />
+               </section>
+
+               <section className='section'>
+                    <Formik>
+                         <Form>
+                              <Textfield name={'firstName'} label={'First Name'} />
+                         </Form>
+                    </Formik>
                </section>
 
                <section className='section'>

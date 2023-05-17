@@ -4,7 +4,7 @@
 .custom-card-header {
     margin-bottom: 8px;
     display: flex;
-    gap: .6rem;
+    gap: 1rem;
     justify-content: flex-start !important;
     width: 100%;
     /* background-color: red; */
@@ -46,7 +46,7 @@
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     font-size: 25px;
-    align-items: start;
+    text-align: left !important;
 }
 
 .card-paragraph {
@@ -60,6 +60,7 @@
 }
 
 @media (max-width: 767px) {
+
     .custom-card-title {
         font-size: 20px;
         text-align: left !important;
@@ -69,33 +70,34 @@
         width: 60px;
         height: 60px;
     }
-    
+
     .card-paragraph {
         line-height: normal;
     }
 
     .custom-card-header {
-        
-        gap: .8rem;
-        
+
+        gap: .8rem !important;
+
     }
 
 
-  }
+}
 
-  @media (min-width: 768px) and (max-width: 1024px) {
-  
+@media (min-width: 768px) and (max-width: 1024px) {
+
     .custom-card-title {
         font-size: 20px;
+        text-align: left;
     }
 
     .image-container {
         width: 60px;
         height: 60px;
     }
-    
+
     .card-paragraph {
         line-height: normal;
     }
-    
-  }
+
+}
