@@ -1,7 +1,9 @@
+import { i18n } from '../../translate/i18n';
 import './hero.css'
 import myImage from './resume-coverletter.webp';
 
 export default function Hero() {
+
 
 
     window.onload = function () {
@@ -31,11 +33,11 @@ export default function Hero() {
 
                 <div className='row' >
                     <div className='col-sm-12 col-lg-7 margin-right'>
-                        <h1 className='h1'>Create a professional resume and cover letter</h1>
+                        <h1 className='h1'>{i18n.t("hero.title")}</h1>
                         <p>Use professional field-tested resume templates that follow the exact ‘resume rules’ employers look for. Easy to use and done within minutes - try now for free!</p>
                         <div className='flex'>
-                            <button className='btn btn-primary hero-btn'>Create a Resume</button>
-                            <button className='btn btn-secondary hero-btn'>How it works?</button>
+                            <button className='btn btn-primary hero-btn'>{i18n.t('hero.mainButton')}</button>
+                            <button className='btn btn-secondary hero-btn'>{i18n.t('hero.secondaryButton')}</button>
                         </div>
                     </div>
                     <div className='col-sm-12 col-lg-5 flex-center'>

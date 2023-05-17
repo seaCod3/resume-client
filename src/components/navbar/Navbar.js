@@ -3,10 +3,13 @@ import cv from "./cv.png"
 import en from "./en.png"
 import React from "react";
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
+import { i18n } from "../../translate/i18n";
 
 export default function Navbar() {
 
     const [marginTop, setMarginTop] = React.useState(0);
+    const I18N_STORAGE_KEY = "i18nextLng"
+    const [language] = React.useState(localStorage.getItem(I18N_STORAGE_KEY));
 
     const menuItems = [
         {
@@ -18,6 +21,12 @@ export default function Navbar() {
             img: <img src={en} alt="React Logo" />,
         }
     ];
+
+    const handleLanguageChange = (e) => {
+        const browserLanguage = e.target.value;
+        localStorage.setItem(I18N_STORAGE_KEY, browserLanguage);
+        window.location = window.location;
+      }
 
     React.useEffect(() => {
         // Function to update the margin bottom value based on the window inner height
@@ -92,11 +101,11 @@ export default function Navbar() {
 
                             <div className="btn-group">
 
-                                <button className="btn btn-primary">Create a Resume</button>
+                                <button className="btn btn-primary">{i18n.t('hero.mainButton')}</button>
 
-                                <select name="language">
-                                    <option value="pt">🇨🇻 Portugues</option>
-                                    <option value="en">🇺🇲 English</option>
+                                <select name="language" onChange={handleLanguageChange} defaultValue={language}>
+                                    <option value="pt" className="language-option">🇨🇻 Portugues</option>
+                                    <option value="en" className="language-option">🇺🇲 English</option>
                                 </select>
 
                             </div>

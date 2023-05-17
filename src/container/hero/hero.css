@@ -83,5 +83,11 @@
     .hero img{
         max-width: 300px;
     }
+
+    .hero-btn{
+        height: 44px;
+        width: 200px;
+    }
+
 }
 
