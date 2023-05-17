@@ -26,6 +26,7 @@ export default function Hero() {
     handleTabletChange(mediaQuery)
   }
 
+  // nfvjlnsn
 
   return (
     <div className='hero'>
