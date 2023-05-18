@@ -49,10 +49,10 @@ export default function Hero(props) {
         handleTabletChange(mediaQuery)
       }
 
-      
-      
+    
 
   return (
+
     <div className='hero'>
       <div className='container'>
 

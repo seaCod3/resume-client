@@ -8,36 +8,62 @@
 }
 
 .modalContainer {
-    max-width: 900px;
+    max-width: 1000px;
     width: 100%;
     position: fixed;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    padding: 40px;
+    padding: 40px 30px;
     display: flex;
 }
 
-.modalContainer img {
-    width: 300px;
-    margin-right: 10px;
+.modalContent {
+    padding: 20px;
 }
 
-/* .modalContent {
-    padding: 30px;
-} */
+.modalContainer img {
+    width: 370px;
+    margin-right: 30px;
+}
+
+.modalContainer h6 {
+    margin-top: 20px;
+}
 
 .modalContainer p,
-.modalContainer h1 {
+.modalContainer h2,
+.modalContainer h6 {
     color: var(--font-color);
+}
+
+.modalContainer p {
+    text-align: justify;
+    margin-top: 20px;
+    margin-bottom: 0;
 }
 
 .closeBtn {
     position: fixed;
-    top: 8px;
-    right: 8px;
+    top: 0px;
+    right: 20px;
     cursor: pointer;
     font-size: 15px;
     font-weight: bold;
 }
+
+.contend-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contend-flex button {
+    width: 100px;
+}
+
+.textfiels-Wrapper{
+    width: 70%;
+}
+
