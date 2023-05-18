@@ -188,6 +188,8 @@ const CreateResumePage = () => {
     completed: PropTypes.bool,
   };
 
+  // end of stepper related funtions and customization
+
 
   return (
 
@@ -285,7 +287,6 @@ const CreateResumePage = () => {
                   )}
                 </div>
 
-                {/* <PersonalInformation /> */}
               </Form>
             </Formik>
           </Grid>
