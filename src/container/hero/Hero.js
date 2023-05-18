@@ -2,8 +2,11 @@ import { i18n } from '../../translate/i18n';
 import { Link } from 'react-router-dom';
 import './hero.css'
 import myImage from './resume-coverletter.webp';
+import Modal from '../../components/modal/Modal';
+import { useState } from 'react';
 
-export default function Hero() {
+export default function Hero(props) {
+
 
 
   window.onload = function () {
@@ -26,7 +29,6 @@ export default function Hero() {
     handleTabletChange(mediaQuery)
   }
 
-  // nfvjlnsn
     window.onload = function () {
         const mediaQuery = window.matchMedia('(max-width: 991px)')
       
@@ -46,6 +48,8 @@ export default function Hero() {
         mediaQuery.addEventListener('change', handleTabletChange)
         handleTabletChange(mediaQuery)
       }
+
+      
       
 
   return (
@@ -57,7 +61,7 @@ export default function Hero() {
             <h1 className='h1'>Create a professional resume and cover letter</h1>
             <p>Use professional field-tested resume templates that follow the exact ‘resume rules’ employers look for. Easy to use and done within minutes - try now for free!</p>
             <div className='flex'>
-              <Link to={`/create-resume`}><button className='btn btn-primary hero-btn'>Create a Resume</button></Link>
+              <button className='btn btn-primary hero-btn' onClick={props.handleModal} >Create a Resume</button>
               <Link to={`/create-resume`}><button className='btn btn-secondary hero-btn'>How it works?</button></Link>
               {/* <button className='btn btn-secondary hero-btn'>How it works?</button> */}
             </div>
@@ -68,8 +72,10 @@ export default function Hero() {
         </div>
 
 
+
       </div>
 
+        {/* <Modal open={openModal} close={() => setOpenModal(false)} /> */}
     </div>
 
   )
