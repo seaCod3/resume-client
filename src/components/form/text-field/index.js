@@ -53,7 +53,7 @@ export default function Textfield({ name, ...otherProps }) {
 
     return (
         <>
-            <label htmlFor="custom-css-outlined-input">{otherProps.label}</label>
+            <label style={{marginBottom: '.4rem'}} >{otherProps.label}</label>
             <CustomTextField {...textFieldConfig} />
         </>
     );

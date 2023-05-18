@@ -53,8 +53,8 @@ export default function DatePickers({ name, ...otherProps }) {
 
     return (
         <>
-            <label htmlFor="custom-css-outlined-input">{otherProps.label}</label>
-            <CustomTextField {...datePickerConfig} id="custom-css-outlined-input" />
+            <label  style={{marginBottom: '.4rem'}} >{otherProps.label}</label>
+            <CustomTextField {...datePickerConfig} />
         </>
     );
 }

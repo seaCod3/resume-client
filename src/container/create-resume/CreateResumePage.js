@@ -1,44 +1,216 @@
-import { Form, Formik } from 'formik';
 import React from 'react';
-import Textfield from '../../components/form/text-field';
-import DatePickers from '../../components/form/date-picker';
-import { Divider, Grid } from '@mui/material';
-import education from '../../assets/images/education.svg';
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepButton from '@mui/material/StepButton';
+import Typography from '@mui/material/Typography';
+import { Divider, Grid, Button } from '@mui/material';
+import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
 import certification from '../../assets/images/certication.svg';
 import './create-resume-page.css';
+import PersonalInformation from '../../components/form-stepscomponents/PersonalInformation';
+import { useState } from 'react';
+
+
+
+const steps = ['Personal Information', 'Contacts', `Education`, 'Skills', 'Job Details'];
+
 
 const CreateResumePage = () => {
 
+  const [fullName, setFullName] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [gender, setGender] = useState('');
+  const [nationality, setNationality] = useState('');
+  const [street, setStreet] = useState('');
+  const [city, setCity] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [country, setCountry] = useState('');
+
+
+  const INITIAL_FORM_STATE = {
+    fullName: fullName,
+    dateOfBirth: dateOfBirth,
+    gender: gender,
+    nationality: nationality,
+    street: street,
+    city: city,
+    zipCode: zipCode,
+    country: country,
+  }
+
+
+  const FORM_VALIDATION_SCHEMA = Yup.object().shape({
+
+    fullName: Yup.string()
+      .required('Full Name is required'),
+    dateOfBirth: Yup.date()
+      .required('Birth Date is required'),
+    gender: Yup.string()
+      .required('Gender is required'),
+    nationality: Yup.string()
+      .required('Nationality is required'),
+    street: Yup.string()
+      .required('Street is required'),
+    city: Yup.string()
+      .required('City is required'),
+    zipCode: Yup.string()
+      .required('Zip Code is required'),
+    country: Yup.string()
+      .required('Country is required'),
+  })
+
+  // Stepper related functions
+
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [completed, setCompleted] = React.useState({});
+
+  const totalSteps = () => {
+    return steps.length;
+  };
+
+  const completedSteps = () => {
+    return Object.keys(completed).length;
+  };
+
+  const isLastStep = () => {
+    return activeStep === totalSteps() - 1;
+  };
+
+  const allStepsCompleted = () => {
+    return completedSteps() === totalSteps();
+  };
+
+  const handleNext = () => {
+    const newActiveStep =
+      isLastStep() && !allStepsCompleted()
+        ? // It's the last step, but not all steps have been completed,
+        // find the first step that has been completed
+        steps.findIndex((step, i) => !(i in completed))
+        : activeStep + 1;
+    setActiveStep(newActiveStep);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleStep = (step) => () => {
+    setActiveStep(step);
+  };
+
+  const handleComplete = () => {
+    const newCompleted = completed;
+    newCompleted[activeStep] = true;
+    setCompleted(newCompleted);
+    handleNext();
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+    setCompleted({});
+  };
+
+
+
   return (
 
-    <section className='containe'>
+    <section style={{ marginTop: '56px' }} >
 
-      <Grid height={'100vh'} sx={{ marginTop: '56px' }} container >
+      <Grid height={'100vh'} container >
 
-        <Grid item container alignItems={'center'} pl={'310px'} pr={'2rem'} justifyContent={'flex-start'} xs={8}>
+        {/* Left Side */}
+        <Grid item container pl={'310px'} pr={'2rem'} xs={8}>
 
           <Grid item xs={9}>
 
-            <Formik>
+            <Box sx={{ width: '100%', marginY: '4rem' }}>
+
+              <Stepper alternativeLabel nonLinear activeStep={activeStep}>
+                {steps.map((label, index) => (
+                  <Step key={label} completed={completed[index]}>
+                    <StepButton color="inherit" onClick={handleStep(index)}>
+                      {label}
+                    </StepButton>
+                  </Step>
+                ))}
+              </Stepper>
+
+            </Box>
+
+
+            <Formik
+
+              initialValues={{ ...INITIAL_FORM_STATE }}
+              validationSchema={FORM_VALIDATION_SCHEMA}
+              onSubmit={(values, onSubmitProps) => {
+                console.log(values);
+                onSubmitProps.resetForm()
+              }}
+              enableReinitialize
+
+            >
               <Form>
-                <Textfield name={'firstName'} label={'First Name'} />
-                <DatePickers name={'dateOfBirth'} label={'Date of Birth'} />
-                <Textfield name={'firstName'} label={'First Name'} />
-                <DatePickers name={'dateOfBirth'} label={'Date of Birth'} />
+
+                <div>
+                  {allStepsCompleted() ? (
+                    <React.Fragment>
+                      <Typography sx={{ mt: 2, mb: 1 }}>
+                        All steps completed - you&apos;re finished
+                      </Typography>
+                      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                        <Box sx={{ flex: '1 1 auto' }} />
+                        <Button onClick={handleReset}>Reset</Button>
+                      </Box>
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
+                        Step {activeStep + 1}
+                      </Typography>
+                      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                        <Button
+                          color="inherit"
+                          disabled={activeStep === 0}
+                          onClick={handleBack}
+                          sx={{ mr: 1 }}
+                        >
+                          Back
+                        </Button>
+                        <Box sx={{ flex: '1 1 auto' }} />
+                        <Button onClick={(e) => {
+                          handleNext()
+                          handleComplete()
+                        }} sx={{ mr: 1 }}>
+                          Next
+                        </Button>
+                        {activeStep !== steps.length &&
+                          (completed[activeStep] ? (
+                            <Typography variant="caption" sx={{ display: 'inline-block' }}>
+                              Step {activeStep + 1} already completed
+                            </Typography>
+                          ) : (
+                            <Button onClick={handleComplete}>
+                              {completedSteps() === totalSteps() - 1
+                                ? 'Finish'
+                                : 'Complete Step'}
+                            </Button>
+                          ))}
+                      </Box>
+                    </React.Fragment>
+                  )}
+                </div>
+
+                {/* <PersonalInformation /> */}
               </Form>
             </Formik>
-
-          </Grid>
-
-          <Grid item xs={9}>
-
-            <Divider variant="middle" >Divider</Divider>
-
           </Grid>
 
         </Grid>
 
-        <Grid backgroundColor={'#033f49'} item xs={4}>
+        {/* Right Side */}
+        <Grid backgroundColor={'#f4f4f4'} item xs={4}>
 
           <img src={certification} alt="Description" className="fluid-img" />
 
