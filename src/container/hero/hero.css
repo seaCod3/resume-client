@@ -5,6 +5,7 @@
     color: var(--font-color-primary-white);
     background: var(--bg-gradient-color);
     clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 90%);
+    z-index: 3;
 }
 
 .hero h1 {

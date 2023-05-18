@@ -5,6 +5,7 @@ body {
 .navigation {
     background: var(--font-color);
     padding: 8px 0;
+    z-index: 8;
 }
 
 .navigation ul li:last-child {
@@ -100,6 +101,4 @@ select .language-option {
         height: 40px;
         width: 200px;
     }
-
-    
 }
