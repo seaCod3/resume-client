@@ -4,7 +4,11 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Typography from '@mui/material/Typography';
-import { Divider, Grid, Button } from '@mui/material';
+import { Divider, Grid, Button, stepConnectorClasses, StepConnector, StepLabel } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import Check from '@mui/icons-material/Check';
+import PropTypes from 'prop-types';
+
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import certification from '../../assets/images/certication.svg';
@@ -112,6 +116,77 @@ const CreateResumePage = () => {
     setCompleted({});
   };
 
+  const QontoConnector = styled(StepConnector)(({ theme }) => ({
+    [`&.${stepConnectorClasses.alternativeLabel}`]: {
+      top: 10,
+      left: 'calc(-50% + 16px)',
+      right: 'calc(50% + 16px)',
+    },
+    [`&.${stepConnectorClasses.active}`]: {
+      [`& .${stepConnectorClasses.line}`]: {
+        borderColor: '#023642',
+      },
+    },
+    [`&.${stepConnectorClasses.completed}`]: {
+      [`& .${stepConnectorClasses.line}`]: {
+        borderColor: '#023642',
+      },
+    },
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: '#cdf5fe',
+      borderTopWidth: 1,
+      borderRadius: 1,
+    },
+  }));
+
+  const QontoStepIconRoot = styled('div')(({ theme, ownerState }) => ({
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
+    display: 'flex',
+    height: 22,
+    alignItems: 'center',
+    ...(ownerState.active && {
+      color: '#023642',
+    }),
+    '& .QontoStepIcon-completedIcon': {
+      color: '#023642',
+      zIndex: 1,
+      fontSize: 18,
+    },
+    '& .QontoStepIcon-circle': {
+      width: 8,
+      height: 8,
+      borderRadius: '50%',
+      backgroundColor: 'currentColor',
+    },
+  }));
+
+  function QontoStepIcon(props) {
+    const { active, completed, className } = props;
+  
+    return (
+      <QontoStepIconRoot ownerState={{ active }} className={className}>
+        {completed ? (
+          <Check className="QontoStepIcon-completedIcon" />
+        ) : (
+          <div className="QontoStepIcon-circle" />
+        )}
+      </QontoStepIconRoot>
+    );
+  }
+  
+  QontoStepIcon.propTypes = {
+    /**
+     * Whether this step is active.
+     * @default false
+     */
+    active: PropTypes.bool,
+    className: PropTypes.string,
+    /**
+     * Mark the step as completed. Is passed to child components.
+     * @default false
+     */
+    completed: PropTypes.bool,
+  };
 
 
   return (
@@ -127,11 +202,12 @@ const CreateResumePage = () => {
 
             <Box sx={{ width: '100%', marginY: '4rem' }}>
 
-              <Stepper alternativeLabel nonLinear activeStep={activeStep}>
+              <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
                 {steps.map((label, index) => (
                   <Step key={label} completed={completed[index]}>
-                    <StepButton color="inherit" onClick={handleStep(index)}>
-                      {label}
+                    <StepButton  color="#023642" onClick={handleStep(index)}>
+                      {/* {label} */}
+                      <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
                     </StepButton>
                   </Step>
                 ))}
@@ -166,9 +242,16 @@ const CreateResumePage = () => {
                     </React.Fragment>
                   ) : (
                     <React.Fragment>
-                      <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
-                        Step {activeStep + 1}
-                      </Typography>
+
+                      <Box>
+                        {activeStep == 0 && (
+                          <>
+                            <PersonalInformation />
+                          </>
+                        )}
+
+                      </Box>
+
                       <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                         <Button
                           color="inherit"
@@ -185,7 +268,7 @@ const CreateResumePage = () => {
                         }} sx={{ mr: 1 }}>
                           Next
                         </Button>
-                        {activeStep !== steps.length &&
+                        {/* {activeStep !== steps.length &&
                           (completed[activeStep] ? (
                             <Typography variant="caption" sx={{ display: 'inline-block' }}>
                               Step {activeStep + 1} already completed
@@ -196,7 +279,7 @@ const CreateResumePage = () => {
                                 ? 'Finish'
                                 : 'Complete Step'}
                             </Button>
-                          ))}
+                          ))} */}
                       </Box>
                     </React.Fragment>
                   )}
