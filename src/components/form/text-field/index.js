@@ -39,7 +39,7 @@ export default function Textfield({ name, ...otherProps }) {
         ...field,
         ...otherProps,
         fullWidth: true,
-        variant: 'outlined',
+        variant: otherProps.variant || 'outlined',
         label: false,
 
     }
@@ -54,7 +54,7 @@ export default function Textfield({ name, ...otherProps }) {
     return (
         <>
             <label htmlFor="custom-css-outlined-input">{otherProps.label}</label>
-            <CustomTextField {...textFieldConfig} id="custom-css-outlined-input" />
+            <CustomTextField {...textFieldConfig} />
         </>
     );
 }

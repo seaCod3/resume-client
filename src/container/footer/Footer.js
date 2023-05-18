@@ -5,7 +5,7 @@ import { FaEnvelope, FaFacebookSquare, FaInstagram, FaGlobe } from "react-icons/
 
 export default function Footer() {
     return (
-        <div className="footer mt-5">
+        <div className="footer">
             <div className='container text-center'>
 
                 <div className='about'>
