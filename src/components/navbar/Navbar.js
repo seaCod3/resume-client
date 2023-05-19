@@ -57,7 +57,8 @@ export default function Navbar() {
 
             <div className="container">
 
-                <a className="navbar-brand" href="#">RESUME</a>
+                {/* <a className="navbar-brand" href="#">RESUME</a> */}
+                <Link className="navbar-brand" to="/">RESUME</Link>
 
                 <div className="flex">
 

@@ -12,15 +12,17 @@ import PropTypes from 'prop-types';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import certification from '../../assets/images/certication.svg';
+import education from '../../assets/images/education.svg';
 import './create-resume-page.css';
 import PersonalInformation from '../../components/form-stepscomponents/PersonalInformation';
 import { useState } from 'react';
+import Experience from '../../components/form-stepscomponents/Experience';
 
 
 
-const steps = ['Personal Information', 'Contacts', `Education`, 'Skills', 'Job Details'];
+const steps = ['Personal Information', 'Experience', `Education`, 'Skills', 'Job Details'];
 
-
+const imageDisplayer = [certification, education]
 const CreateResumePage = () => {
 
   const [fullName, setFullName] = useState('');
@@ -31,6 +33,17 @@ const CreateResumePage = () => {
   const [city, setCity] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [country, setCountry] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [jobTitle, setJobTitle] = useState('');
+  const [employer, setEmployer] = useState('');
+  const [jobStartDate, setJobStartDate] = useState('');
+  const [jobEndDate, setJobEndDate] = useState('');
+  const [stillWorkingHere, setStillWorkingHere] = useState(false);
+  const [jobLocationCity, setJobLocationCity] = useState('');
+  const [jobLocationStreet, setJobLocationStreet] = useState('');
+  const [jobLocationCountry, setJobLocationCountry] = useState('');
+
 
 
   const INITIAL_FORM_STATE = {
@@ -42,6 +55,16 @@ const CreateResumePage = () => {
     city: city,
     zipCode: zipCode,
     country: country,
+    email: email,
+    phone: phone,
+    jobTitle: jobTitle,
+    employer: employer,
+    jobStartDate: jobStartDate,
+    jobEndDate: jobEndDate,
+    stillWorkingHere: stillWorkingHere,
+    jobLocationCity: jobLocationCity,
+    jobLocationStreet: jobLocationStreet,
+    jobLocationCountry: jobLocationCountry,
   }
 
 
@@ -63,6 +86,10 @@ const CreateResumePage = () => {
       .required('Zip Code is required'),
     country: Yup.string()
       .required('Country is required'),
+    email: Yup.string()
+      .required('Email is required'),
+    phone: Yup.string()
+      .required('Phone is required'),
   })
 
   // Stepper related functions
@@ -162,7 +189,7 @@ const CreateResumePage = () => {
 
   function QontoStepIcon(props) {
     const { active, completed, className } = props;
-  
+
     return (
       <QontoStepIconRoot ownerState={{ active }} className={className}>
         {completed ? (
@@ -173,7 +200,7 @@ const CreateResumePage = () => {
       </QontoStepIconRoot>
     );
   }
-  
+
   QontoStepIcon.propTypes = {
     /**
      * Whether this step is active.
@@ -202,12 +229,12 @@ const CreateResumePage = () => {
 
           <Grid item xs={9}>
 
-            <Box sx={{ width: '100%', marginY: '4rem' }}>
+            <Box sx={{ width: '100%', marginY: '3rem' }}>
 
               <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
                 {steps.map((label, index) => (
                   <Step key={label} completed={completed[index]}>
-                    <StepButton  color="#023642" onClick={handleStep(index)}>
+                    <StepButton color="#023642" onClick={handleStep(index)}>
                       {/* {label} */}
                       <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
                     </StepButton>
@@ -249,6 +276,11 @@ const CreateResumePage = () => {
                         {activeStep == 0 && (
                           <>
                             <PersonalInformation />
+                          </>
+                        )}
+                        {activeStep == 1 && (
+                          <>
+                            <Experience />
                           </>
                         )}
 
@@ -296,7 +328,7 @@ const CreateResumePage = () => {
         {/* Right Side */}
         <Grid backgroundColor={'#f4f4f4'} item xs={4}>
 
-          <img src={certification} alt="Description" className="fluid-img" />
+          <img src={imageDisplayer[activeStep]} alt="Description" className="fluid-img" />
 
         </Grid>
 
