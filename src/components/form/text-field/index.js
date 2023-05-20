@@ -39,6 +39,7 @@ export default function Textfield({ name, ...otherProps }) {
         ...field,
         ...otherProps,
         fullWidth: true,
+        size: 'small',
         variant: otherProps.variant || 'outlined',
         label: false,
 

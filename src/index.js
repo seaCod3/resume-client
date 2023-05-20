@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min"; // Bootstrap Bundle JS
 import CreateResumePage from './container/create-resume/CreateResumePage';
 import Root from './container/root/Root';
+import NestedStepsTest from './components/form-steps-components/NestedStepsTest';
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
       {
         path: "/create-resume",
         element: <CreateResumePage />,
+      },
+      {
+        path: "/nested",
+        // element: <CreateResumePage />,
+        element: <NestedStepsTest />
       },
 
     ]

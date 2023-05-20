@@ -1,4 +1,26 @@
+
 .fluid-img {
     width: 100%;
     height: 100%;
 }
+
+.section-description-custom-card-title {
+    margin: 0;
+    color: var(--font-color);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    text-align: left !important;
+}
+
+.section-description-card-paragraph {
+    margin: 0;
+    color: var(--font-color);
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.6;
+}
+

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Grid } from '@mui/material';
 import Textfield from '../form/text-field';
 import DatePickers from '../form/date-picker';
-import CustomSelect from '../select';
+import CustomSelect from '../form/select';
 
 const Gender = {
     MALE: "Male",
@@ -46,6 +46,14 @@ const PersonalInformation = () => {
 
             <Grid item xs={3}>
                 <Textfield name={'country'} label={'Country'} />
+            </Grid>
+
+            <Grid item xs={6}>
+                <Textfield name={'email'} label={'Email'} />
+            </Grid>
+
+            <Grid item xs={6}>
+                <Textfield name={'phone'} label={'Phone'} />
             </Grid>
 
             {/* <Grid item xs={12} my={'2.4rem'} textAlign={'end'}>

@@ -40,7 +40,8 @@ export default function DatePickers({ name, ...otherProps }) {
         ...otherProps,
         type: 'date',
         fullWidth: true,
-        variant: 'outlined',
+        size: 'small',
+        variant: otherProps.variant || 'outlined',
         label: false,
 
     }

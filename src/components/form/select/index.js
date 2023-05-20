@@ -50,8 +50,9 @@ const CustomSelect = ({ name, options, setOption, ...otherProps }) => {
         ...otherProps,
         ...field,
         select: true,
-        variant: 'outlined',
+        variant: otherProps.variant || 'outlined',
         fullWidth: true,
+        size: 'small',
         label: false,
         onChange: handleChange,
     };
