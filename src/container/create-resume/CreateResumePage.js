@@ -1,4 +1,5 @@
 import React from 'react';
+import './create-resume-page.css';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -8,21 +9,24 @@ import { Divider, Grid, Button, stepConnectorClasses, StepConnector, StepLabel }
 import { styled } from '@mui/material/styles';
 import Check from '@mui/icons-material/Check';
 import PropTypes from 'prop-types';
-
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import certification from '../../assets/images/certication.svg';
 import education from '../../assets/images/education.svg';
-import './create-resume-page.css';
-import PersonalInformation from '../../components/form-stepscomponents/PersonalInformation';
+import College from '../../assets/images/college.svg';
+import PersonalInformation from '../../components/form-steps-components/PersonalInformation';
 import { useState } from 'react';
-import Experience from '../../components/form-stepscomponents/Experience';
+import Experience from '../../components/form-steps-components/Experience';
+import SectionDescriptionCard from '../../components/form-steps-components/SectionDescriptionCard';
+import EducationDetails from '../../components/form-steps-components/EducationDetails';
+import Skills from '../../components/form-steps-components/Skills';
+import { useEffect } from 'react';
 
 
 
 const steps = ['Personal Information', 'Experience', `Education`, 'Skills', 'Job Details'];
+const imageDisplayer = [certification, education, College];
 
-const imageDisplayer = [certification, education]
 const CreateResumePage = () => {
 
   const [fullName, setFullName] = useState('');
@@ -43,7 +47,20 @@ const CreateResumePage = () => {
   const [jobLocationCity, setJobLocationCity] = useState('');
   const [jobLocationStreet, setJobLocationStreet] = useState('');
   const [jobLocationCountry, setJobLocationCountry] = useState('');
+  const [instituitionName, setInstituitionName] = useState('');
+  const [instituitionLocationStreet, setInstituitionLocationStreet] = useState('');
+  const [instituitionLocationCity, setInstituitionLocationCity] = useState('');
+  const [instituitionLocationCountry, setInstituitionLocationCountry] = useState('');
+  const [degree, setDegree] = useState('');
+  const [graduationStartDate, setGraduationStartDate] = useState('');
+  const [graduationEndDate, setGraduationEndDate] = useState('');
+  const [stillStudingHere, setStillStudingHere] = useState(false);
+  const [skills, setSkills] = useState('');
 
+
+  useEffect(() => {
+    console.log(skills);
+  }, [skills]);
 
 
   const INITIAL_FORM_STATE = {
@@ -65,6 +82,15 @@ const CreateResumePage = () => {
     jobLocationCity: jobLocationCity,
     jobLocationStreet: jobLocationStreet,
     jobLocationCountry: jobLocationCountry,
+    instituitionName: instituitionName,
+    instituitionLocationStreet: instituitionLocationStreet,
+    instituitionLocationCity: instituitionLocationCity,
+    instituitionLocationCountry: instituitionLocationCountry,
+    degree: degree,
+    graduationStartDate: graduationStartDate,
+    graduationEndDate: graduationEndDate,
+    stillStudingHere: stillStudingHere,
+    // skills: skills,
   }
 
 
@@ -90,6 +116,43 @@ const CreateResumePage = () => {
       .required('Email is required'),
     phone: Yup.string()
       .required('Phone is required'),
+    jobTitle: Yup.string()
+      .required('Job Title is required'),
+    employer: Yup.string()
+      .required('Employer is required'),
+    jobStartDate: Yup.date()
+      .required('Job Start Date is required'),
+    jobEndDate: Yup.date()
+      // .required('Job End Date is required')
+      .optional(),
+    stillWorkingHere: Yup.boolean()
+      .optional(),
+    jobLocationCity: Yup.string()
+      .required('Job Location City is required'),
+    jobLocationStreet: Yup.string()
+      .required('Job Location Street is required'),
+    jobLocationCountry: Yup.string()
+      .required('Job Location Country is required'),
+    instituitionName: Yup.string()
+      .required('Instituition Name is required'),
+    instituitionLocationStreet: Yup.string()
+      .required('Instituition Location Street is required'),
+    instituitionLocationCity: Yup.string()
+      .required('Instituition Location City is required'),
+    instituitionLocationCountry: Yup.string()
+      .required('Instituition Location Country is required'),
+    degree: Yup.string()
+      .required('Degree is required'),
+    graduationStartDate: Yup.date()
+      .required('Graduation Start Date is required'),
+    graduationEndDate: Yup.date()
+      .optional(),
+    // .required('Graduation End Date is required')
+    stillStudingHere: Yup.boolean()
+      .optional(),
+    skills: Yup.string()
+      .required('Skills is required')
+
   })
 
   // Stepper related functions
@@ -273,16 +336,32 @@ const CreateResumePage = () => {
                     <React.Fragment>
 
                       <Box>
-                        {activeStep == 0 && (
+                        {activeStep === 0 && (
                           <>
                             <PersonalInformation />
                           </>
                         )}
-                        {activeStep == 1 && (
+                        {activeStep === 1 && (
                           <>
                             <Experience />
                           </>
                         )}
+                        {activeStep === 2 && (
+                          <>
+                            <EducationDetails />
+                          </>
+                        )}
+                        {activeStep === 3 && (
+                          <>
+                            <Skills skills={skills} setSkills={setSkills} />
+                          </>
+                        )}
+                        {activeStep === 4 && (
+                          <>
+                            <SectionDescriptionCard />
+                          </>
+                        )}
+
 
                       </Box>
 

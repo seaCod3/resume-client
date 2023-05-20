@@ -56,9 +56,9 @@ const PersonalInformation = () => {
                 <Textfield name={'phone'} label={'Phone'} />
             </Grid>
 
-            <Grid item xs={12} my={'2.4rem'} textAlign={'end'}>
+            {/* <Grid item xs={12} my={'2.4rem'} textAlign={'end'}>
                 <Button sx={{ backgroundColor: '#000', color: '#fff', borderRadius: '4px', ":hover": { backgroundColor: '#123', color: '#fff' } }} variant="contained" size='small' type="submit">Register</Button>
-            </Grid>
+            </Grid> */}
 
         </Grid>
 
