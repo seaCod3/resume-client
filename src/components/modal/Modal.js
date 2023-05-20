@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './modal.css'
 import { MdClose } from "react-icons/md";
 import modalImage from './rsume.svg';
 import Textfield from '../form/text-field';
 import { Form, Formik } from 'formik';
 import * as Yup from "yup";
-
+import { FaCopy } from "react-icons/fa";
 const Modal = ({ open, close }) => {
+
+  const [key, setKey] = React.useState([]);
+
+  const resultRef = useRef(null);
+
+  const handleCopyClick = () => {
+    if (resultRef.current) {
+      navigator.clipboard.writeText(resultRef.current.textContent)
+        .then(() => alert('Copied to clipboard'))
+        .catch(err => console.error('Failed to copy:', err));
+    }
+  }
 
   const initialValues = {
     email: '',
@@ -21,7 +33,10 @@ const Modal = ({ open, close }) => {
   return (
     <div className='overlay' onClick={close}>
       <div className='modalContainer' onClick={(e) => { e.stopPropagation() }}>
-        <img src={modalImage} alt='modal' />
+        <di className='image'>
+          <img src={modalImage} alt='modal' />
+
+        </di>
         <div className='modalContent'>
 
           <p onClick={close} className='closeBtn'><MdClose color="#023642" size={30} /></p>
@@ -33,6 +48,10 @@ const Modal = ({ open, close }) => {
           <Formik
             initialValues={{ ...initialValues }}
             validationSchema={FORM_VALIDATION}
+            onSubmit={(values) => {
+              setKey([values.email]);
+              console.log(key)
+            }}
           >
             <Form className='contend-flex'>
 
@@ -42,6 +61,7 @@ const Modal = ({ open, close }) => {
                   label=''
                   variant={'standard'}
                   placeholder={'example@email.com'}
+                  autoComplete='off'
                 />
               </div>
 
@@ -51,7 +71,23 @@ const Modal = ({ open, close }) => {
             </Form>
           </Formik>
 
+          
+           {/* {key.map((item) => (
+            <div className='result' key={item}>
+              {item}
+              <FaCopy color="#fff" size={20} />
+            </div>
+          ))} */}
 
+          <div className='results-section'>
+          {key.map((item) => (
+            <div className='result' key={item} ref={resultRef}>
+              {item}
+              <FaCopy color="#fff" size={20} onClick={handleCopyClick} />
+            </div>
+          ))}
+        </div>
+          
 
         </div>
       </div>

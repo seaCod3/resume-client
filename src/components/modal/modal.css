@@ -15,12 +15,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    padding: 40px 30px;
     display: flex;
+    border-radius: 10px;    
+}
+
+.image {
+    background-color: #F4F4F4;
+    padding: 40px 30px;
+    border-radius: 10px;    
 }
 
 .modalContent {
-    padding: 20px;
+    padding: 40px 30px;
+    /* padding: 20px; */
 }
 
 .modalContainer img {
@@ -67,3 +74,15 @@
     width: 70%;
 }
 
+.result {
+    /* border: 1px solid var(--font-color); */
+    width: 100%;
+    margin: 40px auto;
+    background-color: var(--font-color);
+    color: #fff;
+    /* height: 30px; */
+   padding: 7px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
