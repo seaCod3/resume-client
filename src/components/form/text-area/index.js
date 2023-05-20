@@ -83,13 +83,11 @@ export default function TextArea({ name, skills, setSkills, ...otherProps }) {
         ...field,
         ...otherProps,
         fullWidth: true,
-        // size: 'small',
         multiline: true,
         rows: 10,
         variant: otherProps.variant || 'outlined',
         label: false,
         onChange: handleInput,
-        // onKeyUp: handleKeyUp,
         onBlur: handleBlur
 
     }

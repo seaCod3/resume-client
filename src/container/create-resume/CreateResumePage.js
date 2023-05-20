@@ -14,6 +14,7 @@ import * as Yup from 'yup';
 import certification from '../../assets/images/certication.svg';
 import education from '../../assets/images/education.svg';
 import College from '../../assets/images/college.svg';
+import SkillsImg from '../../assets/images/skills.svg';
 import PersonalInformation from '../../components/form-steps-components/PersonalInformation';
 import { useState } from 'react';
 import Experience from '../../components/form-steps-components/Experience';
@@ -24,8 +25,6 @@ import { useEffect } from 'react';
 
 
 
-const steps = ['Personal Information', 'Experience', `Education`, 'Skills', 'Job Details'];
-const imageDisplayer = [certification, education, College];
 
 const CreateResumePage = () => {
 
@@ -90,7 +89,7 @@ const CreateResumePage = () => {
     graduationStartDate: graduationStartDate,
     graduationEndDate: graduationEndDate,
     stillStudingHere: stillStudingHere,
-    // skills: skills,
+    // skills: null,
   }
 
 
@@ -157,7 +156,11 @@ const CreateResumePage = () => {
 
   // Stepper related functions
 
+  const steps = ['Personal Information', 'Experience', `Education`, 'Skills', 'Job Details'];
+  const imageDisplayer = [certification, education, College, SkillsImg];
+
   const [activeStep, setActiveStep] = React.useState(0);
+  const [nestedStep, setNestedStep] = useState(0); // nested steps
   const [completed, setCompleted] = React.useState({});
 
   const totalSteps = () => {
