@@ -29,7 +29,7 @@ const Modal = ({ open, close }) => {
     if (isCopied) {
       timeoutId = setTimeout(() => {
         setIsCopied(false);
-      }, 3000); // change the icon back to FaCopy after 2 seconds
+      }, 3000); // change the icon back to FaCopy after 3 seconds
     }
 
     return () => clearTimeout(timeoutId);

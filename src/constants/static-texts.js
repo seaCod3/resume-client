@@ -5,8 +5,6 @@ import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import { HiOutlineArrowPath } from "react-icons/hi2";
 import { HiOutlinePencil } from "react-icons/hi2";
 
-
-
 export const features = [
   {
     id: "feature-1",
