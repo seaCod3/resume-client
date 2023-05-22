@@ -6,19 +6,34 @@ import Textfield from '../form/text-field';
 import { Form, Formik } from 'formik';
 import * as Yup from "yup";
 import { FaCopy } from "react-icons/fa";
+import { VscCheckAll } from "react-icons/vsc";
 const Modal = ({ open, close }) => {
 
   const [key, setKey] = React.useState([]);
+  const [isCopied, setIsCopied] = React.useState(false);
 
   const resultRef = useRef(null);
 
   const handleCopyClick = () => {
     if (resultRef.current) {
       navigator.clipboard.writeText(resultRef.current.textContent)
-        .then(() => alert('Copied to clipboard'))
-        .catch(err => console.error('Failed to copy:', err));
+        // .then(() => alert('Copied to clipboard'))
+        // .catch(err => console.error('Failed to copy:', err));
     }
+    setIsCopied(true);
   }
+
+  React.useEffect(() => {
+    let timeoutId;
+
+    if (isCopied) {
+      timeoutId = setTimeout(() => {
+        setIsCopied(false);
+      }, 3000); // change the icon back to FaCopy after 2 seconds
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [isCopied]);
 
   const initialValues = {
     email: '',
@@ -71,8 +86,8 @@ const Modal = ({ open, close }) => {
             </Form>
           </Formik>
 
-          
-           {/* {key.map((item) => (
+
+          {/* {key.map((item) => (
             <div className='result' key={item}>
               {item}
               <FaCopy color="#fff" size={20} />
@@ -80,14 +95,18 @@ const Modal = ({ open, close }) => {
           ))} */}
 
           <div className='results-section'>
-          {key.map((item) => (
-            <div className='result' key={item} ref={resultRef}>
-              {item}
-              <FaCopy color="#fff" size={20} onClick={handleCopyClick} />
-            </div>
-          ))}
-        </div>
-          
+            {key.map((item) => (
+              <div className='result' key={item} ref={resultRef}>
+                {item}
+                {isCopied ? (
+                  <VscCheckAll color="#fff" size={20} />
+                ) : (
+                  <FaCopy color="#fff" size={20} onClick={handleCopyClick} />
+                )}
+              </div>
+            ))}
+          </div>
+
 
         </div>
       </div>
