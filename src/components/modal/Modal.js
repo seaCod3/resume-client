@@ -7,6 +7,7 @@ import { Form, Formik } from 'formik';
 import * as Yup from "yup";
 import { FaCopy } from "react-icons/fa";
 import { VscCheckAll } from "react-icons/vsc";
+import { i18n } from '../../translate/i18n';
 const Modal = ({ open, close }) => {
 
   const [key, setKey] = React.useState([]);
@@ -55,10 +56,9 @@ const Modal = ({ open, close }) => {
         <div className='modalContent'>
 
           <p onClick={close} className='closeBtn'><MdClose color="#023642" size={30} /></p>
-          <h2>Almost There.</h2>
-          <h6>Please provide us with your email!</h6>
-          <p>By providing us with your email, you will receive a key that will be associated with your account, and you will be able to edit your resume for up to 30 days until your account is removed.
-            We advise you to keep this key in a safe place</p>
+          <h2>{i18n.t('modal.title')}</h2>
+          <h6>{i18n.t('modal.subtitle')}</h6>
+          <p>{i18n.t('modal.content')}</p>
 
           <Formik
             initialValues={{ ...initialValues }}
@@ -81,7 +81,7 @@ const Modal = ({ open, close }) => {
               </div>
 
 
-              <button type='submit' className='btn btn-secondary'>Submit</button>
+              <button type='submit' className='btn btn-secondary'>{i18n.t('modal.button')}</button>
 
             </Form>
           </Formik>

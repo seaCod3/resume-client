@@ -75,7 +75,6 @@ export default function Hero(props) {
 
       </div>
 
-        {/* <Modal open={openModal} close={() => setOpenModal(false)} /> */}
     </div>
 
   )
