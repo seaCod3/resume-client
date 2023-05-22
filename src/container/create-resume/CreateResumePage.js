@@ -15,6 +15,7 @@ import certification from '../../assets/images/certication.svg';
 import education from '../../assets/images/education.svg';
 import College from '../../assets/images/college.svg';
 import SkillsImg from '../../assets/images/skills.svg';
+import Details from '../../assets/images/details.svg';
 import PersonalInformation from '../../components/form-steps-components/PersonalInformation';
 import { useState } from 'react';
 import Experience from '../../components/form-steps-components/Experience';
@@ -22,7 +23,6 @@ import SectionDescriptionCard from '../../components/form-steps-components/Secti
 import EducationDetails from '../../components/form-steps-components/EducationDetails';
 import Skills from '../../components/form-steps-components/Skills';
 import { useEffect } from 'react';
-
 
 
 
@@ -156,8 +156,16 @@ const CreateResumePage = () => {
 
   // Stepper related functions
 
-  const steps = ['Personal Information', 'Experience', `Education`, 'Skills', 'Job Details'];
-  const imageDisplayer = [certification, education, College, SkillsImg];
+  // const steps = ['Personal Information', 'Experience', `Education`, 'Skills', 'Job Details'];
+  const steps = [{ label: 'Personal Information', nestedSteps: [0, 1, 2, 3] },
+  { label: 'Experience', nestedSteps: [0, 1, 2, 3] },
+  { label: 'Education', nestedSteps: [0, 1, 2, 3] },
+  { label: 'Skills', nestedSteps: [0, 1, 2, 3] },
+  { label: 'Job Details', nestedSteps: [0, 1, 2, 3] }
+  ]
+
+
+  const imageDisplayer = [certification, education, College, SkillsImg, Details];
 
   const [activeStep, setActiveStep] = React.useState(0);
   const [nestedStep, setNestedStep] = useState(0); // nested steps
@@ -175,18 +183,46 @@ const CreateResumePage = () => {
     return activeStep === totalSteps() - 1;
   };
 
+  const isLastNestedStep = () => {
+    return nestedStep === steps[activeStep].nestedSteps.length;
+  }
+
+  const isFirstNestedStep = () => {
+    return nestedStep === 0;
+  }
+
   const allStepsCompleted = () => {
     return completedSteps() === totalSteps();
   };
 
+  // const handleNext = () => {
+  //   const newActiveStep =
+  //     isLastStep() && !allStepsCompleted()
+  //       ? // It's the last step, but not all steps have been completed,
+  //       // find the first step that has been completed
+  //       steps.findIndex((step, i) => !(i in completed))
+  //       : activeStep + 1;
+  //   setActiveStep(newActiveStep);
+  // };
+
   const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? // It's the last step, but not all steps have been completed,
-        // find the first step that has been completed
-        steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
-    setActiveStep(newActiveStep);
+
+    if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
+      // Advance to the next nested step within the current step
+      setNestedStep(nestedStep + 1);
+      console.log(nestedStep);
+    } else {
+      // Advance to the next step
+      setNestedStep(0)
+      const newActiveStep =
+        isLastStep() && !allStepsCompleted()
+          ? // It's the last step, but not all steps have been completed,
+          // find the first step that has been completed
+          steps.findIndex((step, i) => !(i in completed))
+          : activeStep + 1;
+      setActiveStep(newActiveStep);
+    }
+
   };
 
   const handleBack = () => {
@@ -299,10 +335,10 @@ const CreateResumePage = () => {
 
               <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
                 {steps.map((label, index) => (
-                  <Step key={label} completed={completed[index]}>
+                  <Step key={label.label} completed={completed[index]}>
                     <StepButton color="#023642" onClick={handleStep(index)}>
                       {/* {label} */}
-                      <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
+                      <StepLabel StepIconComponent={QontoStepIcon}>{label.label}</StepLabel>
                     </StepButton>
                   </Step>
                 ))}
@@ -341,7 +377,8 @@ const CreateResumePage = () => {
                       <Box>
                         {activeStep === 0 && (
                           <>
-                            <PersonalInformation />
+                            {nestedStep === 0 && <PersonalInformation />}
+                            {nestedStep === 1 && <p>{`Nested Step: ${nestedStep + 1}`}</p>}
                           </>
                         )}
                         {activeStep === 1 && (
