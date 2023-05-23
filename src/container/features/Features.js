@@ -1,12 +1,13 @@
 import React from 'react';
 import { features } from '../../constants/static-texts';
 import Card from '../../components/card/Card';
+import { i18n } from '../../translate/i18n';
 
 const Features = () => {
   return (
     <div className={`container text-center`} >
 
-      <h2 className={`sections-title`} >Features</h2>
+      <h2 className={`sections-title`} >{i18n.t('features.title')}</h2>
 
       <div className={`row justify-content-center`} >
         {

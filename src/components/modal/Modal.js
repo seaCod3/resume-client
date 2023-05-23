@@ -17,9 +17,7 @@ const Modal = ({ open, close }) => {
 
   const handleCopyClick = () => {
     if (resultRef.current) {
-      navigator.clipboard.writeText(resultRef.current.textContent)
-        // .then(() => alert('Copied to clipboard'))
-        // .catch(err => console.error('Failed to copy:', err));
+      navigator.clipboard.writeText(resultRef.current.textContent)  
     }
     setIsCopied(true);
   }
@@ -30,7 +28,7 @@ const Modal = ({ open, close }) => {
     if (isCopied) {
       timeoutId = setTimeout(() => {
         setIsCopied(false);
-      }, 3000); // change the icon back to FaCopy after 3 seconds
+      }, 3000);       // change the icon back to FaCopy after 3 seconds
     }
 
     return () => clearTimeout(timeoutId);
@@ -80,19 +78,10 @@ const Modal = ({ open, close }) => {
                 />
               </div>
 
-
               <button type='submit' className='btn btn-secondary'>{i18n.t('modal.button')}</button>
 
             </Form>
           </Formik>
-
-
-          {/* {key.map((item) => (
-            <div className='result' key={item}>
-              {item}
-              <FaCopy color="#fff" size={20} />
-            </div>
-          ))} */}
 
           <div className='results-section'>
             {key.map((item) => (

@@ -5,57 +5,47 @@ import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import { HiOutlineArrowPath } from "react-icons/hi2";
 import { HiOutlinePencil } from "react-icons/hi2";
 
+
 export const features = [
   {
     id: "feature-1",
     icon: <VscCheckAll color="#023642" size={30} />,
-    title: "Easy-to-use Interface",
-    content:
-      `Our CV generator provides a user-friendly interface, making it effortless for users to create professional resumes without any technical expertise. 
-        The intuitive design ensures a smooth and efficient resume-building experience.`,
+    title: "features.title1",
+    content: "features.content1"
   },
   {
     id: "feature-2",
     icon: <HiOutlineArrowPath color="#023642" size={30} />,
-    title: "Dynamic Sections",
-    content:
-      `We provide a variety of dynamic sections, such as education, work experience, skills, and more. 
-      Users can easily add, remove, or reorder these sections to showcase their qualifications and achievements effectively.`,
+    title: "features.title2",
+    content: "features.content2"
   },
   {
     id: "feature-3",
     icon: <HiOutlineEye color="#023642" size={30} />,
-    title: "Real-time Preview",
-    content:
-      `Visualize your resume as you build it with our real-time preview feature. 
-      Instantly see how your information and chosen template come together, ensuring a polished and well-structured CV before downloading it.`,
+    title: "features.title3",
+    content: "features.content3"
   },
   {
     id: "feature-4",
     icon: <BsDownload color="#023642" size={30} />,
-    title: "Downloadable PDF",
-    content:
-      `Once you've completed your resume, our CV generator enables you to download it as a high-quality PDF file. 
-          This ensures compatibility across different devices and allows for easy sharing with potential employers or job application platforms.`,
+    title: "features.title4",
+    content: "features.content4"
   },
   {
     id: "feature-5",
     icon: <HiOutlinePencil color="#023642" size={30} />,
-    title: "Resume Management",
-    content:
-      `Our application provides a built-in resume management system, allowing users to save, edit, and update their resumes anytime. 
-          You can easily access and make changes to your CV whenever necessary, ensuring it remains up-to-date.`,
+    title: "features.title5",
+    content: "features.content5"
   },
   {
     id: "feature-6",
     icon: <HiOutlineDevicePhoneMobile color="#023642" size={30} />,
-    title: "Responsive Design",
-    content:
-      `Create and edit your resume with ease using our CV generator. 
-          It provides a great experience on any device, including desktops, laptops, tablets, and smartphones.`,
+    title: "features.title6",
+    content: "features.content6"
   },
 
 ];
+
 
 export const accordionOtpions = [
 

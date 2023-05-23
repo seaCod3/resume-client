@@ -4,23 +4,14 @@ import en from "./en.png"
 import React from "react";
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import { Link } from "react-router-dom";
+import { i18n } from "../../translate/i18n";
 
-export default function Navbar() {
+export default function Navbar(props) {
 
     const [marginTop, setMarginTop] = React.useState(0);
     const I18N_STORAGE_KEY = "i18nextLng"
     const [language] = React.useState(localStorage.getItem(I18N_STORAGE_KEY));
 
-    const menuItems = [
-        {
-            name: "Portugues",
-            img: <img src={cv} alt="React Logo" />,
-        },
-        {
-            name: "English",
-            img: <img src={en} alt="React Logo" />,
-        }
-    ];
 
     const handleLanguageChange = (e) => {
         const browserLanguage = e.target.value;
@@ -38,7 +29,6 @@ export default function Navbar() {
         // Add event listener to the window resize event
         window.addEventListener("resize", handleWindowResize);
 
-        // Call the handleWindowResize once initially
         handleWindowResize();
 
         // Remove event listener when component is unmounted
@@ -47,17 +37,12 @@ export default function Navbar() {
         };
     }, []);
 
-    const style = {
-        marginTop: `${marginTop}px`,
-    };
-
 
     return (
         <nav className="navbar  navbar-expand-lg navigation fixed-top">
 
             <div className="container">
 
-                {/* <a className="navbar-brand" href="#">RESUME</a> */}
                 <Link className="navbar-brand" to="/">RESUME</Link>
 
                 <div className="flex">
@@ -101,8 +86,7 @@ export default function Navbar() {
                             </ul>
 
                             <div className="btn-group">
-
-                                <Link to={`/create-resume`}><button className='btn btn-primary'>Create a Resume</button></Link>
+                                <button className='btn btn-primary' onClick={props.handleModal} >{i18n.t('hero.mainButton')}</button>
                                 {/* <button className="btn btn-primary">Create a Resume</button> */}
 
                                 <select name="language" onChange={handleLanguageChange} defaultValue={language}>
