@@ -91,3 +91,37 @@ export const accordionOtpions = [
   }
 
 ]
+
+
+export const sectionDescriptions = [
+  {
+    title: "Education",
+    description: "Share your educational background, including the institutions you attended and the dates of completion.",
+  },
+  {
+    title: "Skills",
+    description: "Highlight your relevant skills and abilities that make you a strong candidate for the desired position.",
+  },
+  {
+    title: "Experience",
+    description: "Showcase your professional experience, emphasizing your key roles and accomplishments to demonstrate your expertise and suitability for the job.",
+  },
+  {
+    title: "Job Details",
+    description: "Provide specific details about your previous or desired job, such as job responsibilities, projects you've worked on, and any notable achievements.",
+  },
+  {
+    title: "Next Steps",
+    description: "Outline the next steps for the user, such as submitting the application, preparing for an interview, or contacting the provided email or phone number for further information.",
+  }
+];
+
+
+export const ProficiencyLevels = {
+  A1: "A1 - Basic Beginner",
+  A2: "A2 - Conversational Beginner",
+  B1: "B1 - Intermediate Level",
+  B2: "B2 - Advanced Level",
+  C1: "C1 - Fluent Proficiency",
+  C2: "C2 - Native-level Proficiency"
+};

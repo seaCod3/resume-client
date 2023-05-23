@@ -23,6 +23,11 @@ import SectionDescriptionCard from '../../components/form-steps-components/Secti
 import EducationDetails from '../../components/form-steps-components/EducationDetails';
 import Skills from '../../components/form-steps-components/Skills';
 import { useEffect } from 'react';
+import { sectionDescriptions } from '../../constants/static-texts';
+import { HiOutlineChevronRight } from "react-icons/hi2";
+import { HiOutlineChevronLeft } from "react-icons/hi2";
+import Languages from '../../components/form-steps-components/Languages';
+
 
 
 
@@ -55,6 +60,13 @@ const CreateResumePage = () => {
   const [graduationEndDate, setGraduationEndDate] = useState('');
   const [stillStudingHere, setStillStudingHere] = useState(false);
   const [skills, setSkills] = useState('');
+  const [language, setLanguage] = useState('');
+  const [whereWasLearned, setWhereWasLearned] = useState('');
+  const [oralComprehension, setOralComprehension] = useState('');
+  const [readingComprehension, setReadingComprehension] = useState('');
+  const [oralInteraction, setOralInteraction] = useState('');
+  const [speakingSkills, setSpeakingSkills] = useState('');
+  const [writingSkills, setWritingSkills] = useState('');
 
 
   useEffect(() => {
@@ -63,6 +75,7 @@ const CreateResumePage = () => {
 
 
   const INITIAL_FORM_STATE = {
+
     fullName: fullName,
     dateOfBirth: dateOfBirth,
     gender: gender,
@@ -89,7 +102,15 @@ const CreateResumePage = () => {
     graduationStartDate: graduationStartDate,
     graduationEndDate: graduationEndDate,
     stillStudingHere: stillStudingHere,
-    // skills: null,
+    skills: skills,
+    language: language,
+    whereWasLearned: whereWasLearned,
+    oralComprehension: oralComprehension,
+    readingComprehension: readingComprehension,
+    oralInteraction: oralInteraction,
+    speakingSkills: speakingSkills,
+    writingSkills: writingSkills
+
   }
 
 
@@ -150,18 +171,34 @@ const CreateResumePage = () => {
     stillStudingHere: Yup.boolean()
       .optional(),
     skills: Yup.string()
-      .required('Skills is required')
+      .required('Skills is required'),
+    language: Yup.string()
+      .required('Language is required'),
+    whereWasLearned: Yup.string()
+      .optional(),
+    oralComprehension: Yup.string()
+      .required('Oral Comprehension is required'),
+    readingComprehension: Yup.string()
+      .required('Reading Comprehension is required'),
+    oralInteraction: Yup.string()
+      .required('Oral Interaction is required'),
+    speakingSkills: Yup.string()
+      .required('Speaking Skills is required'),
+    writingSkills: Yup.string()
+      .required('Writing Skills is required'),
 
   })
 
   // Stepper related functions
 
-  // const steps = ['Personal Information', 'Experience', `Education`, 'Skills', 'Job Details'];
-  const steps = [{ label: 'Personal Information', nestedSteps: [0, 1, 2, 3] },
-  { label: 'Experience', nestedSteps: [0, 1, 2, 3] },
-  { label: 'Education', nestedSteps: [0, 1, 2, 3] },
-  { label: 'Skills', nestedSteps: [0, 1, 2, 3] },
-  { label: 'Job Details', nestedSteps: [0, 1, 2, 3] }
+  const steps = [
+
+    { label: 'Personal Information', nestedSteps: [0, 1,] },
+    { label: 'Experience', nestedSteps: [0, 1,] },
+    { label: 'Education', nestedSteps: [0, 1,] },
+    { label: 'Skills', nestedSteps: [0, 1, 2] },
+    { label: 'Job Details', nestedSteps: [0, 1,] }
+
   ]
 
 
@@ -184,7 +221,7 @@ const CreateResumePage = () => {
   };
 
   const isLastNestedStep = () => {
-    return nestedStep === steps[activeStep].nestedSteps.length;
+    return nestedStep === steps[activeStep].nestedSteps.length - 1;
   }
 
   const isFirstNestedStep = () => {
@@ -227,6 +264,8 @@ const CreateResumePage = () => {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setNestedStep(0);
+
   };
 
   const handleStep = (step) => () => {
@@ -242,6 +281,7 @@ const CreateResumePage = () => {
 
   const handleReset = () => {
     setActiveStep(0);
+    setNestedStep(0);
     setCompleted({});
   };
 
@@ -327,24 +367,26 @@ const CreateResumePage = () => {
       <Grid height={'100vh'} container >
 
         {/* Left Side */}
-        <Grid item container pl={'310px'} pr={'2rem'} xs={8}>
+        <Grid item container alignContent={'start'} pl={'310px'} pr={'2rem'} xs={8}>
+
+          <Box sx={{ width: '80%', marginY: '4rem' }}>
+
+            <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
+              {steps.map((label, index) => (
+                <Step key={label.label} completed={completed[index]}>
+                  <StepButton color="#023642" onClick={handleStep(index)}>
+                    {/* {label} */}
+                    <StepLabel StepIconComponent={QontoStepIcon}>{label.label}</StepLabel>
+                  </StepButton>
+                </Step>
+              ))}
+            </Stepper>
+
+          </Box>
 
           <Grid item xs={9}>
 
-            <Box sx={{ width: '100%', marginY: '3rem' }}>
-
-              <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
-                {steps.map((label, index) => (
-                  <Step key={label.label} completed={completed[index]}>
-                    <StepButton color="#023642" onClick={handleStep(index)}>
-                      {/* {label} */}
-                      <StepLabel StepIconComponent={QontoStepIcon}>{label.label}</StepLabel>
-                    </StepButton>
-                  </Step>
-                ))}
-              </Stepper>
-
-            </Box>
+            {/* stepper used to be placed here */}
 
 
             <Formik
@@ -378,47 +420,57 @@ const CreateResumePage = () => {
                         {activeStep === 0 && (
                           <>
                             {nestedStep === 0 && <PersonalInformation />}
-                            {nestedStep === 1 && <p>{`Nested Step: ${nestedStep + 1}`}</p>}
+                            {nestedStep === 1 && <SectionDescriptionCard {...sectionDescriptions[2]} />}
                           </>
                         )}
                         {activeStep === 1 && (
                           <>
-                            <Experience />
+                            {nestedStep === 0 && <Experience />}
+                            {nestedStep === 1 && <SectionDescriptionCard {...sectionDescriptions[0]} />}
                           </>
                         )}
                         {activeStep === 2 && (
                           <>
-                            <EducationDetails />
+                            {nestedStep === 0 && <EducationDetails />}
+                            {nestedStep === 1 && <SectionDescriptionCard {...sectionDescriptions[1]} />}
                           </>
                         )}
                         {activeStep === 3 && (
                           <>
-                            <Skills skills={skills} setSkills={setSkills} />
+                            {nestedStep === 0 && <Skills skills={skills} setSkills={setSkills} />}
+                            {nestedStep === 1 && <Languages />}
+                            {nestedStep === 2 && <SectionDescriptionCard {...sectionDescriptions[3]} />}
                           </>
                         )}
                         {activeStep === 4 && (
                           <>
-                            <SectionDescriptionCard />
+                            <SectionDescriptionCard {...sectionDescriptions[4]} />
                           </>
                         )}
 
-
                       </Box>
 
-                      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, marginTop: '2rem' }}>
                         <Button
+                          startIcon={<HiOutlineChevronLeft size={20} />}
+                          variant='outlined'
                           color="inherit"
                           disabled={activeStep === 0}
                           onClick={handleBack}
-                          sx={{ mr: 1 }}
+                          sx={{ mr: 1, width: '150px', height: '40px', }}
                         >
                           Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-                        <Button onClick={(e) => {
-                          handleNext()
-                          handleComplete()
-                        }} sx={{ mr: 1 }}>
+                        <Button
+                          endIcon={<HiOutlineChevronRight size={20} />}
+                          variant='outlined'
+                          onClick={(e) => {
+                            handleNext()
+                            handleComplete()
+                          }} sx={{ mr: 1, width: '150px' }}
+                          className='btn-secondary'
+                        >
                           Next
                         </Button>
                         {/* {activeStep !== steps.length &&

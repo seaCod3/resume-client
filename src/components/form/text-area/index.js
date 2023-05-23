@@ -37,8 +37,6 @@ export default function TextArea({ name, skills, setSkills, ...otherProps }) {
     const { setFieldValue } = useFormikContext();
     const [previousLength, setPreviousLength] = React.useState(0);
 
-    // let previousLength = 0;
-
     const handleInput = (e) => {
         const bullet = "\u2022" + "   ";
         const newLength = e.target.value.length;
@@ -69,12 +67,15 @@ export default function TextArea({ name, skills, setSkills, ...otherProps }) {
 
 
     const handleBlur = (event) => {
+
         const value = event.target.value;
-        setSkills(splitStringWithBulletPoints(value));
-        const splitedValues = splitStringWithBulletPoints(value)
         // setFieldValue(name, splitStringWithBulletPoints(value));
+        setFieldValue(name, value);
+        // setSkills(splitStringWithBulletPoints(value));
+        // const splitedValues = splitStringWithBulletPoints(value)
         // console.log(value);
         // console.log(splitStringWithBulletPoints(value));
+
     }
 
 
@@ -87,8 +88,9 @@ export default function TextArea({ name, skills, setSkills, ...otherProps }) {
         rows: 10,
         variant: otherProps.variant || 'outlined',
         label: false,
-        onChange: handleInput,
-        onBlur: handleBlur
+        // onChange: handleInput,
+        onInput: handleInput,
+        // onBlur: handleBlur
 
     }
 

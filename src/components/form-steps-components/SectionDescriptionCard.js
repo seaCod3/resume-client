@@ -3,8 +3,9 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import { Typography } from '@mui/material';
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Typography)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -12,16 +13,16 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const SectionDescriptionCard = () => {
+
+const SectionDescriptionCard = ({title, description}) => {
   return (
-    <Box sx={{ width: '100%' }}>
-      <Stack spacing={1}>
+    <Box sx={{ width: '100%', marginY: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+      <Stack alignItems={'flex-start'} spacing={2}>
+        
         {/* <p>Section Description</p> */}
-        <h3 className='section-description-custom-card-title' >Experience</h3>
-        <p className='section-description-card-paragraph' >Showcase your professional background and highlight your key roles and achievements to demonstrate your expertise and suitability for the desired position.</p>
-        {/* <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item> */}
+        <h3 className='section-description-custom-card-title' >{title}</h3>
+        <p className='section-description-card-paragraph' >{description}</p>
+    
       </Stack>
     </Box>
   );

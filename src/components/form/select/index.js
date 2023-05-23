@@ -82,7 +82,7 @@ const CustomSelect = ({ name, options, setOption, ...otherProps }) => {
 
                                     return (
 
-                                        <MenuItem key={index} value={options[item]}>
+                                        <MenuItem key={index} value={item}>
                                             {options[item]}
                                         </MenuItem>
 

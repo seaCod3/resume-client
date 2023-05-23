@@ -56,7 +56,6 @@ html {
     font-family: var(--font-family);
 }
 
-
 .btn-secondary {
   outline: none !important;
   border: none !important;
@@ -161,3 +160,4 @@ html {
   
   }
 }
+

@@ -33,6 +33,13 @@ const CustomTextField = styled(TextField)({
 export default function Textfield({ name, ...otherProps }) {
 
     const [field, meta] = useField(name);
+    const shouldHandleBlur = otherProps.shouldBlur;
+
+    const handleBlur = (e) => {
+        // console.log(e.target.value)
+        console.log(field.value, 'field.value')
+
+    }
 
     const textFieldConfig = {
 
@@ -42,6 +49,9 @@ export default function Textfield({ name, ...otherProps }) {
         size: 'small',
         variant: otherProps.variant || 'outlined',
         label: false,
+        // onBlur: shouldHandleBlur ? handleBlur : undefined,
+        // onBlur: handleBlur
+
 
     }
 
@@ -54,8 +64,9 @@ export default function Textfield({ name, ...otherProps }) {
 
     return (
         <>
-            <label style={{marginBottom: '.4rem'}} >{otherProps.label}</label>
+            <label style={{ marginBottom: '.4rem' }} >{otherProps.label}</label>
             <CustomTextField {...textFieldConfig} />
         </>
     );
+
 }
