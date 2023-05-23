@@ -1,13 +1,14 @@
 import React from 'react';
 import { accordionOtpions } from '../../constants/static-texts';
 import './accordion.css';
+import { i18n } from '../../translate/i18n';
 
 
 const FAQ = () => {
 
   return (
     <div className={`container  `} >
-      <h2 className={`sections-title text-center`} >Questions?</h2>
+      <h2 className={`sections-title text-center`} >{i18n.t("questions.title")}</h2>
       <div className="accordion" id="accordionExample">
 
         <div className="accordion-item">

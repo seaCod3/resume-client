@@ -11,7 +11,6 @@ function Home() {
           setOpenModal(true)
         }
 
-
      return (
           <div>
 
@@ -30,7 +29,7 @@ function Home() {
                </section>
 
                <section className='section'>
-                    {/* Some Usefull Links */}
+                    {/* Some Useful Links */}
                </section>
 
           </div>
