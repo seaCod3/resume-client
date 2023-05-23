@@ -6,19 +6,35 @@ import Textfield from '../form/text-field';
 import { Form, Formik } from 'formik';
 import * as Yup from "yup";
 import { FaCopy } from "react-icons/fa";
+import { VscCheckAll } from "react-icons/vsc";
+import { i18n } from '../../translate/i18n';
 const Modal = ({ open, close }) => {
 
   const [key, setKey] = React.useState([]);
+  const [isCopied, setIsCopied] = React.useState(false);
 
   const resultRef = useRef(null);
 
   const handleCopyClick = () => {
     if (resultRef.current) {
       navigator.clipboard.writeText(resultRef.current.textContent)
-        .then(() => alert('Copied to clipboard'))
-        .catch(err => console.error('Failed to copy:', err));
+        // .then(() => alert('Copied to clipboard'))
+        // .catch(err => console.error('Failed to copy:', err));
     }
+    setIsCopied(true);
   }
+
+  React.useEffect(() => {
+    let timeoutId;
+
+    if (isCopied) {
+      timeoutId = setTimeout(() => {
+        setIsCopied(false);
+      }, 3000); // change the icon back to FaCopy after 3 seconds
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [isCopied]);
 
   const initialValues = {
     email: '',
@@ -40,10 +56,9 @@ const Modal = ({ open, close }) => {
         <div className='modalContent'>
 
           <p onClick={close} className='closeBtn'><MdClose color="#023642" size={30} /></p>
-          <h2>Almost There.</h2>
-          <h6>Please provide us with your email!</h6>
-          <p>By providing us with your email, you will receive a key that will be associated with your account, and you will be able to edit your resume for up to 30 days until your account is removed.
-            We advise you to keep this key in a safe place</p>
+          <h2>{i18n.t('modal.title')}</h2>
+          <h6>{i18n.t('modal.subtitle')}</h6>
+          <p>{i18n.t('modal.content')}</p>
 
           <Formik
             initialValues={{ ...initialValues }}
@@ -66,13 +81,13 @@ const Modal = ({ open, close }) => {
               </div>
 
 
-              <button type='submit' className='btn btn-secondary'>Submit</button>
+              <button type='submit' className='btn btn-secondary'>{i18n.t('modal.button')}</button>
 
             </Form>
           </Formik>
 
-          
-           {/* {key.map((item) => (
+
+          {/* {key.map((item) => (
             <div className='result' key={item}>
               {item}
               <FaCopy color="#fff" size={20} />
@@ -80,14 +95,18 @@ const Modal = ({ open, close }) => {
           ))} */}
 
           <div className='results-section'>
-          {key.map((item) => (
-            <div className='result' key={item} ref={resultRef}>
-              {item}
-              <FaCopy color="#fff" size={20} onClick={handleCopyClick} />
-            </div>
-          ))}
-        </div>
-          
+            {key.map((item) => (
+              <div className='result' key={item} ref={resultRef}>
+                {item}
+                {isCopied ? (
+                  <VscCheckAll color="#fff" size={20} />
+                ) : (
+                  <FaCopy color="#fff" size={20} onClick={handleCopyClick} />
+                )}
+              </div>
+            ))}
+          </div>
+
 
         </div>
       </div>

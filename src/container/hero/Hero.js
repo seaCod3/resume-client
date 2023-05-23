@@ -58,11 +58,11 @@ export default function Hero(props) {
 
         <div className='row' >
           <div className='col-sm-12 col-lg-7 margin-right'>
-            <h1 className='h1'>Create a professional resume and cover letter</h1>
-            <p>Use professional field-tested resume templates that follow the exact ‘resume rules’ employers look for. Easy to use and done within minutes - try now for free!</p>
+            <h1 className='h1'>{i18n.t('hero.title')}</h1>
+            <p>{i18n.t('hero.contend')}</p>
             <div className='flex'>
-              <button className='btn btn-primary hero-btn' onClick={props.handleModal} >Create a Resume</button>
-              <Link to={`/create-resume`}><button className='btn btn-secondary hero-btn'>How it works?</button></Link>
+              <button className='btn btn-primary hero-btn' onClick={props.handleModal} >{i18n.t('hero.mainButton')}</button>
+              <Link to={`/create-resume`}><button className='btn btn-secondary hero-btn'>{i18n.t('hero.secondaryButton')}</button></Link>
               {/* <button className='btn btn-secondary hero-btn'>How it works?</button> */}
             </div>
           </div>
@@ -75,7 +75,6 @@ export default function Hero(props) {
 
       </div>
 
-        {/* <Modal open={openModal} close={() => setOpenModal(false)} /> */}
     </div>
 
   )
