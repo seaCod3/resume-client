@@ -32,7 +32,11 @@ const Languages = () => {
 
     };
 
+
     const handleChosenLanguages = (e) => {
+
+        let languagesToStore = [];
+
 
         const languageDetails = {
 
@@ -46,22 +50,40 @@ const Languages = () => {
 
         }
 
-        console.log(languageDetails);
+
+        if (!localStorage.getItem('languagesToStore')) {
+
+            languagesToStore.push(languageDetails);
+
+            localStorage.setItem('languagesToStore', JSON.stringify(languagesToStore));
+
+        } else {
+
+            languagesToStore = JSON.parse(localStorage.getItem('languagesToStore'));
+            languagesToStore.push(languageDetails);
+
+            localStorage.setItem('languagesToStore', JSON.stringify(languagesToStore));
+
+        }
 
         setChosenLanguages([...chosenLanguages, languageDetails]);
 
         handleResetLanguageDetails();
 
     }
-    const handleLang = () => {
 
-        console.log(values.language);
-
-    }
 
     useEffect(() => {
+
+        const storedLanguages = JSON.parse(localStorage.getItem('languagesToStore'));
+
+        if (storedLanguages) {
+            setChosenLanguages(storedLanguages);
+        }
+
         console.log(chosenLanguages);
-    }, [chosenLanguages]);
+
+    }, []);
 
 
     return (

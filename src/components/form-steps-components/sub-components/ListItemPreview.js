@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import { blue, pink } from '@mui/material/colors';
+import { useFormikContext } from 'formik';
 
 
 
@@ -19,12 +20,47 @@ const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
 }));
 
+
 export default function ListItemPreview({ languages, setLanguages }) {
+
+    const formik = useFormikContext();
+    // Access the field values
+    const { values } = formik;
 
     const handleDelete = (languageName) => {
 
-        let updatedLang = languages.filter((language) => language.language !== languageName);
-        setLanguages([...updatedLang]);
+        const storedLanguages = JSON.parse(localStorage.getItem('languagesToStore'));
+
+        let updatedLanguages = storedLanguages.filter((language) => language.language !== languageName);
+
+        localStorage.setItem('languagesToStore', JSON.stringify(updatedLanguages));
+        setLanguages([...JSON.parse(localStorage.getItem('languagesToStore'))]);
+
+    }
+
+
+    const handleSetLanguageDetailsToUpdate = (languageToUpdate) => {
+
+
+        formik.setFieldValue('language', languageToUpdate.language, false); // Reset 'language' field
+        formik.setFieldValue('whereWasLearned', languageToUpdate.whereWasLearned, false); // Reset 'whereWasLearned' field
+        formik.setFieldValue('oralComprehension', languageToUpdate.oralComprehension, false); // Reset 'oralComprehension' field
+        formik.setFieldValue('readingComprehension', languageToUpdate.readingComprehension, false); // Reset 'readingComprehension' field
+        formik.setFieldValue('oralInteraction', languageToUpdate.oralInteraction, false); // Reset 'oralInteraction' field
+        formik.setFieldValue('speakingSkills', languageToUpdate.speakingSkills, false); // Reset 'speakingSkills' field
+        formik.setFieldValue('writingSkills', languageToUpdate.writingSkills, false); // Reset 'writingSkills' field
+
+
+    };
+
+    const handleEdit = (languageName) => {
+
+        languages.find((language) => language.language === languageName)
+        const language = languages.find((language) => language.language === languageName)
+
+        handleSetLanguageDetailsToUpdate(language);
+
+        console.log(language);
 
     }
 
@@ -52,7 +88,7 @@ export default function ListItemPreview({ languages, setLanguages }) {
 
                                         <>
 
-                                            <IconButton fontSize="medium" onClick={() => alert('Edited')} edge="end" aria-label="delete">
+                                            <IconButton fontSize="medium" onClick={(e) => handleEdit(language.language)} edge="end" aria-label="delete">
                                                 <ModeEditOutlineIcon sx={{ color: blue[300] }} />
                                             </IconButton>
 
