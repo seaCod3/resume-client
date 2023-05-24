@@ -16,6 +16,7 @@ const Languages = () => {
     // Access the field values
     const { values } = formik;
     const [chosenLanguages, setChosenLanguages] = React.useState([]);
+    const [shouldDisplaySaveButton, setShouldDisplaySaveButton] = React.useState(false);
 
 
     const handleResetLanguageDetails = () => {
@@ -72,6 +73,10 @@ const Languages = () => {
 
     }
 
+    const handleSaveEditedLanguageDetails = () => {
+
+    }
+
 
     useEffect(() => {
 
@@ -94,7 +99,7 @@ const Languages = () => {
                 chosenLanguages.length > 0 && (
 
                     <Grid item xs={12}>
-                        <ListItemPreview languages={chosenLanguages} setLanguages={setChosenLanguages} />
+                        <ListItemPreview languages={chosenLanguages} setLanguages={setChosenLanguages} setSaveDisplay={setShouldDisplaySaveButton} />
                     </Grid>
 
                 )
@@ -150,9 +155,28 @@ const Languages = () => {
                     <CustomSelect name={'writingSkills'} label={'Writing Skills'} options={ProficiencyLevels} />
                 </Grid>
 
+                {
+                    shouldDisplaySaveButton && (
+                        <Grid item xs={6} textAlign={'end'} boxSizing={'border-box'}>
+
+                            <Button
+                                // endIcon={<HiOutlineChevronRight size={20} />}
+                                variant='outlined'
+                                onClick={(e) => {
+                                    setShouldDisplaySaveButton(prev => !prev);
+                                }}
+                                sx={{ mr: 1, width: '150px', marginBottom: '-75px' }}
+                                className='btn-secondary'
+                            >
+                                Save
+                            </Button>
+                        </Grid>
+                    )
+                }
+
             </Grid>
 
-            <Grid item textAlign={'end'} mt={2} xs={12}>
+            <Grid item textAlign={'start'} mt={2} xs={12}>
 
                 <Button
                     // color="inherit"
