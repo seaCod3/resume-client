@@ -21,7 +21,7 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
 
-export default function ListItemPreview({ languages, setLanguages }) {
+export default function ListItemPreview({ languages, setLanguages, setSaveDisplay }) {
 
     const formik = useFormikContext();
     // Access the field values
@@ -39,7 +39,7 @@ export default function ListItemPreview({ languages, setLanguages }) {
     }
 
 
-    const handleSetLanguageDetailsToUpdate = (languageToUpdate) => {
+    const handleDisplayLanguageDetailsToUpdate = (languageToUpdate) => {
 
 
         formik.setFieldValue('language', languageToUpdate.language, false); // Reset 'language' field
@@ -55,10 +55,11 @@ export default function ListItemPreview({ languages, setLanguages }) {
 
     const handleEdit = (languageName) => {
 
-        languages.find((language) => language.language === languageName)
+        setSaveDisplay( prev => !prev);
+        // languages.find((language) => language.language === languageName)
         const language = languages.find((language) => language.language === languageName)
 
-        handleSetLanguageDetailsToUpdate(language);
+        handleDisplayLanguageDetailsToUpdate(language);
 
         console.log(language);
 

@@ -193,7 +193,7 @@ const CreateResumePage = () => {
 
   const steps = [
 
-    { label: 'Personal Information', nestedSteps: [0, 1,] },
+    { label: 'Personal Information', nestedSteps: [0, 1, 2] },
     { label: 'Experience', nestedSteps: [0, 1,] },
     { label: 'Education', nestedSteps: [0, 1,] },
     { label: 'Skills', nestedSteps: [0, 1, 2] },
@@ -419,8 +419,9 @@ const CreateResumePage = () => {
                       <Box>
                         {activeStep === 0 && (
                           <>
-                            {nestedStep === 0 && <PersonalInformation />}
-                            {nestedStep === 1 && <SectionDescriptionCard {...sectionDescriptions[2]} />}
+                            {nestedStep === 0 && <SectionDescriptionCard {...sectionDescriptions[5]} />}
+                            {nestedStep === 1 && <PersonalInformation />}
+                            {nestedStep === 2 && <SectionDescriptionCard {...sectionDescriptions[2]} />}
                           </>
                         )}
                         {activeStep === 1 && (
@@ -499,7 +500,7 @@ const CreateResumePage = () => {
         {/* Right Side */}
         <Grid backgroundColor={'#f4f4f4'} item xs={4}>
 
-          <img src={imageDisplayer[activeStep]} alt="Description" className="fluid-img" />
+          <img src={isLastNestedStep() ? imageDisplayer[activeStep +1] : imageDisplayer[activeStep]} alt="Description" className="fluid-img" />
 
         </Grid>
 

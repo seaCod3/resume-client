@@ -67,6 +67,10 @@ export const sectionDescriptions = [
   {
     title: "Next Steps",
     description: "Outline the next steps for the user, such as submitting the application, preparing for an interview, or contacting the provided email or phone number for further information.",
+  },
+  {
+    title: "Personal Information",
+    description: "Ensure easy employer connections and maximize professional opportunities by sharing your contact details like name, email, and phone number. Make a strong impression with accurate and clear personal information.",
   }
 ];
 
