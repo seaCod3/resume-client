@@ -27,12 +27,15 @@ import { sectionDescriptions } from '../../constants/static-texts';
 import { HiOutlineChevronRight } from "react-icons/hi2";
 import { HiOutlineChevronLeft } from "react-icons/hi2";
 import Languages from '../../components/form-steps-components/Languages';
+import { useLanguageStore } from '../../store/LangToEditIndexStore';
 
 
 
 
 const CreateResumePage = () => {
 
+
+  const chosenLanguagesHasLength = useLanguageStore((state) => state.chosenLanguagesLength);
   const [fullName, setFullName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [gender, setGender] = useState('');
@@ -244,6 +247,7 @@ const CreateResumePage = () => {
 
   const handleNext = () => {
 
+    console.log(chosenLanguagesHasLength);
     if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
       // Advance to the next nested step within the current step
       setNestedStep(nestedStep + 1);
@@ -500,7 +504,7 @@ const CreateResumePage = () => {
         {/* Right Side */}
         <Grid backgroundColor={'#f4f4f4'} item xs={4}>
 
-          <img src={isLastNestedStep() ? imageDisplayer[activeStep +1] : imageDisplayer[activeStep]} alt="Description" className="fluid-img" />
+          <img src={isLastNestedStep() ? imageDisplayer[activeStep + 1] : imageDisplayer[activeStep]} alt="Description" className="fluid-img" />
 
         </Grid>
 

@@ -13,7 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import { blue, pink } from '@mui/material/colors';
 import { useFormikContext } from 'formik';
-
+import { useLanguageStore } from '../../../store/LangToEditIndexStore';
 
 
 const Demo = styled('div')(({ theme }) => ({
@@ -26,6 +26,7 @@ export default function ListItemPreview({ languages, setLanguages, setSaveDispla
     const formik = useFormikContext();
     // Access the field values
     const { values } = formik;
+    const setLanguageIndex = useLanguageStore((state) => state.setLanguageIndex);
 
     const handleDelete = (languageName) => {
 
@@ -55,13 +56,13 @@ export default function ListItemPreview({ languages, setLanguages, setSaveDispla
 
     const handleEdit = (languageName) => {
 
-        setSaveDisplay( prev => !prev);
-        // languages.find((language) => language.language === languageName)
+        setSaveDisplay(prev => !prev);
         const language = languages.find((language) => language.language === languageName)
 
         handleDisplayLanguageDetailsToUpdate(language);
 
-        console.log(language);
+        setLanguageIndex(languages.indexOf(language));
+        console.log(languages.indexOf(language));
 
     }
 

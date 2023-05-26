@@ -7,17 +7,21 @@ import ListItemPreview from './sub-components/ListItemPreview';
 import { ProficiencyLevels } from '../../constants/static-texts';
 import { useFormikContext } from 'formik';
 import { useEffect } from 'react';
+import { useLanguageStore } from '../../store/LangToEditIndexStore';
 
 
 
 const Languages = () => {
 
+    const currentIndex = useLanguageStore((state) => state.index);
+    const setChosenLanguagesLength = useLanguageStore((state) => state.setChosenLanguagesLength);
     const formik = useFormikContext();
     // Access the field values
     const { values } = formik;
     const [chosenLanguages, setChosenLanguages] = React.useState([]);
     const [shouldDisplaySaveButton, setShouldDisplaySaveButton] = React.useState(false);
 
+    // const languageWasntChosen = chosenLanguages.length === 0;
 
     const handleResetLanguageDetails = () => {
 
@@ -34,7 +38,7 @@ const Languages = () => {
     };
 
 
-    const handleChosenLanguages = (e) => {
+    const handleAddChosenLanguages = (e) => {
 
         let languagesToStore = [];
 
@@ -68,12 +72,33 @@ const Languages = () => {
         }
 
         setChosenLanguages([...chosenLanguages, languageDetails]);
-
+        setChosenLanguagesLength(chosenLanguages.length);
+        console.log(currentIndex, 'zustand');
         handleResetLanguageDetails();
 
     }
 
     const handleSaveEditedLanguageDetails = () => {
+
+        let languagesToStore = JSON.parse(localStorage.getItem('languagesToStore'));
+
+        languagesToStore[currentIndex] = {
+
+            language: values.language,
+            whereWasLearned: values.whereWasLearned,
+            oralComprehension: values.oralComprehension,
+            readingComprehension: values.readingComprehension,
+            oralInteraction: values.oralInteraction,
+            speakingSkills: values.speakingSkills,
+            writingSkills: values.writingSkills,
+
+        }
+
+        localStorage.setItem('languagesToStore', JSON.stringify(languagesToStore));
+        setChosenLanguages([...JSON.parse(localStorage.getItem('languagesToStore'))]);
+        console.log(currentIndex, 'zustand');
+
+        handleResetLanguageDetails();
 
     }
 
@@ -163,6 +188,7 @@ const Languages = () => {
                                 // endIcon={<HiOutlineChevronRight size={20} />}
                                 variant='outlined'
                                 onClick={(e) => {
+                                    handleSaveEditedLanguageDetails();
                                     setShouldDisplaySaveButton(prev => !prev);
                                 }}
                                 sx={{ mr: 1, width: '150px', marginBottom: '-75px' }}
@@ -179,14 +205,15 @@ const Languages = () => {
             <Grid item textAlign={'start'} mt={2} xs={12}>
 
                 <Button
-                    // color="inherit"
                     size="medium"
                     variant="text"
                     startIcon={<HiPlus color='#023642' size={25} />}
                     sx={{ color: '#023642' }}
-                    onClick={handleChosenLanguages}
+                    onClick={handleAddChosenLanguages}
 
-                >Add More</Button>
+                >
+                    {'ADD'}
+                </Button>
 
             </Grid>
 
