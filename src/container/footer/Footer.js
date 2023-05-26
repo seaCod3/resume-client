@@ -1,5 +1,7 @@
 import './footer.css';
 import logo from './logo.png';
+import { i18n } from '../../translate/i18n';
+
 
 import { FaEnvelope, FaFacebookSquare, FaInstagram, FaGlobe } from "react-icons/fa";
 
@@ -11,12 +13,12 @@ export default function Footer() {
                 <div className='about'>
                     <img src={logo} alt='logo' />
 
-                    <span><em>"Our mission is to help people have an impact within the community they are part of."</em></span>
+                    <span><em>{i18n.t("footer.slogan")}</em></span>
                 </div>
 
                 <div className='social-icons'>
 
-                    <p>Get in touch with us</p>
+                    <p>{i18n.t("footer.social")}</p>
 
                     <a href='https://www.facebook.com/' target='blank'>
                         <FaFacebookSquare color="#fff" size={30} />

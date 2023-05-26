@@ -29,7 +29,25 @@ const messages = {
                 content6: 'Crie e edite o seu currículo com facilidade utilizando o nosso gerador de CV. Proporciona uma excelente experiência em qualquer dispositivo, incluindo computadores de secretária, computadores portáteis, tablets e smartphones.'
             },
             questions: {
-                title: 'Perguntas ?'
+                title: 'Perguntas ?',
+                title1: 'Como funciona a aplicação Web do criador de currículos?',
+                title2: 'Posso editar o meu currículo depois de o ter criado?',
+                title3: 'Existem modelos de currículos disponíveis?',
+                title4: 'As minhas informações pessoais estão seguras?',
+                title5: 'Posso descarregar o meu currículo em diferentes formatos?',
+                title6: 'Posso aceder ao meu currículo a partir de vários dispositivos?',
+                title7: 'Existe algum custo associado à utilização da aplicação Web do criador de currículos?',
+                content1: 'A nossa aplicação Web de criação de currículos guia-o através de um processo passo-a-passo para criar um currículo profissional. Basta introduzir as suas informações, escolher entre uma variedade de modelos, personalizar o conteúdo e transferir o seu currículo em vários formatos.',
+                content2: 'Sim, sem dúvida! A nossa aplicação web de criação de currículos permite-lhe fazer edições e actualizações ao seu currículo em qualquer altura. Pode revisitar o seu currículo guardado, fazer alterações e guardar a versão actualizada.',
+                content3: 'Sim, oferecemos uma vasta gama de modelos de currículo concebidos profissionalmente à sua escolha. Pode seleccionar um modelo que corresponda ao seu sector, nível de experiência ou preferência pessoal e personalizá-lo para criar um currículo único e visualmente apelativo.',
+                content4: 'Sim, levamos muito a sério a segurança e a privacidade das suas informações pessoais. Utilizamos protocolos de encriptação padrão da indústria para proteger os seus dados e garantir a sua confidencialidade. Não partilhamos as suas informações com terceiros sem a sua autorização.',
+                content5: 'Sem dúvida! A nossa aplicação web de criação de currículos permite-lhe descarregar o seu currículo em vários formatos, tais como PDF, documento Word ou texto simples. Isto garante a compatibilidade com diferentes sistemas e facilita a apresentação do seu currículo online ou a sua impressão.',
+                content6: 'Sim, pode aceder ao seu currículo a partir de qualquer dispositivo com uma ligação à Internet. A nossa aplicação web de criação de currículos é baseada na nuvem, o que significa que o seu currículo é armazenado de forma segura na nuvem e pode aceder-lhe a partir do seu computador, smartphone ou tablet.',
+                content7: 'Oferecemos planos gratuitos e premium. O plano gratuito permite-lhe criar e descarregar um currículo básico. Os nossos planos premium fornecem funcionalidades adicionais, tais como acesso a modelos avançados, criação de cartas de apresentação e downloads ilimitados de currículos. Pode escolher o plano que melhor se adapta às suas necessidades.'
+            },
+            footer: {
+                slogan: '"A nossa missão é ajudar as pessoas a terem um impacto na comunidade em que se inserem."',
+                social: 'Entre em contacto connosco!'
             }
         }
     }

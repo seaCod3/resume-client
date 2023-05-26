@@ -1,6 +1,4 @@
 import "./navbar.css"
-import cv from "./cv.png"
-import en from "./en.png"
 import React from "react";
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import { Link } from "react-router-dom";

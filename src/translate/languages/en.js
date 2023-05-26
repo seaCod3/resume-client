@@ -31,7 +31,25 @@ const messages = {
                 content6: 'Create and edit your resume with ease using our CV generator. It provides a great experience on any device, including desktops, laptops, tablets, and smartphones.'
             },
             questions: {
-                title: 'Questions ?'
+                title: 'Questions ?',
+                title1: 'How does the resume maker web app work?',
+                title2: "Can I edit my resume after I've created it?",
+                title3: 'Are there any resume templates available?',
+                title4: 'Is my personal information secure?',
+                title5: 'Can I download my resume in different formats?',
+                title6: 'Can I access my resume from multiple devices?',
+                title7: 'Is there a cost associated with using the resume maker web app?',
+                content1: 'Our resume maker web app guides you through a step-by-step process to create a professional resume. Simply input your information, choose from a variety of templates, customize the content, and download your resume in various formats.',
+                content2: 'Yes, absolutely! Our resume maker web app allows you to make edits and updates to your resume at any time. You can revisit your saved resume, make changes, and save the updated version.',
+                content3: 'Yes, we offer a wide range of professionally designed resume templates to choose from. You can select a template that matches your industry, experience level, or personal preference, and customize it to create a unique and visually appealing resume.',
+                content4: 'Yes, we take the security and privacy of your personal information very seriously. We use industry standard encryption protocols to protect your data and ensure its confidentiality. We do not share your information with third parties without your permission.',
+                content5: 'Absolutely! Our resume maker web app allows you to download your resume in various formats such as PDF, Word document, or plain text. This ensures compatibility with different systems and makes it easy to submit your resume online or print it out.',
+                content6: 'Yes, you can access your resume from any device with an internet connection. Our resume maker web app is cloud-based, meaning that your resume is securely stored in the cloud, and you can access it from your computer, smartphone, or tablet.',
+                content7: 'We offer both free and premium plans. The free plan allows you to create and download a basic resume. Our premium plans provide additional features such as access to advanced templates, cover letter creation, and unlimited resume downloads. You can choose the plan that best suits your needs.'
+            },
+            footer: {
+                slogan: '"Our mission is to help people have an im0pact within the community they are part of."',
+                social: 'Get in touch with us!'
             }
         }
     }
