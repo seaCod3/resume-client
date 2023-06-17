@@ -262,8 +262,14 @@ const CreateResumePage = () => {
 
     console.log(chosenLanguagesLength, 'chosenLanguagesHasLength in next button', window.location.href);
 
-    if (inLangPage && chosenLanguagesLength <= 1) {
-      alert('Please select at least one language');
+    if (inLangPage && chosenLanguagesLength === 0) {
+
+      alert('Please add at least one language');
+      // setInLangPage(false);
+
+    } else if (inLangPage && chosenLanguagesLength === 1) {
+
+      alert('You provided only one language, os that ok for you? Note that you can add more languages later');
       setInLangPage(false);
 
     } else {
