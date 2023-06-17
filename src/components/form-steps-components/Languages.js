@@ -14,7 +14,10 @@ import { useLanguageStore } from '../../store/LangToEditIndexStore';
 const Languages = () => {
 
     const currentIndex = useLanguageStore((state) => state.index);
+    const chosenLanguagesHasLength = useLanguageStore((state) => state.chosenLanguagesLength);
     const setChosenLanguagesLength = useLanguageStore((state) => state.setChosenLanguagesLength);
+    const setInLangPage = useLanguageStore((state) => state.setInLangPage);
+
     const formik = useFormikContext();
     // Access the field values
     const { values } = formik;
@@ -34,6 +37,13 @@ const Languages = () => {
         formik.setFieldValue('speakingSkills', '', false); // Reset 'speakingSkills' field
         formik.setFieldValue('writingSkills', '', false); // Reset 'writingSkills' field
 
+        formik.setFieldTouched('language', false, false);
+        formik.setFieldTouched('whereWasLearned', false, false);
+        formik.setFieldTouched('oralComprehension', false, false);
+        formik.setFieldTouched('readingComprehension', false, false);
+        formik.setFieldTouched('oralInteraction', false, false);
+        formik.setFieldTouched('speakingSkills', false, false);
+        formik.setFieldTouched('writingSkills', false, false);
 
     };
 
@@ -41,7 +51,6 @@ const Languages = () => {
     const handleAddChosenLanguages = (e) => {
 
         let languagesToStore = [];
-
 
         const languageDetails = {
 
@@ -72,8 +81,8 @@ const Languages = () => {
         }
 
         setChosenLanguages([...chosenLanguages, languageDetails]);
-        setChosenLanguagesLength(chosenLanguages.length);
-        console.log(currentIndex, 'zustand');
+        // setChosenLanguagesLength(chosenLanguages.length);
+        console.log(currentIndex, 'zustand index');
         handleResetLanguageDetails();
 
     }
@@ -106,6 +115,7 @@ const Languages = () => {
     useEffect(() => {
 
         const storedLanguages = JSON.parse(localStorage.getItem('languagesToStore'));
+        setInLangPage(true);
 
         if (storedLanguages) {
             setChosenLanguages(storedLanguages);
@@ -114,6 +124,13 @@ const Languages = () => {
         console.log(chosenLanguages);
 
     }, []);
+
+
+    useEffect(() => {
+        setChosenLanguagesLength(chosenLanguages.length);
+
+    }, [chosenLanguages]);
+
 
 
     return (

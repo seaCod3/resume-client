@@ -35,7 +35,10 @@ import { useLanguageStore } from '../../store/LangToEditIndexStore';
 const CreateResumePage = () => {
 
 
-  const chosenLanguagesHasLength = useLanguageStore((state) => state.chosenLanguagesLength);
+  const chosenLanguagesLength = useLanguageStore((state) => state.chosenLanguagesLength);
+  const inLangPage = useLanguageStore((state) => state.inLangPage);
+  const setInLangPage = useLanguageStore((state) => state.setInLangPage);
+
   const [fullName, setFullName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [gender, setGender] = useState('');
@@ -192,6 +195,16 @@ const CreateResumePage = () => {
 
   })
 
+  const verifyHowManyLangProvided = (currentStepNestedStep) => {
+
+    if (inLangPage && currentStepNestedStep === 1 && chosenLanguagesLength <= 1) {
+      alert('Please select at least one language');
+      setInLangPage(false);
+
+    }
+
+  }
+
   // Stepper related functions
 
   const steps = [
@@ -247,22 +260,47 @@ const CreateResumePage = () => {
 
   const handleNext = () => {
 
-    console.log(chosenLanguagesHasLength);
-    if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
-      // Advance to the next nested step within the current step
-      setNestedStep(nestedStep + 1);
-      console.log(nestedStep);
+    console.log(chosenLanguagesLength, 'chosenLanguagesHasLength in next button', window.location.href);
+
+    if (inLangPage && chosenLanguagesLength <= 1) {
+      alert('Please select at least one language');
+      setInLangPage(false);
+
     } else {
-      // Advance to the next step
-      setNestedStep(0)
-      const newActiveStep =
-        isLastStep() && !allStepsCompleted()
-          ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
-          : activeStep + 1;
-      setActiveStep(newActiveStep);
+      if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
+        // Advance to the next nested step within the current step
+        setNestedStep(nestedStep + 1);
+        console.log(nestedStep);
+      } else {
+        // Advance to the next step
+        setNestedStep(0)
+        const newActiveStep =
+          isLastStep() && !allStepsCompleted()
+            ? // It's the last step, but not all steps have been completed,
+            // find the first step that has been completed
+            steps.findIndex((step, i) => !(i in completed))
+            : activeStep + 1;
+        setActiveStep(newActiveStep);
+      }
     }
+
+    // if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
+    //   // Advance to the next nested step within the current step
+    //   setNestedStep(nestedStep + 1);
+    //   console.log(nestedStep);
+    // } else {
+    //   // Advance to the next step
+    //   setNestedStep(0)
+    //   const newActiveStep =
+    //     isLastStep() && !allStepsCompleted()
+    //       ? // It's the last step, but not all steps have been completed,
+    //       // find the first step that has been completed
+    //       steps.findIndex((step, i) => !(i in completed))
+    //       : activeStep + 1;
+    //   setActiveStep(newActiveStep);
+    // }
+    // verifyHowManyLangProvided(nestedStep);
+
 
   };
 
