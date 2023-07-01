@@ -16,6 +16,7 @@ import College from '../../assets/images/college.svg';
 import Details from '../../assets/images/details.svg';
 import education from '../../assets/images/education.svg';
 import SkillsImg from '../../assets/images/skills.svg';
+import Completed from '../../assets/images/Completed.svg';
 import EducationDetails from '../../components/form-steps-components/EducationDetails';
 import Experience from '../../components/form-steps-components/Experience';
 import Languages from '../../components/form-steps-components/Languages';
@@ -206,7 +207,7 @@ const CreateResumePage = () => {
   ]
 
 
-  const imageDisplayer = [certification, education, College, SkillsImg, Details];
+  const imageDisplayer = [certification, education, College, SkillsImg, Details, Completed];
 
   const [activeStep, setActiveStep] = React.useState(0);
   const [nestedStep, setNestedStep] = useState(0); // nested steps
