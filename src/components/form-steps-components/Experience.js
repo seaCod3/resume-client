@@ -1,11 +1,10 @@
 import { Grid } from '@mui/material';
-import React from 'react';
-import Textfield from '../form/text-field';
-import DatePickers from '../form/date-picker';
 import CheckboxWrapper from '../form/check-box';
-import TextArea from '../form/text-area';
+import DatePickers from '../form/date-picker';
+import Textfield from '../form/text-field';
 
 const Experience = () => {
+
     return (
 
         <Grid container spacing={2}>
@@ -45,7 +44,7 @@ const Experience = () => {
                     label="I currently work here."
                 />
             </Grid>
-            
+
         </Grid>
 
     )

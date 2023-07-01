@@ -206,7 +206,6 @@ const CreateResumePage = () => {
 
   ]
 
-
   const imageDisplayer = [certification, education, College, SkillsImg, Details, Completed];
 
   const [activeStep, setActiveStep] = React.useState(0);

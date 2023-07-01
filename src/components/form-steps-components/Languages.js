@@ -28,7 +28,6 @@ const Languages = () => {
 
     const handleResetLanguageDetails = () => {
 
-
         formik.setFieldValue('language', '', false); // Reset 'language' field
         formik.setFieldValue('whereWasLearned', '', false); // Reset 'whereWasLearned' field
         formik.setFieldValue('oralComprehension', '', false); // Reset 'oralComprehension' field

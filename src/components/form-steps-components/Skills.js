@@ -1,5 +1,4 @@
 import { Button, Grid } from '@mui/material';
-import React from 'react';
 import TextArea from '../form/text-area';
 
 const Skills = ({skills, setSkills}) => {
