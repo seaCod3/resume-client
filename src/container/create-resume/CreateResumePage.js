@@ -1,33 +1,30 @@
-import React from 'react';
-import './create-resume-page.css';
+import Check from '@mui/icons-material/Check';
+import { Button, Grid, StepConnector, StepLabel, stepConnectorClasses } from '@mui/material';
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
+import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
-import { Divider, Grid, Button, stepConnectorClasses, StepConnector, StepLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Check from '@mui/icons-material/Check';
-import PropTypes from 'prop-types';
 import { Form, Formik } from 'formik';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import * as Yup from 'yup';
 import certification from '../../assets/images/certication.svg';
-import education from '../../assets/images/education.svg';
 import College from '../../assets/images/college.svg';
-import SkillsImg from '../../assets/images/skills.svg';
 import Details from '../../assets/images/details.svg';
-import PersonalInformation from '../../components/form-steps-components/PersonalInformation';
-import { useState } from 'react';
-import Experience from '../../components/form-steps-components/Experience';
-import SectionDescriptionCard from '../../components/form-steps-components/SectionDescriptionCard';
+import education from '../../assets/images/education.svg';
+import SkillsImg from '../../assets/images/skills.svg';
 import EducationDetails from '../../components/form-steps-components/EducationDetails';
-import Skills from '../../components/form-steps-components/Skills';
-import { useEffect } from 'react';
-import { sectionDescriptions } from '../../constants/static-texts';
-import { HiOutlineChevronRight } from "react-icons/hi2";
-import { HiOutlineChevronLeft } from "react-icons/hi2";
+import Experience from '../../components/form-steps-components/Experience';
 import Languages from '../../components/form-steps-components/Languages';
+import PersonalInformation from '../../components/form-steps-components/PersonalInformation';
+import SectionDescriptionCard from '../../components/form-steps-components/SectionDescriptionCard';
+import Skills from '../../components/form-steps-components/Skills';
+import { sectionDescriptions } from '../../constants/static-texts';
 import { useLanguageStore } from '../../store/LangToEditIndexStore';
+import './create-resume-page.css';
 
 
 
@@ -195,15 +192,6 @@ const CreateResumePage = () => {
 
   })
 
-  const verifyHowManyLangProvided = (currentStepNestedStep) => {
-
-    if (inLangPage && currentStepNestedStep === 1 && chosenLanguagesLength <= 1) {
-      alert('Please select at least one language');
-      setInLangPage(false);
-
-    }
-
-  }
 
   // Stepper related functions
 
@@ -248,15 +236,6 @@ const CreateResumePage = () => {
     return completedSteps() === totalSteps();
   };
 
-  // const handleNext = () => {
-  //   const newActiveStep =
-  //     isLastStep() && !allStepsCompleted()
-  //       ? // It's the last step, but not all steps have been completed,
-  //       // find the first step that has been completed
-  //       steps.findIndex((step, i) => !(i in completed))
-  //       : activeStep + 1;
-  //   setActiveStep(newActiveStep);
-  // };
 
   const handleNext = () => {
 
@@ -290,29 +269,20 @@ const CreateResumePage = () => {
       }
     }
 
-    // if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
-    //   // Advance to the next nested step within the current step
-    //   setNestedStep(nestedStep + 1);
-    //   console.log(nestedStep);
-    // } else {
-    //   // Advance to the next step
-    //   setNestedStep(0)
-    //   const newActiveStep =
-    //     isLastStep() && !allStepsCompleted()
-    //       ? // It's the last step, but not all steps have been completed,
-    //       // find the first step that has been completed
-    //       steps.findIndex((step, i) => !(i in completed))
-    //       : activeStep + 1;
-    //   setActiveStep(newActiveStep);
-    // }
-    // verifyHowManyLangProvided(nestedStep);
-
-
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    setNestedStep(0);
+
+    if (steps[activeStep].nestedSteps && !isFirstNestedStep()) {
+      // Advance to the previous nested step within the current step
+      setNestedStep(nestedStep - 1);
+    } else {
+      if (activeStep > 0) {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+      }
+      // Reset the nested step to the last one in the previous step
+      setNestedStep(steps[activeStep - 1].nestedSteps.length - 1);
+    }
 
   };
 
@@ -415,7 +385,7 @@ const CreateResumePage = () => {
       <Grid height={'100vh'} container >
 
         {/* Left Side */}
-        <Grid item container alignContent={'start'} pl={'310px'} pr={'2rem'} xs={8}>
+        <Grid item container alignContent={'start'} pl={{ xs: 0, md: '310px' }} pr={{ xs: 0, lg: '2rem' }} xs={12} md={8}>
 
           <Box sx={{ width: '80%', marginY: '4rem' }}>
 
@@ -464,7 +434,7 @@ const CreateResumePage = () => {
                   ) : (
                     <React.Fragment>
 
-                      <Box>
+                      <Box paddingX={{ xs: 2, md: 0 }} >
                         {activeStep === 0 && (
                           <>
                             {nestedStep === 0 && <SectionDescriptionCard {...sectionDescriptions[5]} />}
@@ -504,13 +474,15 @@ const CreateResumePage = () => {
                           startIcon={<HiOutlineChevronLeft size={20} />}
                           variant='outlined'
                           color="inherit"
-                          disabled={activeStep === 0}
+                          disabled={activeStep === 0 && nestedStep === 0}
                           onClick={handleBack}
                           sx={{ mr: 1, width: '150px', height: '40px', }}
                         >
                           Back
                         </Button>
+
                         <Box sx={{ flex: '1 1 auto' }} />
+
                         <Button
                           endIcon={<HiOutlineChevronRight size={20} />}
                           variant='outlined'
@@ -546,7 +518,7 @@ const CreateResumePage = () => {
         </Grid>
 
         {/* Right Side */}
-        <Grid backgroundColor={'#f4f4f4'} item xs={4}>
+        <Grid display={{ xs: 'none', md: 'block' }} backgroundColor={'#f4f4f4'} item xs={4}>
 
           <img src={isLastNestedStep() ? imageDisplayer[activeStep + 1] : imageDisplayer[activeStep]} alt="Description" className="fluid-img" />
 
