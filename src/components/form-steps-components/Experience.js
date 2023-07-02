@@ -4,9 +4,9 @@ import CheckboxWrapper from '../form/check-box';
 import DatePickers from '../form/date-picker';
 import Textfield from '../form/text-field';
 import { useState } from 'react';
-import useResetFields from '../../hooks/useResetFields';
+import useFieldReseter from '../../hooks/useFieldReseter';
 import { useFormikContext } from 'formik';
-import { handleAddNewExperience, handleSaveEditedExperience } from '../libs/experience-operations-handlers';
+import { handleAddNewExperience, handleDelete, handleEdit, handleSaveEditedExperience } from '../libs/experience-operations-handlers';
 import ListItems from './sub-components/ListItems';
 import { useEffect } from 'react';
 import useJobExperience from '../../hooks/useJobExperienceStore';
@@ -16,7 +16,7 @@ const Experience = () => {
 
     const [experiences, setExperiences] = useState([]);
     const formik = useFormikContext();
-    const useReseter = useResetFields();
+    const useReseter = useFieldReseter();
     const useExperience = useJobExperience();
 
     useEffect(() => {
@@ -31,13 +31,19 @@ const Experience = () => {
 
     return (
 
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ overflowY: 'auto', maxHeight: '600px', paddingRight: '20px' }} >
 
             {
                 experiences.length > 0 && (
 
                     <Grid item xs={12}>
-                        <ListItems experiences={experiences} setExperiences={setExperiences} />
+                        <ListItems
+                            options={experiences}
+                            setOptions={setExperiences}
+                            customHook={useExperience}
+                            handleEdit={handleEdit}
+                            handleDelete={handleDelete}
+                            setExperiences={setExperiences} />
                     </Grid>
 
                 )

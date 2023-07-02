@@ -4,6 +4,11 @@ import Textfield from '../form/text-field';
 import DatePickers from '../form/date-picker';
 import CheckboxWrapper from '../form/check-box';
 import CustomSelect from '../form/select';
+import { useFormikContext } from 'formik';
+import useEducationStore from '../../hooks/useEducationStore';
+import { useState } from 'react';
+import ListItems from './sub-components/ListItems';
+import useFieldReseter from '../../hooks/useFieldReseter';
 
 const CollegeDegree = {
     BACHELORS: "Bachelor's Degree",
@@ -15,8 +20,43 @@ const CollegeDegree = {
 
 
 const EducationDetails = () => {
+
+    const [educations, setEducations] = useState([]);
+    const formik = useFormikContext();
+    const useEducation = useEducationStore();
+
+
+    useEffect(() => {
+
+        const savedEducations = JSON.parse(localStorage.getItem('educations'));
+
+        if (savedEducations) {
+            setExperiences(savedEducations);
+        }
+
+    }, []);
+
+
     return (
-        <Grid container spacing={2}>
+
+        <Grid container spacing={2} sx={{ overflowY: 'auto', maxHeight: '550px', paddingRight: '20px' }} >
+
+            {
+                educations.length > 0 && (
+
+                    <Grid item xs={12}>
+                        <ListItems
+                            options={educations}
+                            setOptions={setEducations}
+                            customHook={useEducation}
+                        // handleEdit={handleEdit}
+                        // handleDelete={handleDelete}
+                        // setExperiences={setExperiences}
+                        />
+                    </Grid>
+
+                )
+            }
 
             <Grid item xs={12}>
                 <Textfield name={'instituitionName'} label={'Instituition name'} />

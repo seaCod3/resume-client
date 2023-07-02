@@ -1,18 +1,21 @@
 import { useFormikContext } from 'formik';
 
-const useResetFields = () => {
-    const listOfFieldsToClear = ['jobTitle', 'employer', 'jobLocationCity', 'jobLocationStreet', 'jobLocationCountry', 'jobStartDate', 'jobEndDate', 'stillWorkingHere'];
+const useFieldReseter = () => {
+    // const listOfFieldsToClear = ['jobTitle', 'employer', 'jobLocationCity', 'jobLocationStreet', 'jobLocationCountry', 'jobStartDate', 'jobEndDate', 'stillWorkingHere'];
 
     const formik = useFormikContext();
 
-    const handleResetLanguageDetails = () => {
+    const handleResetLanguageDetails = (listOfFieldsToClear) => {
+
         listOfFieldsToClear.forEach(field => {
+
             formik.setFieldValue(field, '', false); // Reset 'language' field
             formik.setFieldTouched(field, false, false);
+
         });
     };
 
     return handleResetLanguageDetails;
 };
 
-export default useResetFields;
+export default useFieldReseter;

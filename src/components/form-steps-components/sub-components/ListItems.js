@@ -19,52 +19,51 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
 
-export default function ListItems({ experiences, setExperiences }) {
+export default function ListItems({ options, setOptions, customHook, handleEdit, handleDelete }) {
 
     const formik = useFormikContext();
-    // const useExperience = useLanguageStore((state) => state.setLanguageIndex);
-    const useExperience = useJobExperience();
+    
 
-    const handleDelete = (jobTitleOfExperienceToDelete) => {
+    // const handleDelete = (jobTitleOfExperienceToDelete) => {
 
-        const storedExperiences = JSON.parse(localStorage.getItem('experiences'));
+    //     const storedExperiences = JSON.parse(localStorage.getItem('experiences'));
 
-        let remainingExperiences = storedExperiences.filter((experience) => experience.jobTitle !== jobTitleOfExperienceToDelete);
+    //     let remainingExperiences = storedExperiences.filter((experience) => experience.jobTitle !== jobTitleOfExperienceToDelete);
 
-        localStorage.setItem('experiences', JSON.stringify(remainingExperiences));
-        setExperiences([...JSON.parse(localStorage.getItem('experiences'))]);
+    //     localStorage.setItem('experiences', JSON.stringify(remainingExperiences));
+    //     setExperiences([...JSON.parse(localStorage.getItem('experiences'))]);
 
-    }
-
-
-    const handleDisplayExperienceDetailsToUpdate = (jobExperienceToUpdate) => {
+    // }
 
 
-        formik.setFieldValue('jobTitle', jobExperienceToUpdate.jobTitle, false); // Reset 'language' field
-        formik.setFieldValue('employer', jobExperienceToUpdate.employer, false); // Reset 'whereWasLearned' field
-        formik.setFieldValue('jobLocationCity', jobExperienceToUpdate.jobLocationCity, false); // Reset 'oralComprehension' field
-        formik.setFieldValue('jobLocationStreet', jobExperienceToUpdate.jobLocationStreet, false); // Reset 'readingComprehension' field
-        formik.setFieldValue('jobLocationCountry', jobExperienceToUpdate.jobLocationCountry, false); // Reset 'oralInteraction' field
-        formik.setFieldValue('jobStartDate', jobExperienceToUpdate.jobStartDate, false); // Reset 'speakingSkills' field
-        formik.setFieldValue('jobEndDate', jobExperienceToUpdate.jobEndDate, false); // Reset 'writingSkills' field
-        formik.setFieldValue('stillWorkingHere', jobExperienceToUpdate.stillWorkingHere, false); // Reset 'writingSkills' field
+    // const handleDisplayExperienceDetailsToUpdate = (jobExperienceToUpdate, formik) => {
 
-    };
 
-    const handleEdit = (jobTitleOfExperienceToEdit) => {
-        
-        useExperience.onOpen()
+    //     formik.setFieldValue('jobTitle', jobExperienceToUpdate.jobTitle, false); // Reset 'language' field
+    //     formik.setFieldValue('employer', jobExperienceToUpdate.employer, false); // Reset 'whereWasLearned' field
+    //     formik.setFieldValue('jobLocationCity', jobExperienceToUpdate.jobLocationCity, false); // Reset 'oralComprehension' field
+    //     formik.setFieldValue('jobLocationStreet', jobExperienceToUpdate.jobLocationStreet, false); // Reset 'readingComprehension' field
+    //     formik.setFieldValue('jobLocationCountry', jobExperienceToUpdate.jobLocationCountry, false); // Reset 'oralInteraction' field
+    //     formik.setFieldValue('jobStartDate', jobExperienceToUpdate.jobStartDate, false); // Reset 'speakingSkills' field
+    //     formik.setFieldValue('jobEndDate', jobExperienceToUpdate.jobEndDate, false); // Reset 'writingSkills' field
+    //     formik.setFieldValue('stillWorkingHere', jobExperienceToUpdate.stillWorkingHere, false); // Reset 'writingSkills' field
 
-        const experienceToEdit = experiences.find((experiences) => experiences.jobTitle === jobTitleOfExperienceToEdit)
+    // };
 
-        handleDisplayExperienceDetailsToUpdate(experienceToEdit);
+    // const handleEdit = (jobTitleOfExperienceToEdit) => {
 
-        useExperience.setExperienceIndex(experiences.indexOf(experienceToEdit));
+    //     useExperience.onOpen()
 
-        console.log(useExperience.index, experiences.indexOf(experienceToEdit))
-        // console.log(experiences.indexOf(experienceToEdit));
+    //     const experienceToEdit = experiences.find((experiences) => experiences.jobTitle === jobTitleOfExperienceToEdit)
 
-    }
+    //     handleDisplayExperienceDetailsToUpdate(experienceToEdit);
+
+    //     useExperience.setExperienceIndex(experiences.indexOf(experienceToEdit));
+
+    //     console.log(useExperience.index, experiences.indexOf(experienceToEdit))
+    //     // console.log(experiences.indexOf(experienceToEdit));
+
+    // }
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -75,7 +74,7 @@ export default function ListItems({ experiences, setExperiences }) {
                     <List >
 
                         {
-                            experiences?.map((experience, index) => (
+                            options?.map((option, index) => (
                                 <ListItem
                                     key={index}
                                     sx={{
@@ -88,11 +87,11 @@ export default function ListItems({ experiences, setExperiences }) {
 
                                         <>
 
-                                            <IconButton fontSize="medium" onClick={(e) => handleEdit(experience.jobTitle)} edge="end" aria-label="delete">
+                                            <IconButton fontSize="medium" onClick={(e) => handleEdit(option.jobTitle, customHook, options, formik)} edge="end" aria-label="delete">
                                                 <ModeEditOutlineIcon sx={{ color: blue[300] }} />
                                             </IconButton>
 
-                                            <IconButton onClick={(e) => handleDelete(experience.jobTitle)} edge="end" aria-label="delete">
+                                            <IconButton onClick={(e) => handleDelete(option.jobTitle, setOptions)} edge="end" aria-label="delete">
                                                 <DeleteIcon fontSize='medium' sx={{ color: pink[300] }} />
                                             </IconButton>
 
@@ -104,8 +103,8 @@ export default function ListItems({ experiences, setExperiences }) {
                                         <Avatar sx={{ bgcolor: '#023642', width: 30, height: 30, fontSize: '.9rem' }}>{index + 1}</Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary={experience?.jobTitle}
-                                        secondary={`${experience.employer ? experience.employer : ''}, ${experience.jobLocationCity}, ${experience.stillWorkingHere}...`}
+                                        primary={option?.jobTitle}
+                                        secondary={`${option.employer ? option.employer : ''}, ${option.jobLocationCity}, ${option.stillWorkingHere}...`}
                                     />
                                 </ListItem>
                             ))
