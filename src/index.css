@@ -49,7 +49,7 @@ html {
 .btn-primary {
     outline: none !important;
     border: none !important;
-    width: 200px;
+    width: 150px;
     height: 40px;
     color: var(--font-color) !important;
     background: var(--font-color-primary-white) !important;
@@ -59,7 +59,7 @@ html {
 .btn-secondary {
   outline: none !important;
   border: none !important;
-  width: 200px;
+  width: 150px;
   height: 40px;
   background: var(--font-color) !important;
   color: var(--font-color-primary-white) !important;

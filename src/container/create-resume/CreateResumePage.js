@@ -489,7 +489,8 @@ const CreateResumePage = () => {
                           onClick={(e) => {
                             handleNext()
                             handleComplete()
-                          }} sx={{ mr: 1, width: '150px' }}
+                          }}
+                          sx={{ mr: 1, width: '150px' }}
                           className='btn-secondary'
                         >
                           Next
