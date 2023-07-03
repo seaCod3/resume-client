@@ -35,7 +35,6 @@ export const handleGetItemtoEdit = (itemPosition, customHook, listOfItems, formi
 
     customHook.onOpen()
 
-    // const itemToEdit = listOfItems.find((item) => item[itemToEditIdentifier] === itemToEditIdentifier)
     const itemToEdit = listOfItems[itemPosition];
     console.log(itemToEdit)
 
@@ -47,25 +46,11 @@ export const handleGetItemtoEdit = (itemPosition, customHook, listOfItems, formi
 
 }
 
-export const handleSaveEditedItem = (setListOfItems, formik, fieldReseterHook, indexOfItemToEdit, storedValuePointer, fieldsToReset) => {
-
-    const { values } = formik;
+export const handleSaveEditedItem = (setListOfItems, fieldReseterHook, indexOfItemToEdit, storedValuePointer, fieldsToReset, handleBuildObjectToSave) => {
 
     let listOfStoredItems = JSON.parse(localStorage.getItem(storedValuePointer));
 
-    listOfStoredItems[indexOfItemToEdit] = {
-
-        instituitionName: values.instituitionName,
-        instituitionLocationStreet: values.instituitionLocationStreet,
-        instituitionLocationCity: values.instituitionLocationCity,
-        instituitionLocationCountry: values.instituitionLocationCountry,
-        degree: values.degree,
-        graduationStartDate: values.graduationStartDate,
-        graduationEndDate: values.graduationEndDate,
-        stillStudingHere: values.stillStudingHere,
-        course: values.course
-
-    }
+    listOfStoredItems[indexOfItemToEdit] = handleBuildObjectToSave();
 
     setListOfItems(listOfStoredItems);
     localStorage.setItem(storedValuePointer, JSON.stringify(listOfStoredItems));

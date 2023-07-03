@@ -13,11 +13,11 @@ import { useEffect } from 'react';
 import { handleAddNewItem, handleDelete, handleGetItemtoEdit, handleSaveEditedItem } from '../libs/form-operations-handlers ';
 
 const CollegeDegree = {
-    BACHELORS: "Bachelor's Degree",
-    MASTERS: "Master's Degree",
-    DOCTORATE: "Doctorate Degree",
-    ASSOCIATE: "Associate Degree",
-    DIPLOMA: "Diploma",
+    Bachelor: "Bachelor's Degree",
+    Master: "Master's Degree",
+    Doctorate: "Doctorate Degree",
+    Associate: "Associate Degree",
+    Diploma: "Diploma",
 };
 
 const EducationDetails = () => {
@@ -131,7 +131,7 @@ const EducationDetails = () => {
                                 // endIcon={<HiOutlineChevronRight size={20} />}
                                 variant='outlined'
                                 onClick={(e) => {
-                                    handleSaveEditedItem(setEducations, formik, useReseter, useEducation.index, storedValuePointer, educationDetailsFields);
+                                    handleSaveEditedItem(setEducations, useReseter, useEducation.index, storedValuePointer, educationDetailsFields, handleBuildEducationToSave);
                                     useEducation.onClose()
                                 }}
                                 className='btn-secondary'
@@ -147,7 +147,7 @@ const EducationDetails = () => {
                                 // startIcon={<HiPlus color='#023642' size={25} />}
                                 sx={{ width: '150px', height: '40px', }}
                                 color="inherit"
-                                onClick={() => handleAddNewItem(educations, setEducations, formik, useReseter, storedValuePointer, educationDetailsFields, handleBuildEducationToSave)}
+                                onClick={() => handleAddNewItem(educations, setEducations, useReseter, storedValuePointer, educationDetailsFields, handleBuildEducationToSave)}
 
                             >
                                 ADD

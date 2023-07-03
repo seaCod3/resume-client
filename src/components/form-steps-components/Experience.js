@@ -6,22 +6,24 @@ import Textfield from '../form/text-field';
 import { useState } from 'react';
 import useFieldReseter from '../../hooks/useFieldReseter';
 import { useFormikContext } from 'formik';
-import { handleAddNewExperience, handleDelete, handleEdit, handleSaveEditedExperience } from '../libs/experience-operations-handlers';
 import ListItems from './sub-components/ListItems';
 import { useEffect } from 'react';
 import useJobExperience from '../../hooks/useJobExperienceStore';
+import { handleAddNewItem, handleDelete, handleGetItemtoEdit, handleSaveEditedItem } from '../libs/form-operations-handlers ';
 
 
 const Experience = () => {
 
+    const experienceFields = ['jobTitle', 'employer', 'jobLocationCity', 'jobLocationStreet', 'jobLocationCountry', 'jobStartDate', 'jobEndDate', 'stillWorkingHere'];
     const [experiences, setExperiences] = useState([]);
     const formik = useFormikContext();
     const useReseter = useFieldReseter();
     const useExperience = useJobExperience();
+    const storedValuePointer = 'experiences';
 
     useEffect(() => {
 
-        const savedExperiences = JSON.parse(localStorage.getItem('experiences'));
+        const savedExperiences = JSON.parse(localStorage.getItem(storedValuePointer));
 
         if (savedExperiences) {
             setExperiences(savedExperiences);
@@ -31,19 +33,18 @@ const Experience = () => {
 
     const handleBuildExperienceToSave = () => {
 
-        const educationDetails = {
-            instituitionName: formik.values.instituitionName,
-            instituitionLocationStreet: formik.values.instituitionLocationStreet,
-            instituitionLocationCity: formik.values.instituitionLocationCity,
-            instituitionLocationCountry: formik.values.instituitionLocationCountry,
-            degree: formik.values.degree,
-            graduationStartDate: formik.values.graduationStartDate,
-            graduationEndDate: formik.values.graduationEndDate,
-            stillStudingHere: formik.values.stillStudingHere,
-            course: formik.values.course
-        };
+        return {
 
-        return educationDetails;
+            jobTitle: formik.values.jobTitle,
+            employer: formik.values.employer,
+            jobLocationCity: formik.values.jobLocationCity,
+            jobLocationStreet: formik.values.jobLocationStreet,
+            jobLocationCountry: formik.values.jobLocationCountry,
+            jobStartDate: formik.values.jobStartDate,
+            jobEndDate: formik.values.jobEndDate,
+            stillWorkingHere: formik.values.stillWorkingHere,
+        }
+
     }
 
     return (
@@ -58,9 +59,11 @@ const Experience = () => {
                             options={experiences}
                             setOptions={setExperiences}
                             customHook={useExperience}
-                            handleEdit={handleEdit}
+                            handleEdit={handleGetItemtoEdit}
                             handleDelete={handleDelete}
-                            setExperiences={setExperiences} />
+                            fields={experienceFields}
+                            storedValuePointer={storedValuePointer}
+                        />
                     </Grid>
 
                 )
@@ -112,7 +115,7 @@ const Experience = () => {
                                 // endIcon={<HiOutlineChevronRight size={20} />}
                                 variant='outlined'
                                 onClick={(e) => {
-                                    handleSaveEditedExperience(setExperiences, formik, useReseter, useExperience.index);
+                                    handleSaveEditedItem(setExperiences, useReseter, useExperience.index, storedValuePointer, experienceFields, handleBuildExperienceToSave);
                                     useExperience.onClose()
                                 }}
                                 className='btn-secondary'
@@ -128,7 +131,7 @@ const Experience = () => {
                                 // startIcon={<HiPlus color='#023642' size={25} />}
                                 sx={{ width: '150px', height: '40px', }}
                                 color="inherit"
-                                onClick={() => handleAddNewExperience(experiences, setExperiences, formik, useReseter,)}
+                                onClick={() => handleAddNewItem(experiences, setExperiences, useReseter, storedValuePointer, experienceFields, handleBuildExperienceToSave)}
 
                             >
                                 ADD
