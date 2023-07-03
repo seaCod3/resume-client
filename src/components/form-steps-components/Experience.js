@@ -21,13 +21,30 @@ const Experience = () => {
 
     useEffect(() => {
 
-        const storedExperiences = JSON.parse(localStorage.getItem('experiences'));
+        const savedExperiences = JSON.parse(localStorage.getItem('experiences'));
 
-        if (storedExperiences) {
-            setExperiences(storedExperiences);
+        if (savedExperiences) {
+            setExperiences(savedExperiences);
         }
 
     }, []);
+
+    const handleBuildExperienceToSave = () => {
+
+        const educationDetails = {
+            instituitionName: formik.values.instituitionName,
+            instituitionLocationStreet: formik.values.instituitionLocationStreet,
+            instituitionLocationCity: formik.values.instituitionLocationCity,
+            instituitionLocationCountry: formik.values.instituitionLocationCountry,
+            degree: formik.values.degree,
+            graduationStartDate: formik.values.graduationStartDate,
+            graduationEndDate: formik.values.graduationEndDate,
+            stillStudingHere: formik.values.stillStudingHere,
+            course: formik.values.course
+        };
+
+        return educationDetails;
+    }
 
     return (
 

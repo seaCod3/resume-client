@@ -60,6 +60,7 @@ const CreateResumePage = () => {
   const [instituitionLocationCity, setInstituitionLocationCity] = useState('');
   const [instituitionLocationCountry, setInstituitionLocationCountry] = useState('');
   const [degree, setDegree] = useState('');
+  const [course, setCourse] = useState('');
   const [graduationStartDate, setGraduationStartDate] = useState('');
   const [graduationEndDate, setGraduationEndDate] = useState('');
   const [stillStudingHere, setStillStudingHere] = useState(false);
@@ -103,6 +104,7 @@ const CreateResumePage = () => {
     instituitionLocationCity: instituitionLocationCity,
     instituitionLocationCountry: instituitionLocationCountry,
     degree: degree,
+    course: course,
     graduationStartDate: graduationStartDate,
     graduationEndDate: graduationEndDate,
     stillStudingHere: stillStudingHere,
@@ -167,6 +169,8 @@ const CreateResumePage = () => {
       .required('Instituition Location Country is required'),
     degree: Yup.string()
       .required('Degree is required'),
+    course: Yup.string()
+      .required('Plese specify what did you studied.'),
     graduationStartDate: Yup.date()
       .required('Graduation Start Date is required'),
     graduationEndDate: Yup.date()

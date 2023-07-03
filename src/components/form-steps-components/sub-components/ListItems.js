@@ -19,51 +19,30 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
 
-export default function ListItems({ options, setOptions, customHook, handleEdit, handleDelete }) {
+export default function ListItems({ options, setOptions, customHook, handleEdit, handleDelete, fields, storedValuePointer }) {
 
     const formik = useFormikContext();
-    
 
-    // const handleDelete = (jobTitleOfExperienceToDelete) => {
+    const getOptionPrimaryText = (option) => {
+        if (option?.jobTitle) {
+            return option?.jobTitle;
+        } else if (option?.instituitionName) {
+            return option?.instituitionName;
+        } else if (option?.language) {
+            return option?.language;
+        }
+    };
 
-    //     const storedExperiences = JSON.parse(localStorage.getItem('experiences'));
+    const getOptionSecondaryText = (option) => {
+        if (option?.jobTitle) {
+            return `${option.jobTitle} at ${option?.employer}, in ${option?.jobLocationCity}...`;
+        } else if (option?.language) {
+            return `Learned in ${option.whereWasLearned}. Level: ${option.oralComprehension}, ${option.readingComprehension}, ${option.oralInteraction}, ${option.speakingSkills}, ${option.writingSkills}`;
+        } else if (option?.instituitionName) {
+            return `${option.degree} on ${option.course} at ${option?.instituitionName}...`;
+        }
+    };
 
-    //     let remainingExperiences = storedExperiences.filter((experience) => experience.jobTitle !== jobTitleOfExperienceToDelete);
-
-    //     localStorage.setItem('experiences', JSON.stringify(remainingExperiences));
-    //     setExperiences([...JSON.parse(localStorage.getItem('experiences'))]);
-
-    // }
-
-
-    // const handleDisplayExperienceDetailsToUpdate = (jobExperienceToUpdate, formik) => {
-
-
-    //     formik.setFieldValue('jobTitle', jobExperienceToUpdate.jobTitle, false); // Reset 'language' field
-    //     formik.setFieldValue('employer', jobExperienceToUpdate.employer, false); // Reset 'whereWasLearned' field
-    //     formik.setFieldValue('jobLocationCity', jobExperienceToUpdate.jobLocationCity, false); // Reset 'oralComprehension' field
-    //     formik.setFieldValue('jobLocationStreet', jobExperienceToUpdate.jobLocationStreet, false); // Reset 'readingComprehension' field
-    //     formik.setFieldValue('jobLocationCountry', jobExperienceToUpdate.jobLocationCountry, false); // Reset 'oralInteraction' field
-    //     formik.setFieldValue('jobStartDate', jobExperienceToUpdate.jobStartDate, false); // Reset 'speakingSkills' field
-    //     formik.setFieldValue('jobEndDate', jobExperienceToUpdate.jobEndDate, false); // Reset 'writingSkills' field
-    //     formik.setFieldValue('stillWorkingHere', jobExperienceToUpdate.stillWorkingHere, false); // Reset 'writingSkills' field
-
-    // };
-
-    // const handleEdit = (jobTitleOfExperienceToEdit) => {
-
-    //     useExperience.onOpen()
-
-    //     const experienceToEdit = experiences.find((experiences) => experiences.jobTitle === jobTitleOfExperienceToEdit)
-
-    //     handleDisplayExperienceDetailsToUpdate(experienceToEdit);
-
-    //     useExperience.setExperienceIndex(experiences.indexOf(experienceToEdit));
-
-    //     console.log(useExperience.index, experiences.indexOf(experienceToEdit))
-    //     // console.log(experiences.indexOf(experienceToEdit));
-
-    // }
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -87,11 +66,11 @@ export default function ListItems({ options, setOptions, customHook, handleEdit,
 
                                         <>
 
-                                            <IconButton fontSize="medium" onClick={(e) => handleEdit(option.jobTitle, customHook, options, formik)} edge="end" aria-label="delete">
+                                            <IconButton fontSize="medium" onClick={(e) => handleEdit(index, customHook, options, formik, fields)} edge="end" aria-label="delete">
                                                 <ModeEditOutlineIcon sx={{ color: blue[300] }} />
                                             </IconButton>
 
-                                            <IconButton onClick={(e) => handleDelete(option.jobTitle, setOptions)} edge="end" aria-label="delete">
+                                            <IconButton onClick={(e) => handleDelete(index, setOptions, storedValuePointer)} edge="end" aria-label="delete">
                                                 <DeleteIcon fontSize='medium' sx={{ color: pink[300] }} />
                                             </IconButton>
 
@@ -103,8 +82,8 @@ export default function ListItems({ options, setOptions, customHook, handleEdit,
                                         <Avatar sx={{ bgcolor: '#023642', width: 30, height: 30, fontSize: '.9rem' }}>{index + 1}</Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary={option?.jobTitle}
-                                        secondary={`${option.employer ? option.employer : ''}, ${option.jobLocationCity}, ${option.stillWorkingHere}...`}
+                                        primary={getOptionPrimaryText(option)}
+                                        secondary={getOptionSecondaryText(option)}
                                     />
                                 </ListItem>
                             ))
