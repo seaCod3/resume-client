@@ -1,5 +1,9 @@
-import { handleDisplayItemInfosToUpdate } from "./common-handlers";
 
+const handleDisplayItemInfosToUpdate = (item, formik, fieldsArray) => {
+    fieldsArray.forEach(field => {
+        formik.setFieldValue(field, item[field], false);
+    });
+};
 
 export const handleAddNewItem = (existentItems, setListOfItems, fieldReseterHook, storedValuePointer, fieldsToReset, handleBuildObjectToSave) => {
 

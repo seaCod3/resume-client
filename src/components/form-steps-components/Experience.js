@@ -8,7 +8,7 @@ import useFieldReseter from '../../hooks/useFieldReseter';
 import { useFormikContext } from 'formik';
 import ListItems from './sub-components/ListItems';
 import { useEffect } from 'react';
-import useJobExperience from '../../hooks/useJobExperienceStore';
+import useJobExperience from '../../hooks/useExperienceStore';
 import { handleAddNewItem, handleDelete, handleGetItemtoEdit, handleSaveEditedItem } from '../libs/form-operations-handlers ';
 
 

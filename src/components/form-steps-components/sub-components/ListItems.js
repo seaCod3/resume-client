@@ -11,7 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import { blue, pink } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import { useFormikContext } from 'formik';
-import useJobExperience from '../../../hooks/useJobExperienceStore';
 
 
 const Demo = styled('div')(({ theme }) => ({
