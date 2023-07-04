@@ -9,14 +9,16 @@ import { styled } from '@mui/material/styles';
 import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
+import { HiOutlineChevronLeft, HiOutlineChevronRight, HiUserMinus } from "react-icons/hi2";
+import { FaUser, FaUserGraduate, FaUserShield, FaUserTie, FaUserCheck } from 'react-icons/fa';
+
 import * as Yup from 'yup';
+import Completed from '../../assets/images/Completed.svg';
 import certification from '../../assets/images/certication.svg';
 import College from '../../assets/images/college.svg';
 import Details from '../../assets/images/details.svg';
 import education from '../../assets/images/education.svg';
 import SkillsImg from '../../assets/images/skills.svg';
-import Completed from '../../assets/images/Completed.svg';
 import EducationDetails from '../../components/form-steps-components/EducationDetails';
 import Experience from '../../components/form-steps-components/Experience';
 import Languages from '../../components/form-steps-components/Languages';
@@ -24,18 +26,11 @@ import PersonalInformation from '../../components/form-steps-components/Personal
 import SectionDescriptionCard from '../../components/form-steps-components/SectionDescriptionCard';
 import Skills from '../../components/form-steps-components/Skills';
 import { sectionDescriptions } from '../../constants/static-texts';
-import { useLanguageStore } from '../../store/LangToEditIndexStore';
 import './create-resume-page.css';
 
 
 
-
 const CreateResumePage = () => {
-
-
-  const chosenLanguagesLength = useLanguageStore((state) => state.chosenLanguagesLength);
-  const inLangPage = useLanguageStore((state) => state.inLangPage);
-  const setInLangPage = useLanguageStore((state) => state.setInLangPage);
 
   const [fullName, setFullName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -73,10 +68,30 @@ const CreateResumePage = () => {
   const [speakingSkills, setSpeakingSkills] = useState('');
   const [writingSkills, setWritingSkills] = useState('');
 
+  const [isMobileView, setIsMobileView] = useState(false);
+
 
   useEffect(() => {
     console.log(skills);
   }, [skills]);
+
+  React.useEffect(() => {
+    // Function to update the margin bottom value based on the window inner height
+    const handleWindowResize = () => {
+      const isMobile = window.innerWidth <= 667 ? true : false;
+      setIsMobileView(isMobile);
+    };
+
+    // Add event listener to the window resize event
+    window.addEventListener("resize", handleWindowResize);
+
+    handleWindowResize();
+
+    // Remove event listener when component is unmounted
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
 
   const INITIAL_FORM_STATE = {
@@ -202,11 +217,11 @@ const CreateResumePage = () => {
 
   const steps = [
 
-    { label: 'Personal Information', nestedSteps: [0, 1, 2] },
-    { label: 'Experience', nestedSteps: [0, 1,] },
-    { label: 'Education', nestedSteps: [0, 1,] },
-    { label: 'Skills', nestedSteps: [0, 1, 2] },
-    { label: 'Job Details', nestedSteps: [0, 1,] }
+    { label: 'Personal Information', nestedSteps: [0, 1, 2], icon: <FaUser size={15} color="#023642" /> },
+    { label: 'Experience', nestedSteps: [0, 1,], icon: <FaUserTie size={15} color="#023642" /> },
+    { label: 'Education', nestedSteps: [0, 1,], icon: <FaUserGraduate size={15} color="#023642" /> },
+    { label: 'Skills', nestedSteps: [0, 1, 2], icon: <FaUserShield size={18} color="#023642" /> },
+    { label: 'Job Details', nestedSteps: [0, 1,], icon: <FaUserCheck size={18} color="#023642" /> }
 
   ]
 
@@ -243,34 +258,20 @@ const CreateResumePage = () => {
 
   const handleNext = () => {
 
-    console.log(chosenLanguagesLength, 'chosenLanguagesHasLength in next button', window.location.href);
-
-    if (inLangPage && chosenLanguagesLength === 0) {
-
-      alert('Please add at least one language');
-      // setInLangPage(false);
-
-    } else if (inLangPage && chosenLanguagesLength === 1) {
-
-      alert('You provided only one language, os that ok for you? Note that you can add more languages later');
-      setInLangPage(false);
-
+    if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
+      // Advance to the next nested step within the current step
+      setNestedStep(nestedStep + 1);
+      console.log(nestedStep);
     } else {
-      if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
-        // Advance to the next nested step within the current step
-        setNestedStep(nestedStep + 1);
-        console.log(nestedStep);
-      } else {
-        // Advance to the next step
-        setNestedStep(0)
-        const newActiveStep =
-          isLastStep() && !allStepsCompleted()
-            ? // It's the last step, but not all steps have been completed,
-            // find the first step that has been completed
-            steps.findIndex((step, i) => !(i in completed))
-            : activeStep + 1;
-        setActiveStep(newActiveStep);
-      }
+      // Advance to the next step
+      setNestedStep(0)
+      const newActiveStep =
+        isLastStep() && !allStepsCompleted()
+          ? // It's the last step, but not all steps have been completed,
+          // find the first step that has been completed
+          steps.findIndex((step, i) => !(i in completed))
+          : activeStep + 1;
+      setActiveStep(newActiveStep);
     }
 
   };
@@ -384,32 +385,38 @@ const CreateResumePage = () => {
 
   return (
 
-    <section style={{ marginTop: '56px' }} >
+    <section style={{ marginTop: '56px', maxWidth: '100vw' }} >
 
-      <Grid height={'100vh'} container >
+      <Grid height={{ xs: 'auto', md: '100%' }} container >
 
         {/* Left Side */}
-        <Grid item container alignContent={'start'} pl={{ xs: 0, md: '310px' }} pr={{ xs: 0, lg: '2rem' }} xs={12} md={8}>
+        <Grid item container justifyContent={{ xs: 'center', md: 'flex-start' }} alignContent={'center'} pl={{ xs: 0, lg: '310px' }} pr={{ xs: 0, lg: '2rem' }} xs={12} md={8}>
 
-          <Box sx={{ width: '80%', marginY: '4rem' }}>
+          <Grid item boxSizing={'border-box'} sx={{ marginY: '4rem', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} xs={12} md={9}>
 
             <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
               {steps.map((label, index) => (
                 <Step key={label.label} completed={completed[index]}>
                   <StepButton color="#023642" onClick={handleStep(index)}>
                     {/* {label} */}
-                    <StepLabel StepIconComponent={QontoStepIcon}>{label.label}</StepLabel>
+                    {
+                      isMobileView ?
+                        (
+                          <StepLabel StepIconComponent={QontoStepIcon}>{label.icon}</StepLabel>
+                        )
+                        :
+                        (
+                          <StepLabel StepIconComponent={QontoStepIcon}>{`${label.label}`}</StepLabel>
+                        )
+                    }
                   </StepButton>
                 </Step>
               ))}
             </Stepper>
 
-          </Box>
+          </Grid>
 
-          <Grid item xs={9}>
-
-            {/* stepper used to be placed here */}
-
+          <Grid item xs={12} md={9}>
 
             <Formik
 

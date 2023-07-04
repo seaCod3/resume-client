@@ -61,7 +61,7 @@ const EducationDetails = () => {
 
     return (
 
-        <Grid container spacing={2} sx={{ overflowY: 'auto', maxHeight: '550px', paddingRight: '20px' }} >
+        <Grid container spacing={2} sx={{ overflowY: 'auto', maxHeight: '550px', paddingRight: { xs: 0, md: '20px' } }} >
 
             {
                 educations.length > 0 && (

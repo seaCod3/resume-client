@@ -53,7 +53,7 @@ const Languages = () => {
 
     return (
 
-        <Grid sx={{ overflowY: 'auto', maxHeight: '600px', paddingRight: '20px' }} container spacing={2} >
+        <Grid sx={{ overflowY: 'auto', maxHeight: '600px', paddingRight: { xs: 0, md: '20px' } }} container spacing={2} >
 
             {
                 languages.length > 0 && (
@@ -83,11 +83,11 @@ const Languages = () => {
 
             <Grid item container xs={12} spacing={2}>
 
-                <Grid item xs={6} boxSizing={'border-box'}>
+                <Grid item xs={12} md={6} boxSizing={'border-box'}>
                     <CustomSelect name={'oralComprehension'} label={'Oral Comprehention'} options={ProficiencyLevels} />
                 </Grid>
 
-                <Grid item xs={6} boxSizing={'border-box'}>
+                <Grid item xs={12} md={6} boxSizing={'border-box'}>
                     <CustomSelect name={'readingComprehension'} label={'Reading Comprehention'} options={ProficiencyLevels} />
                 </Grid>
 
@@ -95,11 +95,11 @@ const Languages = () => {
 
             <Grid item container xs={12} spacing={2}>
 
-                <Grid item xs={6} boxSizing={'border-box'}>
+                <Grid item xs={12} md={6} boxSizing={'border-box'}>
                     <CustomSelect name={'oralInteraction'} label={'Oral Interaction'} options={ProficiencyLevels} />
                 </Grid>
 
-                <Grid item xs={6} boxSizing={'border-box'}>
+                <Grid item xs={12} md={6} boxSizing={'border-box'}>
                     <CustomSelect name={'speakingSkills'} label={'Speaking Skills'} options={ProficiencyLevels} />
                 </Grid>
 
@@ -107,7 +107,7 @@ const Languages = () => {
 
             <Grid item container xs={12} spacing={2}>
 
-                <Grid item xs={6} boxSizing={'border-box'}>
+                <Grid item xs={12} md={6} boxSizing={'border-box'}>
                     <CustomSelect name={'writingSkills'} label={'Writing Skills'} options={ProficiencyLevels} />
                 </Grid>
 

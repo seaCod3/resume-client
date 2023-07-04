@@ -11,6 +11,8 @@ import ListItemText from '@mui/material/ListItemText';
 import { blue, pink } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import { useFormikContext } from 'formik';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 const Demo = styled('div')(({ theme }) => ({
@@ -21,6 +23,26 @@ const Demo = styled('div')(({ theme }) => ({
 export default function ListItems({ options, setOptions, customHook, handleEdit, handleDelete, fields, storedValuePointer }) {
 
     const formik = useFormikContext();
+    const [isMobileView, setIsMobileView] = useState(false);
+
+
+    useEffect(() => {
+        // Function to update the margin bottom value based on the window inner height
+        const handleWindowResize = () => {
+            const isMobile = window.innerWidth <= 667 ? true : false;
+            setIsMobileView(isMobile);
+        };
+
+        // Add event listener to the window resize event
+        window.addEventListener("resize", handleWindowResize);
+
+        handleWindowResize();
+
+        // Remove event listener when component is unmounted
+        return () => {
+            window.removeEventListener("resize", handleWindowResize);
+        };
+    }, []);
 
     const getOptionPrimaryText = (option) => {
         if (option?.jobTitle) {
@@ -82,7 +104,7 @@ export default function ListItems({ options, setOptions, customHook, handleEdit,
                                     </ListItemAvatar>
                                     <ListItemText
                                         primary={getOptionPrimaryText(option)}
-                                        secondary={getOptionSecondaryText(option)}
+                                        secondary={ isMobileView ? false : getOptionSecondaryText(option)}
                                     />
                                 </ListItem>
                             ))
