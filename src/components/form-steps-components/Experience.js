@@ -1,15 +1,13 @@
 import { Button, Grid } from '@mui/material';
-import { HiPlus } from "react-icons/hi2";
+import { useFormikContext } from 'formik';
+import { useEffect, useState } from 'react';
+import useJobExperience from '../../hooks/useExperienceStore';
+import useFieldReseter from '../../hooks/useFieldReseter';
 import CheckboxWrapper from '../form/check-box';
 import DatePickers from '../form/date-picker';
 import Textfield from '../form/text-field';
-import { useState } from 'react';
-import useFieldReseter from '../../hooks/useFieldReseter';
-import { useFormikContext } from 'formik';
-import ListItems from './sub-components/ListItems';
-import { useEffect } from 'react';
-import useJobExperience from '../../hooks/useExperienceStore';
 import { handleAddNewItem, handleDelete, handleGetItemtoEdit, handleSaveEditedItem } from '../libs/form-operations-handlers ';
+import ListItems from './sub-components/ListItems';
 
 
 const Experience = () => {
@@ -77,32 +75,32 @@ const Experience = () => {
                 <Textfield name={'employer'} label={'Employer'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <Textfield name={'jobLocationCity'} label={'City'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <Textfield name={'jobLocationStreet'} label={'Street/Zone'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <Textfield name={'jobLocationCountry'} label={'Country'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <DatePickers name={'jobStartDate'} label={'Start Date'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <DatePickers name={'jobEndDate'} label={'End Date'} />
             </Grid>
 
-            <Grid item container alignItems={'end'} xs={4}>
+            <Grid item container alignItems={'end'} xs={6} md={4}>
                 <Grid item xs={12}>
                     <CheckboxWrapper
                         name="stillWorkingHere"
                         // legend=""
-                        label="I currently work here."
+                        label="Working here?"
                     />
                 </Grid>
             </Grid>

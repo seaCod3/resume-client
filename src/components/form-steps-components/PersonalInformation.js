@@ -20,40 +20,40 @@ const PersonalInformation = () => {
                 <Textfield name={'fullName'} label={'Full Name'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <DatePickers name={'dateOfBirth'} label={'Date of Birth'} />
             </Grid>
 
-            <Grid item xs={4} boxSizing={'border-box'}>
+            <Grid item xs={6} md={4} boxSizing={'border-box'}>
                 <CustomSelect name={'gender'} label={'Gender'} options={Gender} />
             </Grid>
 
-            <Grid item xs={4} boxSizing={'border-box'}>
-                <Textfield name={'nationality'} label={'Nationality'} />
-            </Grid>
-
-            <Grid item xs={3}>
-                <Textfield name={'street'} label={'Street'} />
-            </Grid>
-
-            <Grid item xs={3}>
-                <Textfield name={'city'} label={'City'} />
-            </Grid>
-
-            <Grid item xs={3}>
-                <Textfield name={'zipCode'} label={'Zip Code'} />
-            </Grid>
-
-            <Grid item xs={3}>
+            <Grid item xs={6} md={4}>
                 <Textfield name={'country'} label={'Country'} />
             </Grid>
 
-            <Grid item xs={6}>
-                <Textfield name={'email'} label={'Email'} />
+            <Grid item xs={6} md={4} boxSizing={'border-box'}>
+                <Textfield name={'nationality'} label={'Nationality'} />
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={6} md={4}>
+                <Textfield name={'street'} label={'Street'} />
+            </Grid>
+
+            <Grid item xs={6} md={4}>
+                <Textfield name={'city'} label={'City'} />
+            </Grid>
+
+            <Grid item xs={6} md={3}>
+                <Textfield name={'zipCode'} label={'Zip Code'} />
+            </Grid>
+
+            <Grid item xs={6} md={3}>
                 <Textfield name={'phone'} label={'Phone'} />
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+                <Textfield name={'email'} label={'Email'} />
             </Grid>
 
             {/* <Grid item xs={12} my={'2.4rem'} textAlign={'end'}>

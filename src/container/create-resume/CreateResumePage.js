@@ -1,5 +1,5 @@
 import Check from '@mui/icons-material/Check';
-import { Button, Grid, StepConnector, StepLabel, stepConnectorClasses } from '@mui/material';
+import { Avatar, Button, Grid, IconButton, StepConnector, StepLabel, stepConnectorClasses } from '@mui/material';
 import Box from '@mui/material/Box';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
@@ -9,9 +9,10 @@ import { styled } from '@mui/material/styles';
 import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { HiOutlineChevronLeft, HiOutlineChevronRight, HiUserMinus } from "react-icons/hi2";
-import { FaUser, FaUserGraduate, FaUserShield, FaUserTie, FaUserCheck } from 'react-icons/fa';
+import { FaUser, FaUserCheck, FaUserGraduate, FaUserShield, FaUserTie } from 'react-icons/fa';
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 
+import { cyan } from '@mui/material/colors';
 import * as Yup from 'yup';
 import Completed from '../../assets/images/Completed.svg';
 import certification from '../../assets/images/certication.svg';
@@ -76,7 +77,7 @@ const CreateResumePage = () => {
   }, [skills]);
 
   React.useEffect(() => {
-    // Function to update the margin bottom value based on the window inner height
+    // Function to 
     const handleWindowResize = () => {
       const isMobile = window.innerWidth <= 667 ? true : false;
       setIsMobileView(isMobile);
@@ -308,6 +309,10 @@ const CreateResumePage = () => {
     setCompleted({});
   };
 
+  const shouldDisable = () => {
+    return activeStep === 0 && nestedStep === 0
+  }
+
   const QontoConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
       top: 10,
@@ -385,14 +390,14 @@ const CreateResumePage = () => {
 
   return (
 
-    <section style={{ marginTop: '56px', maxWidth: '100vw' }} >
+    <section style={{ marginTop: '56px', position: 'relative' }} >
 
-      <Grid height={{ xs: 'auto', md: '100%' }} container >
+      <Grid height={{ xs: 'auto', md: '100vh' }} container >
 
         {/* Left Side */}
-        <Grid item container justifyContent={{ xs: 'center', md: 'flex-start' }} alignContent={'center'} pl={{ xs: 0, lg: '310px' }} pr={{ xs: 0, lg: '2rem' }} xs={12} md={8}>
+        <Grid item container height={'100%'} justifyContent={{ xs: 'center', md: 'flex-start' }} alignContent={'center'} pl={{ xs: 0, lg: '310px' }} pr={{ xs: 0, lg: '2rem' }} xs={12} md={8}>
 
-          <Grid item boxSizing={'border-box'} sx={{ marginY: '4rem', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} xs={12} md={9}>
+          <Grid item boxSizing={'border-box'} sx={{ marginY: '2rem', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: { xs: 0, md: '20px' } }} xs={12} md={9}>
 
             <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
               {steps.map((label, index) => (
@@ -480,7 +485,7 @@ const CreateResumePage = () => {
 
                       </Box>
 
-                      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, marginTop: '2rem' }}>
+                      <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row', pt: 2, marginTop: '2rem' }}>
                         <Button
                           startIcon={<HiOutlineChevronLeft size={20} />}
                           variant='outlined'
@@ -537,6 +542,27 @@ const CreateResumePage = () => {
         </Grid>
 
       </Grid>
+
+      <Box sx={{ width: '100%', bottom: 0, zIndex: 10, position: { xs: 'fixed', md: 'relative' }, display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', paddingX: '.8rem', marginTop: '1rem', }} >
+        <IconButton fontSize="medium" onClick={handleBack} disabled={shouldDisable()} edge="start" aria-label="back button">
+          <Avatar sx={{ bgcolor: cyan[50] }}>
+            <HiOutlineChevronLeft size={20} color='#023642' />
+          </Avatar>
+        </IconButton>
+
+        <IconButton
+          edge="end"
+          aria-label="next button"
+          onClick={(e) => {
+            handleNext()
+            handleComplete()
+          }}
+        >
+          <Avatar sx={{ bgcolor: cyan[50] }}>
+            <HiOutlineChevronRight size={20} color='#023642' />
+          </Avatar>
+        </IconButton>
+      </Box>
 
     </section>
 

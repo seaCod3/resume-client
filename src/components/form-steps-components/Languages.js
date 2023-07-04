@@ -53,7 +53,7 @@ const Languages = () => {
 
     return (
 
-        <Grid sx={{ overflowY: 'auto', maxHeight: '600px', paddingRight: { xs: 0, md: '20px' } }} container spacing={2} >
+        <Grid sx={{ overflowY: 'auto', maxHeight: '550px', paddingRight: { xs: 0, md: '20px' } }} container spacing={2} >
 
             {
                 languages.length > 0 && (

@@ -85,40 +85,40 @@ const EducationDetails = () => {
                 <Textfield name={'instituitionName'} label={'Instituition name'} />
             </Grid>
 
-            <Grid item xs={6} boxSizing={'border-box'}>
+            <Grid item xs={12} md={6} boxSizing={'border-box'}>
                 <Textfield name={'course'} label={'What did you studied?'} />
             </Grid>
 
-            <Grid item xs={6} boxSizing={'border-box'}>
+            <Grid item xs={12} md={6} boxSizing={'border-box'}>
                 <CustomSelect name={'degree'} label={'Degree'} options={CollegeDegree} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <Textfield name={'instituitionLocationStreet'} label={'Street/Zone'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <Textfield name={'instituitionLocationCity'} label={'City'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <Textfield name={'instituitionLocationCountry'} label={'Country'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <DatePickers name={'graduationStartDate'} label={'Start date'} />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
                 <DatePickers name={'graduationEndDate'} label={'Graduation date'} />
             </Grid>
 
-            <Grid item container alignItems={'end'} xs={4}>
+            <Grid item container alignItems={'end'} xs={6} md={4}>
                 <Grid item xs={12}>
                     <CheckboxWrapper
                         name="stillStudingHere"
                         // legend=""
-                        label="I currently study here"
+                        label="I study here"
                     />
                 </Grid>
             </Grid>
