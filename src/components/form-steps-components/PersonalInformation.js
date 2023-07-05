@@ -14,7 +14,7 @@ const PersonalInformation = () => {
 
     return (
 
-        <Grid container spacing={2} >
+        <Grid container spacing={2} my={{xs:1, md:2}} >
 
             <Grid item xs={12}>
                 <Textfield name={'fullName'} label={'Full Name'} />

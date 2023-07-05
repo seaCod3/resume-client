@@ -65,7 +65,7 @@ export default function ListItems({ options, setOptions, customHook, handleEdit,
 
 
     return (
-        <Box sx={{ flexGrow: 1, maxWidth: 752, marginTop: { xs: '.5rem', md: '2rem' } }}>
+        <Box sx={{ flexGrow: 1, maxWidth: 752, }}>
 
             <Grid item xs={12} >
 
