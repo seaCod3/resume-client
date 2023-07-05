@@ -55,11 +55,11 @@ export default function ListItems({ options, setOptions, customHook, handleEdit,
 
     const getOptionSecondaryText = (option) => {
         if (option?.jobTitle) {
-            return `${option.jobTitle} at ${option?.employer}, in ${option?.jobLocationCity}...`;
+            return `${option.jobTitle} at ${option?.employer}...`;
         } else if (option?.language) {
-            return `Learned in ${option.whereWasLearned}. Level: ${option.oralComprehension}, ${option.readingComprehension}, ${option.oralInteraction}, ${option.speakingSkills}, ${option.writingSkills}`;
+            return `Learned in ${option.whereWasLearned}. Level: ${option.oralComprehension}, ${option.readingComprehension}, ${option.oralInteraction}, ${option.speakingSkills}, ${option.writingSkills}...`;
         } else if (option?.instituitionName) {
-            return `${option.degree} on ${option.course} at ${option?.instituitionName}...`;
+            return `${option.degree} on ${option.course}...`;
         }
     };
 
