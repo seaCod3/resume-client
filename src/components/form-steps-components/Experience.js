@@ -47,7 +47,7 @@ const Experience = () => {
 
     return (
 
-        <Grid container spacing={2} sx={{ overflowY: 'auto', maxHeight: '600px', paddingRight: { xs: 0, md: '20px' } }} >
+        <Grid container spacing={2} sx={{ overflowY: { xs: 'none', md: 'auto' }, maxHeight: { xs: 'none', lg: '550px' }, paddingRight: { xs: 0, md: '20px' } }} >
 
             {
                 experiences.length > 0 && (

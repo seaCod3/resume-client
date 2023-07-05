@@ -11,8 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { blue, pink } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import { useFormikContext } from 'formik';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Demo = styled('div')(({ theme }) => ({
@@ -66,7 +65,7 @@ export default function ListItems({ options, setOptions, customHook, handleEdit,
 
 
     return (
-        <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
+        <Box sx={{ flexGrow: 1, maxWidth: 752, marginTop: { xs: '.5rem', md: '2rem' } }}>
 
             <Grid item xs={12} >
 
@@ -104,7 +103,7 @@ export default function ListItems({ options, setOptions, customHook, handleEdit,
                                     </ListItemAvatar>
                                     <ListItemText
                                         primary={getOptionPrimaryText(option)}
-                                        secondary={ isMobileView ? false : getOptionSecondaryText(option)}
+                                        secondary={isMobileView ? false : getOptionSecondaryText(option)}
                                     />
                                 </ListItem>
                             ))

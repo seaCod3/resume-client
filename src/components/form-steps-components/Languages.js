@@ -53,7 +53,7 @@ const Languages = () => {
 
     return (
 
-        <Grid sx={{ overflowY: 'auto', maxHeight: '550px', paddingRight: { xs: 0, md: '20px' } }} container spacing={2} >
+        <Grid sx={{ overflowY: { xs: 'none', md: 'auto' }, maxHeight: { xs: 'none', lg: '550px' }, paddingRight: { xs: 0, md: '20px' } }} container spacing={2} >
 
             {
                 languages.length > 0 && (
@@ -113,7 +113,7 @@ const Languages = () => {
 
             </Grid>
 
-            <Grid item textAlign={'center'} mt={2} xs={12}>
+            <Grid item textAlign={'center'} my={2} xs={12}>
 
                 {
                     useLanguage.show ?

@@ -390,14 +390,14 @@ const CreateResumePage = () => {
 
   return (
 
-    <section style={{ marginTop: '56px', position: 'relative' }} >
+    <section className='container' style={{ marginTop: '56px', position: 'relative' }} >
 
       <Grid height={{ xs: 'auto', md: '100vh' }} container >
 
         {/* Left Side */}
-        <Grid item container height={'100%'} justifyContent={{ xs: 'center', md: 'flex-start' }} alignContent={'center'} pl={{ xs: 0, lg: '310px' }} pr={{ xs: 0, lg: '2rem' }} xs={12} md={8}>
-
-          <Grid item boxSizing={'border-box'} sx={{ marginY: '2rem', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: { xs: 0, md: '20px' } }} xs={12} md={9}>
+        <Grid item container height={'100%'} justifyContent={{ xs: 'center', lg: 'flex-start' }} alignContent={'flex-start'} xs={12} md={12} lg={8}>
+          {/* pl={{ xs: 0, lg: '310px' }} pr={{ xs: 0, lg: '2rem' }} -> this belongs to the grid above. Deleted to test container class*/}
+          <Grid item sx={{opacity: { xs: '.9', md: 1 } ,marginTop: { xs: 0, md: 0 }, marginBottom: { xs: 0, md: '2rem' }, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: { xs: 0, md: '20px' }, paddingY: { xs: 2, md: '2rem' }, position: { xs: 'fixed', md: 'relative' }, zIndex: { xs: 5, md: 1 }, backgroundColor: '#fff', top: { xs: '56px', md: 'none' } }} xs={12} md={9}>
 
             <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
               {steps.map((label, index) => (
@@ -421,7 +421,7 @@ const CreateResumePage = () => {
 
           </Grid>
 
-          <Grid item xs={12} md={9}>
+          <Grid item xs={12} md={9} marginTop={{ xs: '93px', md: 0 }} >
 
             <Formik
 
@@ -535,7 +535,7 @@ const CreateResumePage = () => {
         </Grid>
 
         {/* Right Side */}
-        <Grid display={{ xs: 'none', md: 'block' }} backgroundColor={'#f4f4f4'} item xs={4}>
+        <Grid display={{ xs: 'none', lg: 'flex' }} flexGrow={999} backgroundColor={'#f4f4f4'} item xs={4}>
 
           <img src={isLastNestedStep() ? imageDisplayer[activeStep + 1] : imageDisplayer[activeStep]} alt="Description" className="fluid-img" />
 
@@ -543,7 +543,7 @@ const CreateResumePage = () => {
 
       </Grid>
 
-      <Box sx={{ width: '100%', bottom: 0, zIndex: 10, position: { xs: 'fixed', md: 'relative' }, display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', paddingX: '.8rem', marginTop: '1rem', }} >
+      <Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'sticky', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', }} >
         <IconButton fontSize="medium" onClick={handleBack} disabled={shouldDisable()} edge="start" aria-label="back button">
           <Avatar sx={{ bgcolor: cyan[50] }}>
             <HiOutlineChevronLeft size={20} color='#023642' />
