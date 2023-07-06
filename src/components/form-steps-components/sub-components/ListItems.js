@@ -26,7 +26,7 @@ export default function ListItems({ options, setOptions, customHook, handleEdit,
 
 
     useEffect(() => {
-        // Function to update the margin bottom value based on the window inner height
+        // Function to update the isMobileView value based on the window inner width
         const handleWindowResize = () => {
             const isMobile = window.innerWidth <= 667 ? true : false;
             setIsMobileView(isMobile);
@@ -57,7 +57,7 @@ export default function ListItems({ options, setOptions, customHook, handleEdit,
         if (option?.jobTitle) {
             return `${option.jobTitle} at ${option?.employer}...`;
         } else if (option?.language) {
-            return `Learned in ${option.whereWasLearned}. Level: ${option.oralComprehension}, ${option.readingComprehension}, ${option.oralInteraction}, ${option.speakingSkills}, ${option.writingSkills}...`;
+            return `Learned in ${option.whereWasLearned}. Levels: ${option.oralComprehension}, ${option.readingComprehension}, ${option.writingSkills}...`;
         } else if (option?.instituitionName) {
             return `${option.degree} on ${option.course}...`;
         }

@@ -543,7 +543,7 @@ const CreateResumePage = () => {
 
         </Grid>
 
-        <Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'sticky', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', }} >
+        {/* <Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'sticky', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', }} >
           <IconButton fontSize="medium" onClick={handleBack} disabled={shouldDisable()} edge="start" aria-label="back button">
             <Avatar sx={{ bgcolor: cyan[50] }}>
               <HiOutlineChevronLeft size={20} color='#023642' />
@@ -562,9 +562,32 @@ const CreateResumePage = () => {
               <HiOutlineChevronRight size={20} color='#023642' />
             </Avatar>
           </IconButton>
-        </Box>
+        </Box> */}
 
       </section>
+
+      <Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'fixed', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', }} >
+        <IconButton fontSize="medium" onClick={handleBack} disabled={shouldDisable()} edge="start" aria-label="back button">
+          <Avatar sx={{ bgcolor: cyan[50] }}>
+            <HiOutlineChevronLeft size={20} color='#023642' />
+          </Avatar>
+        </IconButton>
+
+        <IconButton
+          sx={{paddingRight: '2rem'}}
+          edge="end"
+          aria-label="next button"
+          onClick={(e) => {
+            handleNext()
+            handleComplete()
+          }}
+        >
+          <Avatar sx={{ bgcolor: cyan[50] }}>
+            <HiOutlineChevronRight size={20} color='#023642' />
+          </Avatar>
+        </IconButton>
+      </Box>
+
       <Box sx={{ position: 'absolute', top: 0, right: 0, height: '100%', width: '35%' }} display={{ xs: 'none', lg: 'block' }}  >
         <article style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f4f4f4', padding: '25px', }} >
 
