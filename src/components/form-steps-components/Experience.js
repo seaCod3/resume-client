@@ -104,7 +104,7 @@ const Experience = () => {
                     />
                 </Grid>
             </Grid>
-            <Grid item textAlign={'center'} mt={2} xs={12}>
+            <Grid item textAlign={'center'} mt={2} xs={12} mb={'4rem'}>
 
                 {
                     useExperience.show ?

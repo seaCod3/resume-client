@@ -566,7 +566,7 @@ const CreateResumePage = () => {
 
       </section>
 
-      <Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'fixed', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', }} >
+      <Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'fixed', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', marginBottom: '1.6rem', paddingX: '.7rem' }} >
         <IconButton fontSize="medium" onClick={handleBack} disabled={shouldDisable()} edge="start" aria-label="back button">
           <Avatar sx={{ bgcolor: cyan[50] }}>
             <HiOutlineChevronLeft size={20} color='#023642' />
