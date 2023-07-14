@@ -4,7 +4,7 @@ import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import { Link } from "react-router-dom";
 import { i18n } from "../../translate/i18n";
 
-export default function Navbar(props) {
+export default function Navbar() {
 
     const [marginTop, setMarginTop] = React.useState(0);
     const I18N_STORAGE_KEY = "i18nextLng"
@@ -84,7 +84,7 @@ export default function Navbar(props) {
                             </ul>
 
                             <div className="btn-group">
-                                <button className='btn btn-primary' onClick={props.handleModal} >{i18n.t('hero.mainButton')}</button>
+                                <button className='btn btn-primary' >{i18n.t('hero.mainButton')}</button>
                                 {/* <button className="btn btn-primary">Create a Resume</button> */}
 
                                 <select name="language" onChange={handleLanguageChange} defaultValue={language}>

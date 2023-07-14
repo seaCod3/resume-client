@@ -1,108 +1,148 @@
-import React, { useRef } from 'react'
-import './modal.css'
-import { MdClose } from "react-icons/md";
-import modalImage from './rsume.svg';
-import Textfield from '../form/text-field';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import Slide from '@mui/material/Slide';
 import { Form, Formik } from 'formik';
-import * as Yup from "yup";
+import * as React from 'react';
 import { FaCopy } from "react-icons/fa";
+import { MdClose } from "react-icons/md";
 import { VscCheckAll } from "react-icons/vsc";
+import * as Yup from "yup";
 import { i18n } from '../../translate/i18n';
-const Modal = ({ open, close }) => {
+import Textfield from '../form/text-field';
+import './Modal.css';
+import modalImage from './resume.svg';
 
-  const [key, setKey] = React.useState([]);
-  const [isCopied, setIsCopied] = React.useState(false);
-  
 
-  const resultRef = useRef(null);
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
-  const handleCopyClick = () => {
-    if (resultRef.current) {
-      navigator.clipboard.writeText(resultRef.current.textContent)
+
+export default function ResponsiveDialog() {
+    const [open, setOpen] = React.useState(false);
+    const [key, setKey] = React.useState([]);
+    const [isCopied, setIsCopied] = React.useState(false);
+    const resultRef = React.useRef(null);
+
+
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleCopyClick = () => {
+        if (resultRef.current) {
+            navigator.clipboard.writeText(resultRef.current.textContent)
+        }
+        setIsCopied(true);
     }
-    setIsCopied(true);
-  }
 
-  React.useEffect(() => {
-    let timeoutId;
-
-    if (isCopied) {
-      timeoutId = setTimeout(() => {
-        setIsCopied(false);
-      }, 3000);       // change the icon back to FaCopy after 3 seconds
+    const initialValues = {
+        email: '',
     }
 
-    return () => clearTimeout(timeoutId);
-  }, [isCopied]);
-
-  const initialValues = {
-    email: '',
-  }
-
-  const FORM_VALIDATION = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Required'),
-  })
+    const FORM_VALIDATION = Yup.object().shape({
+        email: Yup.string().email('Invalid email').required('Required'),
+    })
 
 
-  if (!open) return null;
-  return (
-    <div className='overlay' onClick={close}>
-        <div className='modalContainer' onClick={(e) => { e.stopPropagation() }}>
-          <di className='image'>
-            <img src={modalImage} alt='modal' />
 
-          </di>
-          <div className='modalContent'>
+    React.useEffect(() => {
+        let timeoutId;
 
-            <p onClick={close} className='closeBtn'><MdClose color="#023642" size={30} /></p>
-            <h2>{i18n.t('modal.title')}</h2>
-            <h6>{i18n.t('modal.subtitle')}</h6>
-            <p>{i18n.t('modal.content')}</p>
+        if (isCopied) {
+            timeoutId = setTimeout(() => {
+                setIsCopied(false);
+            }, 2000);       // change the icon back to FaCopy after 3 seconds
+        }
 
-            <Formik
-              initialValues={{ ...initialValues }}
-              validationSchema={FORM_VALIDATION}
-              onSubmit={(values) => {
-                setKey([values.email]);
-                console.log(key)
-              }}
+        return () => clearTimeout(timeoutId);
+    }, [isCopied]);
+
+
+    return (
+        <div>
+            <Button className='btn btn-primary hero-btn' onClick={handleClickOpen}>
+                {i18n.t('hero.mainButton')}
+            </Button>
+            <Dialog
+                open={open}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose}
+                maxWidth="md"
             >
-              <Form className='contend-flex'>
+                <DialogContent sx={{ padding: 0, paddingRight: 2, paddingLeft: 2 }} >
+                    <div className='row'>
+                        <div className='col-12 col-sm-5 image'>
 
-                <div className='textfiels-Wrapper'>
-                  <Textfield
-                    name='email'
-                    label=''
-                    variant={'standard'}
-                    placeholder={'example@email.com'}
-                    autoComplete='off'
-                  />
-                </div>
+                            <img src={modalImage} alt='Modal' />
 
-                <button type='submit' className='btn btn-secondary'>{i18n.t('modal.button')}</button>
+                        </div>
 
-              </Form>
-            </Formik>
+                        <div className='col-12 col-sm-7 content'>
+                            <p style={{ textAlign: 'right', cursor: 'pointer', margin: '0px' }}>
+                                <MdClose onClick={handleClose} color="#023642" size={30} />
+                            </p>
+                            <h2>{i18n.t('modal.title')}</h2>
+                            <h6>{i18n.t('modal.subtitle')}</h6>
+                            <p>{i18n.t('modal.content')}</p>
 
-            <div className='results-section'>
-              {key.map((item) => (
-                <div className='result' key={item} ref={resultRef}>
-                  {item}
-                  {isCopied ? (
-                    <VscCheckAll color="#fff" size={20} />
-                  ) : (
-                    <FaCopy color="#fff" size={20} onClick={handleCopyClick} />
-                  )}
-                </div>
-              ))}
-            </div>
+                            <Formik
+                                initialValues={{ ...initialValues }}
+                                validationSchema={FORM_VALIDATION}
+                                onSubmit={(values) => {
+                                    setKey([values.email]);
+                                    console.log(key)
+                                }}
+                            >
+                                <Form className='contend-flex'>
+
+                                    <div className='textfield-Wrapper'>
+                                        <Textfield
+                                            name='email'
+                                            label=''
+                                            variant={'standard'}
+                                            placeholder={'example@email.com'}
+                                            autoComplete='off'
+                                            className='textfield'
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <button type='submit' className='btn btn-secondary'>{i18n.t('modal.button')}</button>
+
+                                    </div>
 
 
-          </div>
+                                </Form>
+                            </Formik>
+
+                            <div className='results-section'>
+                                {key.map((item) => (
+                                    <div className='result' key={item} ref={resultRef} style={{ cursor: 'pointer' }}>
+                                        {item}
+
+                                        {isCopied === true ? (
+                                            <div className='copied-button'>
+                                                <span>{i18n.t('modal.copied')}</span><VscCheckAll color="#fff" size={22} />
+                                            </div>
+                                        ) : (
+                                            <FaCopy color="#fff" size={20} onClick={handleCopyClick} />
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                    </div>
+                </DialogContent>
+            </Dialog>
         </div>
-      </div>
-
-  )
+    );
 }
-
-export default Modal

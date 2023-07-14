@@ -13,7 +13,8 @@ const messages = {
                 title: 'Almost There.',
                 subtitle: 'Please provide us your email!',
                 content: 'By providing us with your email, you will receive a key that will be associated with your account, and you will be able to edit your resume for up to 30 days until your account is removed. We advise you to keep this key in a safe place.',
-                button: 'Submit'
+                button: 'Submit',
+                copied: 'Copied'
             },
             features: {
                 title: 'Features',

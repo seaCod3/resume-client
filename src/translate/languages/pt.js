@@ -11,7 +11,8 @@ const messages = {
                 title: 'Quase lá.',
                 subtitle: 'Forneça-nos o seu e-mail!',
                 content: 'Ao fornecer-nos o seu e-mail, receberá uma chave que será associada à sua conta e poderá editar o seu currículo durante um período máximo de 30 dias até a sua conta ser removida. Aconselhamo-lo a guardar esta chave num local seguro.',
-                button: 'Enviar'
+                button: 'Enviar',
+                copied: 'Copiado'
             },
             features: {
                 title: 'Funcionalidades',

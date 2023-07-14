@@ -1,0 +1,95 @@
+.image {
+  max-height: 450px;
+  background-color: #F4F4F4;
+  padding: 40px 30px;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  padding: 10px;
+}
+
+.content p,
+.content h2,
+.content h6 {
+  color: var(--font-color);
+  margin-left: 20px;
+}
+
+.content h6 {
+  margin-top: 20px;
+}
+
+.content p {
+  text-align: justify;
+  margin-top: 20px;
+  margin-bottom: 5;
+}
+
+.copied-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.textfield-Wrapper {
+  width: 100%;
+}
+
+.contend-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.contend-flex button {
+  width: 150px;
+}
+
+.result {
+  width: 100%;
+  margin: 30px auto;
+  background-color: var(--font-color);
+  color: #fff;
+ padding: 7px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+
+
+@media (max-width: 575px) {
+  .image {
+    display: none;
+  }
+
+  .contend-flex {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .contend-flex .textfield-Wrapper {
+    margin-bottom: 10px;
+  }
+
+  .contend-flex .textfield-Wrapper .textfield {
+    width: 100%;
+  }
+
+  .contend-flex button {
+    width: 100%;
+  }
+
+  .result {
+    margin: 15px auto;
+  }
+}

@@ -2,10 +2,9 @@ import { i18n } from '../../translate/i18n';
 import { Link } from 'react-router-dom';
 import './hero.css'
 import myImage from './resume-coverletter.webp';
-import Modal from '../../components/modal/Modal';
-import { useState } from 'react';
+import MyModal from '../../components/modal/Modal';
 
-export default function Hero(props) {
+export default function Hero() {
 
 
 
@@ -48,9 +47,7 @@ export default function Hero(props) {
         mediaQuery.addEventListener('change', handleTabletChange)
         handleTabletChange(mediaQuery)
       }
-
-    
-
+      
   return (
 
     <div className='hero'>
@@ -61,7 +58,9 @@ export default function Hero(props) {
             <h1 className='h1'>{i18n.t('hero.title')}</h1>
             <p>{i18n.t('hero.contend')}</p>
             <div className='flex'>
-              <button className='btn btn-primary hero-btn' onClick={props.handleModal} >{i18n.t('hero.mainButton')}</button>
+              {/* <button className='btn btn-primary hero-btn' onClick={props.handleModal} >{i18n.t('hero.mainButton')}</button> */}
+              {/* <Modal /> */}
+              <MyModal />
               <Link to={`/create-resume`}><button className='btn btn-secondary hero-btn'>{i18n.t('hero.secondaryButton')}</button></Link>
               {/* <button className='btn btn-secondary hero-btn'>How it works?</button> */}
             </div>
