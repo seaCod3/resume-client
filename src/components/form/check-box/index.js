@@ -1,4 +1,3 @@
-import React from 'react';
 import { useField, useFormikContext } from 'formik';
 import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel } from '@mui/material';
 
@@ -36,8 +35,8 @@ const CheckboxWrapper = ({
                 <FormControlLabel
                     control={<Checkbox sx={{
                         color: '#023642', '&.Mui-checked': { color: '#023642', }, '& .MuiIconButton-root': {
-                            border: '1px solid', 
-                          },
+                            border: '1px solid',
+                        },
                     }} {...checkboxConfig} />}
                     label={label}
                 />

@@ -66,19 +66,6 @@ export default function TextArea({ name, skills, setSkills, ...otherProps }) {
     };
 
 
-    const handleBlur = (event) => {
-
-        const value = event.target.value;
-        // setFieldValue(name, splitStringWithBulletPoints(value));
-        setFieldValue(name, value);
-        // setSkills(splitStringWithBulletPoints(value));
-        // const splitedValues = splitStringWithBulletPoints(value)
-        // console.log(value);
-        // console.log(splitStringWithBulletPoints(value));
-
-    }
-
-
     const textFieldConfig = {
 
         ...field,
@@ -88,9 +75,7 @@ export default function TextArea({ name, skills, setSkills, ...otherProps }) {
         rows: 10,
         variant: otherProps.variant || 'outlined',
         label: false,
-        // onChange: handleInput,
         onInput: handleInput,
-        // onBlur: handleBlur
 
     }
 

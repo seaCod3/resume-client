@@ -1,41 +1,38 @@
-import React from 'react';
-import './create-resume-page.css';
+import Check from '@mui/icons-material/Check';
+import { Avatar, Button, Grid, IconButton, StepConnector, StepLabel, stepConnectorClasses } from '@mui/material';
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
+import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
-import { Divider, Grid, Button, stepConnectorClasses, StepConnector, StepLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Check from '@mui/icons-material/Check';
-import PropTypes from 'prop-types';
 import { Form, Formik } from 'formik';
-import * as Yup from 'yup';
-import certification from '../../assets/images/certication.svg';
-import education from '../../assets/images/education.svg';
-import College from '../../assets/images/college.svg';
-import SkillsImg from '../../assets/images/skills.svg';
-import Details from '../../assets/images/details.svg';
-import PersonalInformation from '../../components/form-steps-components/PersonalInformation';
-import { useState } from 'react';
-import Experience from '../../components/form-steps-components/Experience';
-import SectionDescriptionCard from '../../components/form-steps-components/SectionDescriptionCard';
-import EducationDetails from '../../components/form-steps-components/EducationDetails';
-import Skills from '../../components/form-steps-components/Skills';
-import { useEffect } from 'react';
-import { sectionDescriptions } from '../../constants/static-texts';
-import { HiOutlineChevronRight } from "react-icons/hi2";
-import { HiOutlineChevronLeft } from "react-icons/hi2";
-import Languages from '../../components/form-steps-components/Languages';
-import { useLanguageStore } from '../../store/LangToEditIndexStore';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { FaUser, FaUserCheck, FaUserGraduate, FaUserShield, FaUserTie } from 'react-icons/fa';
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 
+import { cyan } from '@mui/material/colors';
+import * as Yup from 'yup';
+import Completed from '../../assets/images/Completed.svg';
+import certification from '../../assets/images/certication.svg';
+import College from '../../assets/images/college.svg';
+import Details from '../../assets/images/details.svg';
+import education from '../../assets/images/education.svg';
+import SkillsImg from '../../assets/images/skills.svg';
+import EducationDetails from '../../components/form-steps-components/EducationDetails';
+import Experience from '../../components/form-steps-components/Experience';
+import Languages from '../../components/form-steps-components/Languages';
+import PersonalInformation from '../../components/form-steps-components/PersonalInformation';
+import SectionDescriptionCard from '../../components/form-steps-components/SectionDescriptionCard';
+import Skills from '../../components/form-steps-components/Skills';
+import { sectionDescriptions } from '../../constants/static-texts';
+import './create-resume-page.css';
 
 
 
 const CreateResumePage = () => {
 
-
-  const chosenLanguagesHasLength = useLanguageStore((state) => state.chosenLanguagesLength);
   const [fullName, setFullName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [gender, setGender] = useState('');
@@ -59,6 +56,7 @@ const CreateResumePage = () => {
   const [instituitionLocationCity, setInstituitionLocationCity] = useState('');
   const [instituitionLocationCountry, setInstituitionLocationCountry] = useState('');
   const [degree, setDegree] = useState('');
+  const [course, setCourse] = useState('');
   const [graduationStartDate, setGraduationStartDate] = useState('');
   const [graduationEndDate, setGraduationEndDate] = useState('');
   const [stillStudingHere, setStillStudingHere] = useState(false);
@@ -71,10 +69,30 @@ const CreateResumePage = () => {
   const [speakingSkills, setSpeakingSkills] = useState('');
   const [writingSkills, setWritingSkills] = useState('');
 
+  const [isMobileView, setIsMobileView] = useState(false);
+
 
   useEffect(() => {
     console.log(skills);
   }, [skills]);
+
+  React.useEffect(() => {
+    // Function to 
+    const handleWindowResize = () => {
+      const isMobile = window.innerWidth <= 667 ? true : false;
+      setIsMobileView(isMobile);
+    };
+
+    // Add event listener to the window resize event
+    window.addEventListener("resize", handleWindowResize);
+
+    handleWindowResize();
+
+    // Remove event listener when component is unmounted
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
 
   const INITIAL_FORM_STATE = {
@@ -102,6 +120,7 @@ const CreateResumePage = () => {
     instituitionLocationCity: instituitionLocationCity,
     instituitionLocationCountry: instituitionLocationCountry,
     degree: degree,
+    course: course,
     graduationStartDate: graduationStartDate,
     graduationEndDate: graduationEndDate,
     stillStudingHere: stillStudingHere,
@@ -166,6 +185,8 @@ const CreateResumePage = () => {
       .required('Instituition Location Country is required'),
     degree: Yup.string()
       .required('Degree is required'),
+    course: Yup.string()
+      .required('Plese specify what did you studied.'),
     graduationStartDate: Yup.date()
       .required('Graduation Start Date is required'),
     graduationEndDate: Yup.date()
@@ -192,20 +213,20 @@ const CreateResumePage = () => {
 
   })
 
+
   // Stepper related functions
 
   const steps = [
 
-    { label: 'Personal Information', nestedSteps: [0, 1, 2] },
-    { label: 'Experience', nestedSteps: [0, 1,] },
-    { label: 'Education', nestedSteps: [0, 1,] },
-    { label: 'Skills', nestedSteps: [0, 1, 2] },
-    { label: 'Job Details', nestedSteps: [0, 1,] }
+    { label: 'Personal Information', nestedSteps: [0, 1, 2], icon: <FaUser size={15} color="#023642" /> },
+    { label: 'Experience', nestedSteps: [0, 1,], icon: <FaUserTie size={15} color="#023642" /> },
+    { label: 'Education', nestedSteps: [0, 1,], icon: <FaUserGraduate size={15} color="#023642" /> },
+    { label: 'Skills', nestedSteps: [0, 1, 2], icon: <FaUserShield size={18} color="#023642" /> },
+    { label: 'Job Details', nestedSteps: [0, 1,], icon: <FaUserCheck size={18} color="#023642" /> }
 
   ]
 
-
-  const imageDisplayer = [certification, education, College, SkillsImg, Details];
+  const imageDisplayer = [certification, education, College, SkillsImg, Details, Completed];
 
   const [activeStep, setActiveStep] = React.useState(0);
   const [nestedStep, setNestedStep] = useState(0); // nested steps
@@ -235,19 +256,9 @@ const CreateResumePage = () => {
     return completedSteps() === totalSteps();
   };
 
-  // const handleNext = () => {
-  //   const newActiveStep =
-  //     isLastStep() && !allStepsCompleted()
-  //       ? // It's the last step, but not all steps have been completed,
-  //       // find the first step that has been completed
-  //       steps.findIndex((step, i) => !(i in completed))
-  //       : activeStep + 1;
-  //   setActiveStep(newActiveStep);
-  // };
 
   const handleNext = () => {
 
-    console.log(chosenLanguagesHasLength);
     if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
       // Advance to the next nested step within the current step
       setNestedStep(nestedStep + 1);
@@ -267,8 +278,17 @@ const CreateResumePage = () => {
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    setNestedStep(0);
+
+    if (steps[activeStep].nestedSteps && !isFirstNestedStep()) {
+      // Advance to the previous nested step within the current step
+      setNestedStep(nestedStep - 1);
+    } else {
+      if (activeStep > 0) {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+      }
+      // Reset the nested step to the last one in the previous step
+      setNestedStep(steps[activeStep - 1].nestedSteps.length - 1);
+    }
 
   };
 
@@ -288,6 +308,10 @@ const CreateResumePage = () => {
     setNestedStep(0);
     setCompleted({});
   };
+
+  const shouldDisable = () => {
+    return activeStep === 0 && nestedStep === 0
+  }
 
   const QontoConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -365,120 +389,129 @@ const CreateResumePage = () => {
 
 
   return (
+    <section className='container-fluid' style={{ position: 'relative', height: '100vh' }} >
+      <section className='container' style={{ marginTop: '56px', position: 'relative' }} >
 
-    <section style={{ marginTop: '56px' }} >
+        <Grid height={{ xs: 'auto', md: '100%' }} container >
 
-      <Grid height={'100vh'} container >
+          {/* Left Side */}
+          <Grid item container height={'100%'} justifyContent={{ xs: 'center', lg: 'flex-start' }} alignContent={'flex-start'} xs={12} md={12} lg={8}>
 
-        {/* Left Side */}
-        <Grid item container alignContent={'start'} pl={'310px'} pr={'2rem'} xs={8}>
+            <Grid item sx={{ opacity: { xs: '.9', md: 1 }, marginTop: { xs: 0, md: 0 }, marginBottom: { xs: 0, md: '2rem' }, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: { xs: 0, md: '20px' }, paddingY: { xs: 2, md: '2rem' }, position: { xs: 'fixed', md: 'relative' }, zIndex: { xs: 5, md: 1 }, backgroundColor: '#fff', top: { xs: '56px', md: 'none' } }} xs={12} md={9}>
 
-          <Box sx={{ width: '80%', marginY: '4rem' }}>
+              <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
+                {steps.map((label, index) => (
+                  <Step key={label.label} completed={completed[index]}>
+                    <StepButton color="#023642" onClick={handleStep(index)}>
+                      {/* {label} */}
+                      {
+                        isMobileView ?
+                          (
+                            <StepLabel StepIconComponent={QontoStepIcon}>{label.icon}</StepLabel>
+                          )
+                          :
+                          (
+                            <StepLabel StepIconComponent={QontoStepIcon}>{`${label.label}`}</StepLabel>
+                          )
+                      }
+                    </StepButton>
+                  </Step>
+                ))}
+              </Stepper>
 
-            <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
-              {steps.map((label, index) => (
-                <Step key={label.label} completed={completed[index]}>
-                  <StepButton color="#023642" onClick={handleStep(index)}>
-                    {/* {label} */}
-                    <StepLabel StepIconComponent={QontoStepIcon}>{label.label}</StepLabel>
-                  </StepButton>
-                </Step>
-              ))}
-            </Stepper>
+            </Grid>
 
-          </Box>
+            <Grid item xs={12} md={9} marginTop={{ xs: '93px', md: 0 }} >
 
-          <Grid item xs={9}>
+              <Formik
 
-            {/* stepper used to be placed here */}
+                initialValues={{ ...INITIAL_FORM_STATE }}
+                validationSchema={FORM_VALIDATION_SCHEMA}
+                onSubmit={(values, onSubmitProps) => {
+                  console.log(values);
+                  onSubmitProps.resetForm()
+                }}
+                enableReinitialize
 
+              >
+                <Form>
 
-            <Formik
+                  <div>
+                    {allStepsCompleted() ? (
+                      <React.Fragment>
+                        <Typography sx={{ mt: 2, mb: 1 }}>
+                          All steps completed - you&apos;re finished
+                        </Typography>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                          <Box sx={{ flex: '1 1 auto' }} />
+                          <Button onClick={handleReset}>Reset</Button>
+                        </Box>
+                      </React.Fragment>
+                    ) : (
+                      <React.Fragment>
 
-              initialValues={{ ...INITIAL_FORM_STATE }}
-              validationSchema={FORM_VALIDATION_SCHEMA}
-              onSubmit={(values, onSubmitProps) => {
-                console.log(values);
-                onSubmitProps.resetForm()
-              }}
-              enableReinitialize
+                        <Box paddingX={{ xs: 2, md: 0 }} >
+                          {activeStep === 0 && (
+                            <>
+                              {nestedStep === 0 && <SectionDescriptionCard {...sectionDescriptions[5]} />}
+                              {nestedStep === 1 && <PersonalInformation />}
+                              {nestedStep === 2 && <SectionDescriptionCard {...sectionDescriptions[2]} />}
+                            </>
+                          )}
+                          {activeStep === 1 && (
+                            <>
+                              {nestedStep === 0 && <Experience />}
+                              {nestedStep === 1 && <SectionDescriptionCard {...sectionDescriptions[0]} />}
+                            </>
+                          )}
+                          {activeStep === 2 && (
+                            <>
+                              {nestedStep === 0 && <EducationDetails />}
+                              {nestedStep === 1 && <SectionDescriptionCard {...sectionDescriptions[1]} />}
+                            </>
+                          )}
+                          {activeStep === 3 && (
+                            <>
+                              {nestedStep === 0 && <Skills skills={skills} setSkills={setSkills} />}
+                              {nestedStep === 1 && <Languages />}
+                              {nestedStep === 2 && <SectionDescriptionCard {...sectionDescriptions[3]} />}
+                            </>
+                          )}
+                          {activeStep === 4 && (
+                            <>
+                              <SectionDescriptionCard {...sectionDescriptions[4]} />
+                            </>
+                          )}
 
-            >
-              <Form>
+                        </Box>
 
-                <div>
-                  {allStepsCompleted() ? (
-                    <React.Fragment>
-                      <Typography sx={{ mt: 2, mb: 1 }}>
-                        All steps completed - you&apos;re finished
-                      </Typography>
-                      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                        <Box sx={{ flex: '1 1 auto' }} />
-                        <Button onClick={handleReset}>Reset</Button>
-                      </Box>
-                    </React.Fragment>
-                  ) : (
-                    <React.Fragment>
+                        <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row', justifyContent: 'space-between', py: 2, marginY: '1.5rem' }}>
+                          <Button
+                            startIcon={<HiOutlineChevronLeft size={20} />}
+                            variant='outlined'
+                            color="inherit"
+                            disabled={activeStep === 0 && nestedStep === 0}
+                            onClick={handleBack}
+                            sx={{ mr: 1, width: '150px', height: '40px', }}
+                          >
+                            Back
+                          </Button>
 
-                      <Box>
-                        {activeStep === 0 && (
-                          <>
-                            {nestedStep === 0 && <SectionDescriptionCard {...sectionDescriptions[5]} />}
-                            {nestedStep === 1 && <PersonalInformation />}
-                            {nestedStep === 2 && <SectionDescriptionCard {...sectionDescriptions[2]} />}
-                          </>
-                        )}
-                        {activeStep === 1 && (
-                          <>
-                            {nestedStep === 0 && <Experience />}
-                            {nestedStep === 1 && <SectionDescriptionCard {...sectionDescriptions[0]} />}
-                          </>
-                        )}
-                        {activeStep === 2 && (
-                          <>
-                            {nestedStep === 0 && <EducationDetails />}
-                            {nestedStep === 1 && <SectionDescriptionCard {...sectionDescriptions[1]} />}
-                          </>
-                        )}
-                        {activeStep === 3 && (
-                          <>
-                            {nestedStep === 0 && <Skills skills={skills} setSkills={setSkills} />}
-                            {nestedStep === 1 && <Languages />}
-                            {nestedStep === 2 && <SectionDescriptionCard {...sectionDescriptions[3]} />}
-                          </>
-                        )}
-                        {activeStep === 4 && (
-                          <>
-                            <SectionDescriptionCard {...sectionDescriptions[4]} />
-                          </>
-                        )}
+                          {/* <Box sx={{ flex: '1 1 auto' }} /> */}
 
-                      </Box>
-
-                      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, marginTop: '2rem' }}>
-                        <Button
-                          startIcon={<HiOutlineChevronLeft size={20} />}
-                          variant='outlined'
-                          color="inherit"
-                          disabled={activeStep === 0}
-                          onClick={handleBack}
-                          sx={{ mr: 1, width: '150px', height: '40px', }}
-                        >
-                          Back
-                        </Button>
-                        <Box sx={{ flex: '1 1 auto' }} />
-                        <Button
-                          endIcon={<HiOutlineChevronRight size={20} />}
-                          variant='outlined'
-                          onClick={(e) => {
-                            handleNext()
-                            handleComplete()
-                          }} sx={{ mr: 1, width: '150px' }}
-                          className='btn-secondary'
-                        >
-                          Next
-                        </Button>
-                        {/* {activeStep !== steps.length &&
+                          <Button
+                            endIcon={<HiOutlineChevronRight size={20} />}
+                            variant='outlined'
+                            onClick={(e) => {
+                              handleNext()
+                              handleComplete()
+                            }}
+                            sx={{ mr: 1, width: '150px' }}
+                            className='btn-secondary'
+                          >
+                            Next
+                          </Button>
+                          {/* {activeStep !== steps.length &&
                           (completed[activeStep] ? (
                             <Typography variant="caption" sx={{ display: 'inline-block' }}>
                               Step {activeStep + 1} already completed
@@ -490,26 +523,78 @@ const CreateResumePage = () => {
                                 : 'Complete Step'}
                             </Button>
                           ))} */}
-                      </Box>
-                    </React.Fragment>
-                  )}
-                </div>
+                        </Box>
+                      </React.Fragment>
+                    )}
+                  </div>
 
-              </Form>
-            </Formik>
+                </Form>
+              </Formik>
+            </Grid>
+
           </Grid>
+
+          {/* Right Side */}
+          {/* <Grid display={{ xs: 'none', lg: 'flex' }} flexGrow={999} backgroundColor={'#f4f4f4'} item xs={4}>
+
+            <img src={isLastNestedStep() ? imageDisplayer[activeStep + 1] : imageDisplayer[activeStep]} alt="Description" className="fluid-img" />
+
+          </Grid> */}
 
         </Grid>
 
-        {/* Right Side */}
-        <Grid backgroundColor={'#f4f4f4'} item xs={4}>
+        {/* <Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'sticky', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', }} >
+          <IconButton fontSize="medium" onClick={handleBack} disabled={shouldDisable()} edge="start" aria-label="back button">
+            <Avatar sx={{ bgcolor: cyan[50] }}>
+              <HiOutlineChevronLeft size={20} color='#023642' />
+            </Avatar>
+          </IconButton>
+
+          <IconButton
+            edge="end"
+            aria-label="next button"
+            onClick={(e) => {
+              handleNext()
+              handleComplete()
+            }}
+          >
+            <Avatar sx={{ bgcolor: cyan[50] }}>
+              <HiOutlineChevronRight size={20} color='#023642' />
+            </Avatar>
+          </IconButton>
+        </Box> */}
+
+      </section>
+
+      <Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'fixed', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', }} >
+        <IconButton fontSize="medium" onClick={handleBack} disabled={shouldDisable()} edge="start" aria-label="back button">
+          <Avatar sx={{ bgcolor: cyan[50] }}>
+            <HiOutlineChevronLeft size={20} color='#023642' />
+          </Avatar>
+        </IconButton>
+
+        <IconButton
+          sx={{paddingRight: '2rem'}}
+          edge="end"
+          aria-label="next button"
+          onClick={(e) => {
+            handleNext()
+            handleComplete()
+          }}
+        >
+          <Avatar sx={{ bgcolor: cyan[50] }}>
+            <HiOutlineChevronRight size={20} color='#023642' />
+          </Avatar>
+        </IconButton>
+      </Box>
+
+      <Box sx={{ position: 'absolute', top: 0, right: 0, height: '100%', width: '35%' }} display={{ xs: 'none', lg: 'block' }}  >
+        <article style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f4f4f4', padding: '25px', }} >
 
           <img src={isLastNestedStep() ? imageDisplayer[activeStep + 1] : imageDisplayer[activeStep]} alt="Description" className="fluid-img" />
 
-        </Grid>
-
-      </Grid>
-
+        </article>
+      </Box>
     </section>
 
   )

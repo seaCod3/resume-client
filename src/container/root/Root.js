@@ -3,7 +3,12 @@ import { Outlet } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../footer/Footer';
 
+
 const Root = () => {
+
+    const url = window.location.pathname;
+
+
 
     return (
         <div>
@@ -13,9 +18,11 @@ const Root = () => {
             <main>
                 <Outlet />
             </main>
-            <footer >
-                <Footer />
-            </footer>
+            {/* THe CODE ABOVE WAS FOR TEST ONLY!!! FIX IT BY CREATING CUSTOM LAYOUT FOR THE CREATERESUMEPAGE */}
+            {!url.includes('create-resume') &&
+                (<footer >
+                    <Footer />
+                </footer>)}
         </div>
     )
 }
