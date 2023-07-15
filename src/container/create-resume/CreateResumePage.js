@@ -28,6 +28,8 @@ import SectionDescriptionCard from '../../components/form-steps-components/Secti
 import Skills from '../../components/form-steps-components/Skills';
 import { sectionDescriptions } from '../../constants/static-texts';
 import './create-resume-page.css';
+import ToastProvider from '../../providers/ToastProviders';
+import { toast } from 'react-hot-toast';
 
 
 
@@ -218,11 +220,11 @@ const CreateResumePage = () => {
 
   const steps = [
 
-    { label: 'Personal Information', nestedSteps: [0, 1, 2], icon: <FaUser size={15} color="#023642" /> },
-    { label: 'Experience', nestedSteps: [0, 1,], icon: <FaUserTie size={15} color="#023642" /> },
-    { label: 'Education', nestedSteps: [0, 1,], icon: <FaUserGraduate size={15} color="#023642" /> },
-    { label: 'Skills', nestedSteps: [0, 1, 2], icon: <FaUserShield size={18} color="#023642" /> },
-    { label: 'Job Details', nestedSteps: [0, 1,], icon: <FaUserCheck size={18} color="#023642" /> }
+    { label: 'Personal Information', nestedSteps: [0, 1, 2], icon: <FaUser size={18} color="#023642" /> },
+    { label: 'Experience', nestedSteps: [0, 1,], icon: <FaUserTie size={18} color="#023642" /> },
+    { label: 'Education', nestedSteps: [0, 1,], icon: <FaUserGraduate size={18} color="#023642" /> },
+    { label: 'Skills', nestedSteps: [0, 1, 2], icon: <FaUserShield size={21} color="#023642" /> },
+    { label: 'Job Details', nestedSteps: [0, 1,], icon: <FaUserCheck size={21} color="#023642" /> }
 
   ]
 
@@ -258,6 +260,7 @@ const CreateResumePage = () => {
 
 
   const handleNext = () => {
+    toast.success('clicked on next succefully!')
 
     if (steps[activeStep].nestedSteps && !isLastNestedStep()) {
       // Advance to the next nested step within the current step
@@ -278,6 +281,7 @@ const CreateResumePage = () => {
   };
 
   const handleBack = () => {
+    toast.error('clicked on back succefully!')
 
     if (steps[activeStep].nestedSteps && !isFirstNestedStep()) {
       // Advance to the previous nested step within the current step
@@ -300,7 +304,7 @@ const CreateResumePage = () => {
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
-    handleNext();
+    // handleNext();
   };
 
   const handleReset = () => {
@@ -391,13 +395,14 @@ const CreateResumePage = () => {
   return (
     <section className='container-fluid' style={{ position: 'relative', height: '100vh' }} >
       <section className='container' style={{ marginTop: '56px', position: 'relative' }} >
+        <ToastProvider />
 
         <Grid height={{ xs: 'auto', md: '100%' }} container >
 
           {/* Left Side */}
           <Grid item container height={'100%'} justifyContent={{ xs: 'center', lg: 'flex-start' }} alignContent={'flex-start'} xs={12} md={12} lg={8}>
 
-            <Grid item sx={{ opacity: { xs: '.9', md: 1 }, marginTop: { xs: 0, md: 0 }, marginBottom: { xs: 0, md: '2rem' }, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: { xs: 0, md: '20px' }, paddingY: { xs: 2, md: '2rem' }, position: { xs: 'fixed', md: 'relative' }, zIndex: { xs: 5, md: 1 }, backgroundColor: '#fff', top: { xs: '56px', md: 'none' } }} xs={12} md={9}>
+            <Grid item sx={{ opacity: { xs: '.9', md: 1 }, marginTop: { xs: 0, md: 0 }, marginBottom: { xs: 0, md: '2rem' }, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: { xs: 0, md: '20px' }, paddingTop: { xs: 3, md: '1rem' }, paddingBottom: { xs: 2, md: '2rem' }, position: { xs: 'fixed', md: 'relative' }, zIndex: { xs: 5, md: 1 }, backgroundColor: '#fff', top: { xs: '56px', md: 'none' } }} xs={12} md={9}>
 
               <Stepper alternativeLabel nonLinear activeStep={activeStep} connector={<QontoConnector />} >
                 {steps.map((label, index) => (
@@ -566,7 +571,7 @@ const CreateResumePage = () => {
 
       </section>
 
-      <Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'fixed', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', marginBottom: '1.6rem', paddingX: '.7rem' }} >
+      {!allStepsCompleted() && (<Box sx={{ width: '100%', bottom: 0, zIndex: 5, position: 'fixed', display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', marginTop: '1rem', marginBottom: '1.6rem', paddingX: '.7rem' }} >
         <IconButton fontSize="medium" onClick={handleBack} disabled={shouldDisable()} edge="start" aria-label="back button">
           <Avatar sx={{ bgcolor: cyan[50] }}>
             <HiOutlineChevronLeft size={20} color='#023642' />
@@ -574,7 +579,7 @@ const CreateResumePage = () => {
         </IconButton>
 
         <IconButton
-          sx={{paddingRight: '2rem'}}
+          sx={{ paddingRight: '2rem' }}
           edge="end"
           aria-label="next button"
           onClick={(e) => {
@@ -586,7 +591,7 @@ const CreateResumePage = () => {
             <HiOutlineChevronRight size={20} color='#023642' />
           </Avatar>
         </IconButton>
-      </Box>
+      </Box>)}
 
       <Box sx={{ position: 'absolute', top: 0, right: 0, height: '100%', width: '35%' }} display={{ xs: 'none', lg: 'block' }}  >
         <article style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f4f4f4', padding: '25px', }} >
