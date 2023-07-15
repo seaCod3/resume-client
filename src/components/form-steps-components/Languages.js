@@ -113,7 +113,7 @@ const Languages = () => {
 
             </Grid>
 
-            <Grid item textAlign={'center'} my={2} xs={12}>
+            <Grid item textAlign={'center'} my={2} xs={12} mb={'4rem'}>
 
                 {
                     useLanguage.show ?
