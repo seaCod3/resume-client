@@ -2,7 +2,7 @@ import { i18n } from '../../translate/i18n';
 import { Link } from 'react-router-dom';
 import './hero.css'
 import myImage from './resume-coverletter.webp';
-import MyModal from '../../components/modal/Modal';
+import Modal from '../../components/modal/Modal';
 
 export default function Hero() {
 
@@ -58,9 +58,7 @@ export default function Hero() {
             <h1 className='h1'>{i18n.t('hero.title')}</h1>
             <p>{i18n.t('hero.contend')}</p>
             <div className='flex'>
-              {/* <button className='btn btn-primary hero-btn' onClick={props.handleModal} >{i18n.t('hero.mainButton')}</button> */}
-              {/* <Modal /> */}
-              <MyModal />
+              <Modal />
               <Link to={`/create-resume`}><button className='btn btn-secondary hero-btn'>{i18n.t('hero.secondaryButton')}</button></Link>
               {/* <button className='btn btn-secondary hero-btn'>How it works?</button> */}
             </div>

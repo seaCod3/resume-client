@@ -1,6 +1,7 @@
 import "./navbar.css"
 import React from "react";
-import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
+import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
+import Modal from "../modal/Modal"
 import { Link } from "react-router-dom";
 import { i18n } from "../../translate/i18n";
 
@@ -15,7 +16,7 @@ export default function Navbar() {
         const browserLanguage = e.target.value;
         localStorage.setItem(I18N_STORAGE_KEY, browserLanguage);
         window.location = window.location;
-      }
+    }
 
     React.useEffect(() => {
         // Function to update the margin bottom value based on the window inner height
@@ -84,8 +85,8 @@ export default function Navbar() {
                             </ul>
 
                             <div className="btn-group">
-                                <button className='btn btn-primary' >{i18n.t('hero.mainButton')}</button>
-                                {/* <button className="btn btn-primary">Create a Resume</button> */}
+                                
+                                <Modal />
 
                                 <select name="language" onChange={handleLanguageChange} defaultValue={language}>
                                     <option value="pt" className="language-option">🇨🇻 Portugues</option>

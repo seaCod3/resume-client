@@ -59,8 +59,10 @@ body {
     gap: 20px;
 }
 
-.btn-primary {
+.btn-group .btn-primary {
     border-radius: 5px !important;
+    width: 200px;
+    height: 40px;
 }
 
 select {
