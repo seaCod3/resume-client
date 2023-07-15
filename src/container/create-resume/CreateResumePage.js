@@ -220,11 +220,11 @@ const CreateResumePage = () => {
 
   const steps = [
 
-    { label: 'Personal Information', nestedSteps: [0, 1, 2], icon: <FaUser size={18} color="#023642" /> },
-    { label: 'Experience', nestedSteps: [0, 1,], icon: <FaUserTie size={18} color="#023642" /> },
-    { label: 'Education', nestedSteps: [0, 1,], icon: <FaUserGraduate size={18} color="#023642" /> },
-    { label: 'Skills', nestedSteps: [0, 1, 2], icon: <FaUserShield size={21} color="#023642" /> },
-    { label: 'Job Details', nestedSteps: [0, 1,], icon: <FaUserCheck size={21} color="#023642" /> }
+    { label: 'Personal Information', nestedSteps: [0, 1, 2], icon: <FaUser size={20} color="#023642" /> },
+    { label: 'Experience', nestedSteps: [0, 1,], icon: <FaUserTie size={20} color="#023642" /> },
+    { label: 'Education', nestedSteps: [0, 1,], icon: <FaUserGraduate size={20} color="#023642" /> },
+    { label: 'Skills', nestedSteps: [0, 1, 2], icon: <FaUserShield size={24} color="#023642" /> },
+    { label: 'Job Details', nestedSteps: [0, 1,], icon: <FaUserCheck size={23} color="#023642" /> }
 
   ]
 
